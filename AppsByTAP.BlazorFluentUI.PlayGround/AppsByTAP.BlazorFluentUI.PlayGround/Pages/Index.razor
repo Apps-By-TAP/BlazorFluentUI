@@ -1,0 +1,34 @@
+﻿@page "/"
+
+@using AppsByTAP.BlazorFluentUI.Components.Theme.Models
+@using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light
+@using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Dark
+
+@inject IThemeProvider ThemeProvider
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<button @onclick="ChangeTheme">Change Theme</button>
+
+@code
+{
+    private bool _isDark = true;
+
+    private void ChangeTheme()
+    {
+        if (_isDark)
+        {
+            ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new LightThemePalette()));
+        }
+        else
+        {
+            ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new DarkThemePalette()));
+        }
+
+        _isDark = !_isDark;
+    }
+}

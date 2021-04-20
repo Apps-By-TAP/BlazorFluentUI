@@ -1,0 +1,87 @@
+﻿@using System.Text
+@using AppsByTAP.BlazorFluentUI.Components.Theme.Models
+@using System.Reflection
+
+@inject IThemeProvider ThemeProvider
+
+<div>
+    @ChildContent
+</div>
+
+<style>
+    :root{
+        @(GetThemeVariables())
+    }
+
+    body {
+        color: var(--semanticTextColors-BodyText);
+        background-color: var(--semanticColors-BodyBackground);
+        font-size: 15px;
+        font-family: Segoe UI,SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+</style>
+
+@code { 
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private Models.Theme _theme;
+
+    protected override Task OnInitializedAsync()
+    {
+        _theme = ThemeProvider.Theme;
+        ThemeProvider.ThemeChanged += ThemeChanged;
+        return base.OnInitializedAsync();
+    }
+
+    private void ThemeChanged(Models.Theme theme)
+    {
+
+        InvokeAsync(() =>
+        {
+            _theme = theme;
+            StateHasChanged();
+        });
+    }
+
+    private string GetThemeVariables()
+    {
+        if(_theme is not null)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            PropertyInfo[] palette = _theme.Palette.GetType().GetProperties();
+
+            string propName;
+
+            foreach(PropertyInfo info in palette)
+            {
+                propName = info.Name;
+                Console.WriteLine($"palette: {info.GetValue(_theme.Palette, null)}");
+                sb.Append($"--palette-{propName}: {info.GetValue(_theme.Palette, null)};");
+            }
+
+            PropertyInfo[] semanticColors = _theme.SemanticColors.GetType().GetProperties();
+
+            foreach (PropertyInfo info in semanticColors)
+            {
+                propName = info.Name;
+                sb.Append($"--semanticColors-{propName}: {info.GetValue(_theme.SemanticColors, null)};");
+            }
+
+            PropertyInfo[] semanticTextColors = _theme.SemanticTextColors.GetType().GetProperties();
+
+            foreach (PropertyInfo info in semanticTextColors)
+            {
+                propName = info.Name;
+                sb.Append($"--semanticTextColors-{propName}: {info.GetValue(_theme.SemanticTextColors, null)};");
+            }
+
+            return sb.ToString();
+        }
+
+        return "";
+    }
+}
