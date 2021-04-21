@@ -1,0 +1,8 @@
+﻿@namespace AppsByTAP.BlazorFluentUI.Components.Button
+
+@inherits BaseButtonViewModel
+
+<div @onclick="OnClick" class="@(string.IsNullOrEmpty(SecondaryText) ? "withoutSecondaryText" : "withSecondaryText") @(IsPrimary? "primaryBtn" : "secondaryBtn")">
+    <span>@Text</span>
+    <span class="secondary">@SecondaryText</span>
+</div>

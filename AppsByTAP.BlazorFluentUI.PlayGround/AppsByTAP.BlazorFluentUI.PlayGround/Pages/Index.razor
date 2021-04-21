@@ -3,6 +3,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Models
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Dark
+@using AppsByTAP.BlazorFluentUI.Components.Button
 
 @inject IThemeProvider ThemeProvider
 
@@ -13,9 +14,20 @@ Welcome to your new app.
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 <button @onclick="ChangeTheme">Change Theme</button>
+<BaseButton Text="Standard" OnClick="Add" />
+<BaseButton Text="Standard" SecondaryText="This is the secondary text." OnClick="Add" />
+<BaseButton Text="Standard" SecondaryText="This is the secondary text." IsPrimary="true" OnClick="Add" />
+<BaseButton Text="Standard" SecondaryText="This is the secondary text." IsPrimary="true" OnClick="Add" />
+<DefaultButton Text="My Btn" IsPrimary="false" OnClick="Add" />
+<DefaultButton Text="My Btn" IsPrimary="true" OnClick="Add" />
+<CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="false" OnClick="Add" />
+<CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="true" OnClick="Add" />
+
+@counter
 
 @code
 {
+    private int counter = 0;
     private bool _isDark = true;
 
     private void ChangeTheme()
@@ -31,4 +43,11 @@ Welcome to your new app.
 
         _isDark = !_isDark;
     }
+
+    private void Add()
+    {
+        counter++;
+    }
+
+
 }

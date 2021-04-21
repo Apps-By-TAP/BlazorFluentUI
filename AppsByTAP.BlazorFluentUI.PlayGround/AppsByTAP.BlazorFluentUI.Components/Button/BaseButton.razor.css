@@ -1,0 +1,66 @@
+﻿
+div {
+    display: inline-block;
+    border: 1px solid var(--semanticColors-ButtonBorder);
+    border-radius: 2px;    
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.withoutSecondaryText {
+    padding: 5px 21px;
+}
+
+.withSecondaryText {
+    padding: 16px 11px;
+}
+
+div span{
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+div:hover {
+    background-color: var(--semanticColors-ButtonBackgroundHovered);
+    cursor: pointer;
+}
+
+div:active {
+    background-color: var(--semanticColors-ButtonBackgroundChecked);
+    cursor: pointer;
+}
+
+.secondary{
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.primaryBtn {
+    background-color: var(--semanticColors-PrimaryButtonBackground);
+    color: var(--semanticTextColors-PrimaryButtonText);
+}
+
+.primaryBtn:active {
+    background-color: var(--semanticColors-PrimaryButtonBackgroundPressed);
+}
+
+.primaryBtn:hover {
+    background-color: var(--semanticColors-PrimaryButtonBackgroundHovered);
+}
+
+.secondaryBtn {
+    color: var(--semanticColors-ButtonText);
+}
+
+.secondaryBtn:active {
+    background-color: var(--semanticColors-ButtonBackgroundChecked);
+}
+
+.secondaryBtn:hover {
+    background-color: var(--semanticColors-ButtonBackgroundHovered);
+}

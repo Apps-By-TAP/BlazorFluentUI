@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppsByTAP.BlazorFluentUI.PlayGround", "AppsByTAP.BlazorFluentUI.PlayGround\AppsByTAP.BlazorFluentUI.PlayGround.csproj", "{E91122EE-D5AF-4D5A-A1E8-544469C28CE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppsByTAP.BlazorFluentUI.PlayGround", "AppsByTAP.BlazorFluentUI.PlayGround\AppsByTAP.BlazorFluentUI.PlayGround.csproj", "{E91122EE-D5AF-4D5A-A1E8-544469C28CE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppsByTAP.BlazorFluentUI.Components", "AppsByTAP.BlazorFluentUI.Components\AppsByTAP.BlazorFluentUI.Components.csproj", "{6CDB5605-5B00-4979-8F75-49A34C03F3DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppsByTAP.BlazorFluentUI.Components", "AppsByTAP.BlazorFluentUI.Components\AppsByTAP.BlazorFluentUI.Components.csproj", "{6CDB5605-5B00-4979-8F75-49A34C03F3DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
