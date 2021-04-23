@@ -1,0 +1,32 @@
+﻿@using AppsByTAP.BlazorFluentUI.Components.Icon
+
+@namespace AppsByTAP.BlazorFluentUI.Components.DropDown
+@typeparam TItem
+@inherits DropDownViewModel<TItem>
+
+<div class="dropDownWrapper">
+    <div class="dropDownCtrl" @onclick="OpenDropDown">
+        <span class="dropDownSelection">Selection</span>
+        <span class="dropDownChenron"><Icon IconType="IconTypes.ChevronDown" /></span>
+    </div>
+    <div class="itemsPanel" style="display: @(_displayDropDown ? "block" : "none")">
+        @foreach (TItem item in ItemsSource)
+        {
+            if (item is DropDownItem<TItem> ddi)
+            {
+                if (ddi.Type == DropDownItemType.Item)
+                {
+                    <div class="header">@ddi.Item</div>
+                }
+                else
+                {
+                    <div class="header">@ddi.Item</div>
+                }
+            }
+            else
+            {
+                <div class="item">@item</div>
+            }
+        }
+    </div>
+</div>

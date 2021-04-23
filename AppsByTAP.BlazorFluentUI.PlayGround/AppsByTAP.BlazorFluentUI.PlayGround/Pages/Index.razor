@@ -4,6 +4,8 @@
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Dark
 @using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.DropDown
+@using AppsByTAP.BlazorFluentUI.Components.Icon
 
 @inject IThemeProvider ThemeProvider
 
@@ -23,12 +25,30 @@ Welcome to your new app.
 <CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="false" OnClick="Add" />
 <CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="true" OnClick="Add" />
 
+<DropDown ItemsSource="ints" />
+<DropDown ItemsSource="ints2" />
+
 @counter
 
 @code
 {
     private int counter = 0;
     private bool _isDark = true;
+
+    List<MeTest> ints = new List<MeTest> { new MeTest("asdf"), new MeTest("qwerqwer") };
+    List<DropDownItem<string>> ints2 = new List<DropDownItem<string>>
+{
+        new DropDownItem<string>("Header1", DropDownItemType.Header),
+        new DropDownItem<string>("Item 1", DropDownItemType.Item),
+        new DropDownItem<string>("Item 2", DropDownItemType.Item),
+        new DropDownItem<string>("Item 3", DropDownItemType.Item),
+        new DropDownItem<string>("Item 4", DropDownItemType.Item),
+        new DropDownItem<string>("Header 2", DropDownItemType.Header),
+        new DropDownItem<string>("Item 5", DropDownItemType.Item),
+        new DropDownItem<string>("Item 6", DropDownItemType.Item),
+        new DropDownItem<string>("Item 7", DropDownItemType.Item),
+        new DropDownItem<string>("Item 8", DropDownItemType.Item)
+    };
 
     private void ChangeTheme()
     {
@@ -49,5 +69,12 @@ Welcome to your new app.
         counter++;
     }
 
+    public class MeTest
+    {
+        public string MyStr { get; set; }
+
+        public MeTest(string str) => MyStr = str;
+        public override string ToString() => MyStr;
+    }
 
 }
