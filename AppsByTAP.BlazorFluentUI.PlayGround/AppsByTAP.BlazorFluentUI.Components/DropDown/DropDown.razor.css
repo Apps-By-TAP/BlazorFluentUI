@@ -24,14 +24,19 @@
 
 }
 
-.dropDownCtrl:focus {
+.dropDownCtrl:hover:not(.disabled) {
+    cursor: pointer;
+}
+
+.dropDownCtrl:hover:active:not(.disabled) {
     border-color: var(--palette-ThemePrimary);
+    border-width: 2px;
 }
 
 .itemsPanel {
     display: none;
     position: absolute;
-    background-color: var(--semanticColors-ListItemBackgroundHovered);
+    background-color: var(--semanticColors-ListBackground);
     width: 300px;
     padding-left: 8px;
 }
@@ -40,12 +45,30 @@
     padding-left: 8px;
 }
 
-.item:hover {
-    background-color: var(--semanticColors-ListItemBackgroundCheckedHovered);
-    color: var(--palette-ThemePrimary);
+.item, .header {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    padding: 3px 0px 3px 0px
 }
 
-.header {
-    font-weight: 600;
-    color: var(--semanticColors-MenuHeader)
+.item:hover {
+    background-color: var(--semanticColors-ListItemBackgroundHovered);
+}
+
+.lightDismiss {
+    display:none;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top:0px;
+    left: 0px;
+}
+
+.disabled {
+    background-color: var(--semanticColors-ListItemBackgroundCheckedHovered);
+    border: none;
+    color: var(--semanticTextColors-DisabledText);
 }
