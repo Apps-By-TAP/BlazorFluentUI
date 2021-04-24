@@ -1,0 +1,84 @@
+﻿.chevron {
+    display: inline-block;
+    padding: 10px 13px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.chevron:hover {
+    background-color: var(--semanticColors-ButtonBackgroundCheckedHovered);
+}
+
+.chevronRight {
+    transform: rotate(-90deg);
+}
+
+.chevronDown {
+    transform: rotate(0deg);
+}
+
+.headerContent:hover {
+    background-color: var(--semanticColors-ButtonBackgroundHovered);
+}
+
+.header {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    font-size: 15px;
+}
+
+.headerOpen{
+    font-weight: 600;
+}
+
+
+
+
+@keyframes back2Zero {
+    0% {
+        transform: rotate(-90deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.rotateBack2Zero {
+    animation-name: back2Zero;
+    animation-duration: 400ms;
+}
+
+@keyframes backNeg90 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-90deg);
+    }
+
+    100% {
+        transform: rotate(-90deg);
+    }
+}
+
+.rotateBack2Neg90 {
+    animation-name: backNeg90;
+    animation-duration: 400ms;
+}
+
+.childContentPanel {
+    background-color: var(--semanticColors-ListBackground);
+    padding-left: 45px;
+}

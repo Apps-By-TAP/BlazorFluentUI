@@ -6,6 +6,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Button
 @using AppsByTAP.BlazorFluentUI.Components.DropDown
 @using AppsByTAP.BlazorFluentUI.Components.Icon
+@using AppsByTAP.BlazorFluentUI.Components.Expander
 
 @inject IThemeProvider ThemeProvider
 
@@ -23,6 +24,11 @@ Welcome to your new app.
 
 <DropDown ItemsSource="ints2" Disabled="true" />
 <DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" />
+<Expander Header="Expander">
+    <ChildContent>
+        <p>Hello World</p>
+    </ChildContent>
+</Expander>
 
 @counter
 Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("", DropDownItemType.Header).ToString()))
@@ -33,8 +39,9 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
     private bool _isDark = true;
     private DropDownItem _selectedItem = null;
 
-    List<DropDownItem> ints2 = new List<DropDownItem>
-{
+    List<DropDownItem>
+    ints2 = new List<DropDownItem>
+        {
         new DropDownItem("Header1", DropDownItemType.Header),
         new DropDownItem("Item 1", DropDownItemType.Item),
         new DropDownItem("Item 2", DropDownItemType.Item),
@@ -45,33 +52,33 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
         new DropDownItem("Item 6", DropDownItemType.Item),
         new DropDownItem("Item 7", DropDownItemType.Item),
         new DropDownItem("Item 8", DropDownItemType.Item)
-    };
+        };
 
-    private void ChangeTheme()
-    {
+        private void ChangeTheme()
+        {
         if(_isDark)
         {
-            ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new LightThemePalette()));
+        ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new LightThemePalette()));
         }
         else
         {
-            ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new DarkThemePalette()));
+        ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new DarkThemePalette()));
         }
 
         _isDark = !_isDark;
-    }
+        }
 
-    private void Add()
-    {
+        private void Add()
+        {
         counter++;
-    }
+        }
 
-    public class MeTest
-    {
+        public class MeTest
+        {
         public string MyStr { get; set; }
 
         public MeTest(string str) => MyStr = str;
         public override string ToString() => MyStr;
-    }
+        }
 
-}
+        }
