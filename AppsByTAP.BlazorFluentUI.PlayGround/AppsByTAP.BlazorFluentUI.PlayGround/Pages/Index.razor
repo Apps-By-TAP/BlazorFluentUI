@@ -7,6 +7,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.DropDown
 @using AppsByTAP.BlazorFluentUI.Components.Icon
 @using AppsByTAP.BlazorFluentUI.Components.Expander
+@using AppsByTAP.BlazorFluentUI.Components.Spinner
 
 @inject IThemeProvider ThemeProvider
 
@@ -17,7 +18,7 @@ Welcome to your new app.
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 <button @onclick="ChangeTheme">Change Theme</button>
-<DefaultButton Text="My Btn" IsPrimary="false" OnClick="Add" />
+<DefaultButton Text="Toggle Spinners" IsPrimary="false" OnClick="ToggleSpinners" />
 <DefaultButton Text="My Btn" IsPrimary="true" OnClick="Add" />
 <CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="false" OnClick="Add" />
 <CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="true" OnClick="Add" />
@@ -29,6 +30,10 @@ Welcome to your new app.
         <p>Hello World</p>
     </ChildContent>
 </Expander>
+<Spinner Label="Hello World" Size="SpinnerSize.Large" IsLoading="_isLoading" />
+<Spinner Label="Hello World" Position="SpinnerLabelPosition.Top" Size="SpinnerSize.Medium" IsLoading="_isLoading" />
+<Spinner Label="Hello World" Position="SpinnerLabelPosition.Left" Size="SpinnerSize.Small"  IsLoading="_isLoading"/>
+<Spinner Label="Hello World" Position="SpinnerLabelPosition.Right" Size="SpinnerSize.xSmall" IsLoading="_isLoading" />
 
 @counter
 Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("", DropDownItemType.Header).ToString()))
@@ -37,6 +42,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
 {
     private int counter = 0;
     private bool _isDark = true;
+    private bool _isLoading = true;
     private DropDownItem _selectedItem = null;
 
     List<DropDownItem>
@@ -52,33 +58,38 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
         new DropDownItem("Item 6", DropDownItemType.Item),
         new DropDownItem("Item 7", DropDownItemType.Item),
         new DropDownItem("Item 8", DropDownItemType.Item)
-        };
+                            };
 
-        private void ChangeTheme()
+    private void ChangeTheme()
+    {
+        if (_isDark)
         {
-        if(_isDark)
-        {
-        ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new LightThemePalette()));
+            ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new LightThemePalette()));
         }
         else
         {
-        ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new DarkThemePalette()));
+            ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new DarkThemePalette()));
         }
 
         _isDark = !_isDark;
-        }
+    }
 
-        private void Add()
-        {
+    private void Add()
+    {
         counter++;
-        }
+    }
 
-        public class MeTest
-        {
+    private void ToggleSpinners()
+    {
+        _isLoading = !_isLoading;
+    }
+
+    public class MeTest
+    {
         public string MyStr { get; set; }
 
         public MeTest(string str) => MyStr = str;
         public override string ToString() => MyStr;
-        }
+    }
 
-        }
+}
