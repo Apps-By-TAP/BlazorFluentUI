@@ -30,8 +30,13 @@ div:hover {
     cursor: pointer;
 }
 
-div:active {
+div:hover:active:not(.primaryBtn) {
     background-color: var(--semanticColors-ButtonBackgroundChecked);
+    cursor: pointer;
+}
+
+div:hover:active:not(.secondaryBtn) {
+    background-color: var(--semanticColors-PrimaryButtonBackgroundPressed);
     cursor: pointer;
 }
 
