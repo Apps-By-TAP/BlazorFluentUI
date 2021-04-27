@@ -1,0 +1,16 @@
+﻿@namespace AppsByTAP.BlazorFluentUI.Components.DatePicker
+@inherits DatePickerViewModel
+
+@using AppsByTAP.BlazorFluentUI.Components.Icon
+
+
+<div>
+    <span>4/27/2021</span>
+    <Icon IconType="IconTypes.Calendar" />
+    <div class="DaysContainer" @onmousemove="MouseMoved">
+        @foreach(Date date in _dates)
+        {
+            <div class="day">@date.DayOfMonth</div>
+        }
+    </div>
+</div>

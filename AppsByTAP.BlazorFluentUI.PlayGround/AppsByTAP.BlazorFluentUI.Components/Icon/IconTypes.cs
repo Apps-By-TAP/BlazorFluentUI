@@ -8,5 +8,6 @@
         ChevronUp,
         ChevronUpMed,
         ChevronUpSmall,
+        Calendar
     }
 }

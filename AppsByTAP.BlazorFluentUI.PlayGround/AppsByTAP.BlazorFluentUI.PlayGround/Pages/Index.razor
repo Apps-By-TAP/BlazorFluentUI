@@ -8,6 +8,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Icon
 @using AppsByTAP.BlazorFluentUI.Components.Expander
 @using AppsByTAP.BlazorFluentUI.Components.Spinner
+@using AppsByTAP.BlazorFluentUI.Components.DatePicker 
 
 @inject IThemeProvider ThemeProvider
 
@@ -35,6 +36,8 @@ Welcome to your new app.
 <Spinner Label="Hello World" Position="SpinnerLabelPosition.Top" Size="SpinnerSize.Medium" IsLoading="_isLoading" />
 <Spinner Label="Hello World" Position="SpinnerLabelPosition.Left" Size="SpinnerSize.Small" IsLoading="_isLoading" />
 <Spinner Label="Hello World" Position="SpinnerLabelPosition.Right" Size="SpinnerSize.xSmall" IsLoading="_isLoading" />
+
+<DatePicker />
 
 @counter
 Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("", DropDownItemType.Header).ToString()))
