@@ -59,7 +59,6 @@
             foreach(PropertyInfo info in palette)
             {
                 propName = info.Name;
-                Console.WriteLine($"palette: {info.GetValue(_theme.Palette, null)}");
                 sb.Append($"--palette-{propName}: {info.GetValue(_theme.Palette, null)};");
             }
 

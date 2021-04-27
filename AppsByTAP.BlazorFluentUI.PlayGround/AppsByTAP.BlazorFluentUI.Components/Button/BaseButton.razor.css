@@ -45,6 +45,10 @@ div:hover:active:not(.secondaryBtn) {
     font-weight: 400;
 }
 
+.primaryText{
+    text-align: center;
+}
+
 .primaryBtn {
     background-color: var(--semanticColors-PrimaryButtonBackground);
     color: var(--semanticTextColors-PrimaryButtonText);

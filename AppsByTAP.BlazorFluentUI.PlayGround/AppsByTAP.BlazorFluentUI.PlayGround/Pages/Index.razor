@@ -25,6 +25,7 @@ Welcome to your new app.
 
 <DropDown ItemsSource="ints2" Disabled="true" />
 <DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" />
+<DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" />
 <Expander Header="Expander">
     <ChildContent>
         <p>Hello World</p>
@@ -32,7 +33,7 @@ Welcome to your new app.
 </Expander>
 <Spinner Label="Hello World" Size="SpinnerSize.Large" IsLoading="_isLoading" />
 <Spinner Label="Hello World" Position="SpinnerLabelPosition.Top" Size="SpinnerSize.Medium" IsLoading="_isLoading" />
-<Spinner Label="Hello World" Position="SpinnerLabelPosition.Left" Size="SpinnerSize.Small"  IsLoading="_isLoading"/>
+<Spinner Label="Hello World" Position="SpinnerLabelPosition.Left" Size="SpinnerSize.Small" IsLoading="_isLoading" />
 <Spinner Label="Hello World" Position="SpinnerLabelPosition.Right" Size="SpinnerSize.xSmall" IsLoading="_isLoading" />
 
 @counter
@@ -44,6 +45,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
     private bool _isDark = true;
     private bool _isLoading = true;
     private DropDownItem _selectedItem = null;
+private string _selectedStr = "";
 
     List<DropDownItem>
     ints2 = new List<DropDownItem>
@@ -59,6 +61,14 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
         new DropDownItem("Item 7", DropDownItemType.Item),
         new DropDownItem("Item 8", DropDownItemType.Item)
                             };
+
+    List<string> strs = new List<string> {"adsf","sdfg", "wert"};
+
+    public Index()
+    {
+
+    }
+
 
     private void ChangeTheme()
     {

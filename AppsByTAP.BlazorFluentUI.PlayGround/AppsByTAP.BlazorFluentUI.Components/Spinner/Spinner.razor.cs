@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
+using Microsoft.AspNetCore.Components;
 
 namespace AppsByTAP.BlazorFluentUI.Components.Spinner
 {
-    public class SpinnerViewModel : ComponentBase
+    public class SpinnerViewModel : BaseComponentViewModel
     {
         private const string _largeSpinner = "largeSpinner";
         private const string _mediumSpinner = "mediumSpinner";

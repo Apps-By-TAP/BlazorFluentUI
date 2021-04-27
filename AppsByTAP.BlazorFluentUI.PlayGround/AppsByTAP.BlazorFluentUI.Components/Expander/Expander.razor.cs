@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AppsByTAP.BlazorFluentUI.Components.Expander
 {
-    public class ExpanderViewModel : ComponentBase
+    public class ExpanderViewModel : BaseComponentViewModel
     {
         [Parameter]
         public string Header { get; set; }

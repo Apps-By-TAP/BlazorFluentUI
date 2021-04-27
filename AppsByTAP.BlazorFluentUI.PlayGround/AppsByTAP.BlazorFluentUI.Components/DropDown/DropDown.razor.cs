@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 {
-    public class DropDownViewModel<T> : ComponentBase
+    public class DropDownViewModel<T> : BaseComponentViewModel
     {
         [Parameter]
         public T SelectedItem { get; set; }
