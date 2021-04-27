@@ -3,7 +3,7 @@
 @namespace AppsByTAP.BlazorFluentUI.Components.Expander
 @inherits ExpanderViewModel
 
-<div>
+<div class="@ClassName" style="@Style">
     <div @onclick="Clicked" class="headerContent">
         <div class="chevron">
             <div class=" @(IsOpen ? "rotateBack2Zero" : "rotateBack2Neg90") @(ChevronIsDown ? "chevronDown" : "chevronRight")"><Icon IconType="IconTypes.ChevronDown" /></div>
