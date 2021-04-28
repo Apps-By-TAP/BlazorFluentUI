@@ -5,8 +5,9 @@
     width: calc(7 * 24px);
 }
 
-.day{
+.day {
     width: 24px;
     height: 24px;
     text-align: center;
+    border: 1px solid transparent;
 }

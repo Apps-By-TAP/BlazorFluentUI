@@ -7,7 +7,7 @@
 <div>
     <span>4/27/2021</span>
     <Icon IconType="IconTypes.Calendar" />
-    <div class="DaysContainer" @onmousemove="MouseMoved">
+    <div class="DaysContainer" @onmousemove="MouseMoved" @onmouseout="MouseExited">
         @foreach(Date date in _dates)
         {
             <div class="day">@date.DayOfMonth</div>

@@ -37,7 +37,12 @@ namespace AppsByTAP.BlazorFluentUI.Components.DatePicker
 
         protected async Task MouseMoved(MouseEventArgs args)
         {
-            await JSRuntime.InvokeVoidAsync("GetElements", args.ScreenX, args.ScreenY);
+            await JSRuntime.InvokeVoidAsync("GetElements", args.ClientX, args.ClientY);
+        }
+
+        protected async Task MouseExited(MouseEventArgs args)
+        {
+            await JSRuntime.InvokeVoidAsync("UnRevealHighlight");
         }
     }
 }
