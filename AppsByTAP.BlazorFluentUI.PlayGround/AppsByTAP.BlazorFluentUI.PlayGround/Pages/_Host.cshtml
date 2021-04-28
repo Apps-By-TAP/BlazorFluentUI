@@ -52,8 +52,8 @@
 
 
                 if (length <= 50) {
-                    var xx = x - rect.left - window.scrollX;
-                    var yy = y - rect.top - window.scrollY;
+                    var xx = x - rect.left;// - window.scrollX;
+                    var yy = y - rect.top;// - window.scrollY;
 
                     elements[i].style.borderImage = "radial-gradient(60px circle at " + xx + "px " + yy + "px, var(--semanticColors-ButtonBorder), transparent)";
                     elements[i].style.borderImageSlice = 1;
