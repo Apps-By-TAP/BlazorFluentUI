@@ -5,7 +5,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Calendar
 
 
-<div>
+<div @onmousemove="MouseMoved" @onmouseout="MouseExited">
     <span>@SelectedDate.ToString(DateFormat)</span>
     <Icon IconType="IconTypes.Calendar" />
     <Calendar @bind-SelectedDate="@SelectedDate" />

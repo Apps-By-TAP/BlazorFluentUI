@@ -9,6 +9,9 @@ namespace AppsByTAP.BlazorFluentUI.Components.Calendar
     public class CalendarViewModel : BaseComponentViewModel
     {
         private DateTime _selectedDate;
+        private const int _daysInACalendar = 42;
+        protected DateTime _displayMonth { get; set; }
+
         [Parameter]
         public DateTime SelectedDate 
         {
@@ -67,25 +70,16 @@ namespace AppsByTAP.BlazorFluentUI.Components.Calendar
             DayOfWeek startDay = theFirst.DayOfWeek;
 
             _currentMonth = (Months)SelectedDate.Month;
+            _displayMonth = theFirst;
 
-            bool isToday = false;
 
-            for(int i = ((int)startDay) * -1; i < 0; i++)
+            for(int i = ((int)startDay) * -1; i < _daysInACalendar - (int)startDay; i++)
             {
                 temp = theFirst.AddDays(i);
-                isToday = temp.Day == DateTime.Now.Day && temp.Month == DateTime.Now.Month;
-                _dates.Add(new Date(temp.Year, (Months)temp.Month, temp.DayOfWeek, temp.Day, isToday));
+                _dates.Add(new Date(temp.Year, (Months)temp.Month, temp.DayOfWeek, temp.Day, IsToday()));
             }
 
-
-            for(int i = 0; i < 42 - (int)startDay; i++)
-            {
-                temp = theFirst.AddDays(i);
-
-                isToday = temp.Day == DateTime.Now.Day && temp.Month == DateTime.Now.Month;
-
-                _dates.Add(new Date(temp.Year, (Months)temp.Month, temp.DayOfWeek, temp.Day, isToday, temp.Day == SelectedDate.Day));
-            }
+            bool IsToday() => temp.Day == DateTime.Now.Day && temp.Month == DateTime.Now.Month && temp.Year == DateTime.Now.Year;
         }
     }
 }
