@@ -1,0 +1,33 @@
+﻿
+.DaysContainer {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    width: calc(7 * 24px);
+}
+
+.day {
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    border: 1px solid transparent;
+    font-weight: 400;
+}
+
+.day:hover {
+    background-color: var(--semanticColors-ButtonBackgroundHovered);
+    cursor: pointer;
+}
+
+.today {
+    background-color: var(--semanticColors-PrimaryButtonBackground);
+    border-radius: 50%;
+    color: var(--semanticTextColors-PrimaryButtonText);
+}
+
+.notCurrentMonth {
+    color: var(--semanticTextColors-DisabledBodyText);
+}
+
+.selected {
+    background-color: var(--semanticColors-ButtonBackgroundChecked);
+}

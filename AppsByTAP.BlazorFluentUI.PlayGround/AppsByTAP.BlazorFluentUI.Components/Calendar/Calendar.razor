@@ -1,0 +1,20 @@
+﻿@namespace AppsByTAP.BlazorFluentUI.Components.Calendar
+@inherits CalendarViewModel
+
+<div class="DaysContainer">
+    @foreach(Date date in _dates)
+    {
+    <div class="day @(date.Month != _currentMonth? "notCurrentMonth" : "") @(date.IsSelected ? "selected" : "")" @onclick="() => SelectDate(date)">
+        @if(date.IsToday)
+        {
+            <div class="today">
+                @date.DayOfMonth
+            </div>
+        }
+        else
+        {
+            @date.DayOfMonth
+        }
+    </div>
+    }
+</div>

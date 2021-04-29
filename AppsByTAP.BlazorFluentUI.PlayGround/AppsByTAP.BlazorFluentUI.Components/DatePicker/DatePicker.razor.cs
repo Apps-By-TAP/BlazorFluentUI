@@ -15,24 +15,14 @@ namespace AppsByTAP.BlazorFluentUI.Components.DatePicker
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
 
-        protected List<Date> _dates = new List<Date>();
+        [Parameter]
+        public DateTime SelectedDate { get; set; } = DateTime.Now;
+        [Parameter]
+        public string DateFormat { get; set; } = "MM/dd/yyy";
+
         public DatePickerViewModel()
         {
-            DateTime theFirst = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            DateTime temp;
-            DayOfWeek startDay = theFirst.DayOfWeek;
 
-            for(int i = ((int)startDay) * -1; i < 0; i++)
-            {
-                temp = theFirst.AddDays(i);
-                _dates.Add(new Date(temp.Month.ToString(), temp.DayOfWeek, temp.Day));
-            }
-
-            for(int i = 0; i < 42- (int)startDay; i++)
-            {
-                temp = theFirst.AddDays(i);
-                _dates.Add(new Date(temp.Month.ToString(), temp.DayOfWeek, temp.Day));
-            }
         }
 
         protected async Task MouseMoved(MouseEventArgs args)
