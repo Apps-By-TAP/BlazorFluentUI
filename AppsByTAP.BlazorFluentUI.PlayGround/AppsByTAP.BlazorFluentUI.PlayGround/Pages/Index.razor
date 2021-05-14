@@ -8,6 +8,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Icon
 @using AppsByTAP.BlazorFluentUI.Components.Expander
 @using AppsByTAP.BlazorFluentUI.Components.Spinner
+@using AppsByTAP.BlazorFluentUI.Components.Modal
 
 @inject IThemeProvider ThemeProvider
 
@@ -39,6 +40,17 @@ Welcome to your new app.
 @counter
 Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("", DropDownItemType.Header).ToString()))
 
+<DefaultButton Text="Show Modal" OnClick="() => _showModal = !_showModal" />
+
+<Modal @bind-ShowWindow="_showModal">
+    <Header>
+        My Header
+    </Header>
+    <Content>
+         sed est quis, pharetra consequat libero.
+    </Content>
+</Modal>
+
 @code
 {
     private int counter = 0;
@@ -46,6 +58,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
     private bool _isLoading = true;
     private DropDownItem _selectedItem = null;
 private string _selectedStr = "";
+    private bool _showModal;
 
     List<DropDownItem>
     ints2 = new List<DropDownItem>
@@ -68,7 +81,6 @@ private string _selectedStr = "";
     {
 
     }
-
 
     private void ChangeTheme()
     {

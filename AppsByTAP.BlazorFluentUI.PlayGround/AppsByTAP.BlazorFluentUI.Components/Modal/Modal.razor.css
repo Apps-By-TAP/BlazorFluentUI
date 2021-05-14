@@ -1,0 +1,53 @@
+﻿
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--palette-BlackTranslucent40);
+}
+
+.modalClickToClose {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: var(--palette-White);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: clamp(288px, 60%, 100%);
+}
+
+.close {
+    color: var(--palette-Black);
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+}
+
+.close:hover {
+    background-color: var(--semanticColors-ButtonBackgroundHovered);
+    cursor: pointer;
+}
+
+.header {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.modalPositioner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
