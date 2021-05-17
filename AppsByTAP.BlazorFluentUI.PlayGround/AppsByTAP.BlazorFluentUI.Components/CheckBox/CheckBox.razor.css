@@ -1,25 +1,49 @@
 ﻿.checkBox {
-    display: flex;
-    align-items: flex-start;
+     display: flex;
+    align-items: flex-start; 
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
 }
 
-.checkBox:hover{
-
-}
 
 .checkMark {
-    color: transparent;
+    display: inline-block;
     padding: 3px;
     border-radius: 2px;
     width: 20px;
     height: 20px;
     border-radius: 2px;
     border: 1px solid var(--palette-Black);
+    vertical-align: middle;
+    margin-top: -.3em;
+}
+
+.hideCheckMark {
+    color: transparent;
+}
+
+.showCheckMark {
+    color: var(--semanticColors-InputText);
 }
 
 .checked {
     background-color: var(--semanticColors-InputIcon);
     color: var(--semanticColors-InputForegroundChecked);
     border: 1px solid var(--semanticColors-InputForegroundChecked);
+    border-radius: 2px;
 }
 
+.wrapper:hover {
+    cursor: pointer;
+}
+
+.checkPlacer {
+    margin-top: -.3em;
+}
+
+/*
+*/

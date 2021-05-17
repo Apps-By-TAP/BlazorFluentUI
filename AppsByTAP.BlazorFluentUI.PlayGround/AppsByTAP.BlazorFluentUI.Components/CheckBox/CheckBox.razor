@@ -3,9 +3,13 @@
 
 @using AppsByTAP.BlazorFluentUI.Components.Icon
 
-<div class="checkBox">
-    <span @onclick="Clicked">
-        <span class="checkMark @(IsChecked ? "checked" : "")"><Icon IconType="IconTypes.CheckMark" /></span>
+<div class="checkBox" @onmouseover="MouseOver" @onmouseout="MouseExit">
+    <span class="wrapper" @onclick="Clicked">
+        <div class="checkMark @(IsChecked ? "checked" : "")">
+            <div class="checkPlacer @CheckVisibility">
+                <Icon IconType="IconTypes.CheckMark" />
+            </div>
+        </div>
         @Label
     </span>
 </div>
