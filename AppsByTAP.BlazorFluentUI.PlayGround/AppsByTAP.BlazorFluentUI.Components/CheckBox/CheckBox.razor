@@ -1,0 +1,11 @@
+﻿@namespace AppsByTAP.BlazorFluentUI.Components.CheckBox
+@inherits CheckBoxViewModel
+
+@using AppsByTAP.BlazorFluentUI.Components.Icon
+
+<div class="checkBox">
+    <span @onclick="Clicked">
+        <span class="checkMark @(IsChecked ? "checked" : "")"><Icon IconType="IconTypes.CheckMark" /></span>
+        @Label
+    </span>
+</div>

@@ -1,0 +1,25 @@
+﻿.checkBox {
+    display: flex;
+    align-items: flex-start;
+}
+
+.checkBox:hover{
+
+}
+
+.checkMark {
+    color: transparent;
+    padding: 3px;
+    border-radius: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid var(--palette-Black);
+}
+
+.checked {
+    background-color: var(--semanticColors-InputIcon);
+    color: var(--semanticColors-InputForegroundChecked);
+    border: 1px solid var(--semanticColors-InputForegroundChecked);
+}
+

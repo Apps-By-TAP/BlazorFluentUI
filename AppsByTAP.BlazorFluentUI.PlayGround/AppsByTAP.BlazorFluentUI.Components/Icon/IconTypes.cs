@@ -3,10 +3,7 @@
     public enum IconTypes
     {
         ChevronDown,
-        ChevronDownMed,
-        ChevronDownSmall,
         ChevronUp,
-        ChevronUpMed,
-        ChevronUpSmall,
+        CheckMark,
     }
 }
