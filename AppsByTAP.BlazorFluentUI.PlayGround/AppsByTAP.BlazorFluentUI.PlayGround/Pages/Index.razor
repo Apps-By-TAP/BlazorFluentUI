@@ -9,7 +9,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Expander
 @using AppsByTAP.BlazorFluentUI.Components.Spinner
 @using AppsByTAP.BlazorFluentUI.Components.Modal
-@using AppsByTAP.BlazorFluentUI.Components.CheckBox 
+@using AppsByTAP.BlazorFluentUI.Components.CheckBox
 
 @inject IThemeProvider ThemeProvider
 
@@ -43,14 +43,15 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
 
 <DefaultButton Text="Show Modal" OnClick="() => _showModal = !_showModal" />
 
-<CheckBox Label="Hello World" />
+<CheckBox Label="Hello World Start" BoxSide="BoxSide.Start" />
+<CheckBox Label="Hello World End" BoxSide="BoxSide.End" />
 
 <Modal @bind-ShowWindow="_showModal">
     <Header>
         My Header
     </Header>
     <Content>
-         sed est quis, pharetra consequat libero.
+        sed est quis, pharetra consequat libero.
     </Content>
 </Modal>
 
@@ -60,7 +61,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
     private bool _isDark = true;
     private bool _isLoading = true;
     private DropDownItem _selectedItem = null;
-private string _selectedStr = "";
+    private string _selectedStr = "";
     private bool _showModal;
 
     List<DropDownItem>
@@ -76,9 +77,9 @@ private string _selectedStr = "";
         new DropDownItem("Item 6", DropDownItemType.Item),
         new DropDownItem("Item 7", DropDownItemType.Item),
         new DropDownItem("Item 8", DropDownItemType.Item)
-                            };
+                                };
 
-    List<string> strs = new List<string> {"adsf","sdfg", "wert"};
+    List<string> strs = new List<string> { "adsf", "sdfg", "wert" };
 
     public Index()
     {

@@ -13,6 +13,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckBox
         public bool IsChecked { get; set; }
         [Parameter]
         public EventCallback<bool> IsCheckedChanged { get; set; }
+        [Parameter]
+        public EventCallback<CheckBoxChangedArgs> OnChanged { get; set; }
+        [Parameter]
+        public BoxSide BoxSide { get; set; } = BoxSide.Start;
 
         protected string CheckVisibility { get; set; } = "hideCheckMark";
 
@@ -20,6 +24,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckBox
         {
             IsChecked = !IsChecked;
             await IsCheckedChanged.InvokeAsync(IsChecked);
+            await OnChanged.InvokeAsync(new CheckBoxChangedArgs(IsChecked, this));
         }
 
         protected void MouseOver()
