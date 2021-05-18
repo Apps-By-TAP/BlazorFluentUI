@@ -27,7 +27,7 @@ Welcome to your new app.
 
 <DropDown ItemsSource="ints2" Disabled="true" />
 <DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" />
-<DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" />
+<DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="true" />
 <Expander Header="Expander">
     <ChildContent>
         <p>Hello World</p>
