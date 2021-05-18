@@ -8,7 +8,8 @@
 @using AppsByTAP.BlazorFluentUI.Components.Icon
 @using AppsByTAP.BlazorFluentUI.Components.Expander
 @using AppsByTAP.BlazorFluentUI.Components.Spinner
-@using AppsByTAP.BlazorFluentUI.Components.DatePicker 
+@using AppsByTAP.BlazorFluentUI.Components.Modal
+@using AppsByTAP.BlazorFluentUI.Components.CheckBox
 
 @inject IThemeProvider ThemeProvider
 
@@ -26,7 +27,7 @@ Welcome to your new app.
 
 <DropDown ItemsSource="ints2" Disabled="true" />
 <DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" />
-<DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" />
+<DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="true" />
 <Expander Header="Expander">
     <ChildContent>
         <p>Hello World</p>
@@ -42,6 +43,20 @@ Welcome to your new app.
 @counter
 Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("", DropDownItemType.Header).ToString()))
 
+<DefaultButton Text="Show Modal" OnClick="() => _showModal = !_showModal" />
+
+<CheckBox Label="Hello World Start" BoxSide="BoxSide.Start" />
+<CheckBox Label="Hello World End" BoxSide="BoxSide.End" />
+
+<Modal @bind-ShowWindow="_showModal">
+    <Header>
+        My Header
+    </Header>
+    <Content>
+        sed est quis, pharetra consequat libero.
+    </Content>
+</Modal>
+
 @code
 {
     private int counter = 0;
@@ -49,6 +64,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
     private bool _isLoading = true;
     private DropDownItem _selectedItem = null;
     private string _selectedStr = "";
+    private bool _showModal;
 
     List<DropDownItem>
     ints2 = new List<DropDownItem>
@@ -63,15 +79,14 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
         new DropDownItem("Item 6", DropDownItemType.Item),
         new DropDownItem("Item 7", DropDownItemType.Item),
         new DropDownItem("Item 8", DropDownItemType.Item)
-                            };
+                                };
 
-    List<string> strs = new List<string> {"adsf","sdfg", "wert"};
+    List<string> strs = new List<string> { "adsf", "sdfg", "wert" };
 
     public Index()
     {
 
     }
-
 
     private void ChangeTheme()
     {

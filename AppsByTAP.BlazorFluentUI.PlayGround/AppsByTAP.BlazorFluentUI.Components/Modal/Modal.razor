@@ -1,0 +1,20 @@
+﻿@namespace AppsByTAP.BlazorFluentUI.Components.Modal
+@inherits ModalViewModel
+
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<div class="modal" style="display: @_displayType;">
+    <div class="modalClickToClose" @onclick="Close"></div>
+    <div class="modalPositioner">
+        <div class="modal-content">
+
+            <div class="header">
+                @*<span class="close" @onclick="Close">&times;</span>*@
+                <DefaultButton @onclick="Close" ClassName="close" Text="&times;" />
+                <div>@Header</div>
+            </div>
+
+            <div>@Content</div>
+        </div>
+    </div>    
+</div>
