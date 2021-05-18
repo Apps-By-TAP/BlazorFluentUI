@@ -1,4 +1,5 @@
 ﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
+using AppsByTAP.BlazorFluentUI.Components.CheckBox;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 
                 _selectedItem = value;
 
-                if(value is not null)
+                if(value is not null && !string.IsNullOrWhiteSpace(value.ToString()))
                 {
                     _selectedDisplayText = value.ToString();
                 }
@@ -56,6 +57,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
                 {
                     _selectedDisplayText = SelectedItems.Select(x => x.ToString()).Aggregate((x, y) => $"{x}, {y}");
                 }
+                else
+                {
+                    _selectedDisplayText = "Select Options";
+                }
 
                 Task.Run(async () => await SelectedItemsChanged.InvokeAsync(value));
             }
@@ -67,9 +72,18 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         protected bool _displayDropDown = false;
         protected string _selectedDisplayText { get; set; } = "Select an option";
 
-        public DropDownViewModel() : base()
+        public override Task SetParametersAsync(ParameterView parameters)
         {
-            SelectedItems = new List<T>();
+            bool isMulti = false;
+            parameters.TryGetValue(nameof(IsMultiSelect), out isMulti);
+
+            if(isMulti)
+            {
+                _selectedDisplayText = "Select Options";
+                SelectedItems = new List<T>();
+            }
+
+            return base.SetParametersAsync(parameters);
         }
 
         protected void OpenDropDown()
@@ -88,6 +102,24 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         protected async Task SelectItem(T selectedItem)
         {
             SelectedItem = selectedItem;
+        }
+
+        protected void MultiSelectChanged(CheckBoxChangedArgs args)
+        {
+            T tempItem = ItemsSource.FirstOrDefault(x => x.ToString() == args.ViewModel.Label);
+
+            if(tempItem is not null && args.IsChecked)
+            {
+                IList<T> temp = SelectedItems;
+                temp.Add(tempItem);
+                SelectedItems = new List<T>(temp);
+            }
+            else if(tempItem is not null)
+            {
+                IList<T> temp = SelectedItems;
+                temp.Remove(tempItem);
+                SelectedItems = new List<T>(temp);
+            }
         }
     }
 }
