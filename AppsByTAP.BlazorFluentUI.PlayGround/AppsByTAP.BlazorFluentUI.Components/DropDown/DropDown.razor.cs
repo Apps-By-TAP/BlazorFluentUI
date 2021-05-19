@@ -27,7 +27,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
                 }
 
                 _displayDropDown = false;
-                Task.Run(async () => await SelectedItemChanged.InvokeAsync(value));
             }
         }
 
@@ -61,8 +60,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
                 {
                     _selectedDisplayText = "Select Options";
                 }
-
-                Task.Run(async () => await SelectedItemsChanged.InvokeAsync(value));
             }
         }
 
@@ -72,18 +69,15 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         protected bool _displayDropDown = false;
         protected string _selectedDisplayText { get; set; } = "Select an option";
 
-        public override Task SetParametersAsync(ParameterView parameters)
+        protected override Task OnInitializedAsync()
         {
-            bool isMulti = false;
-            parameters.TryGetValue(nameof(IsMultiSelect), out isMulti);
-
-            if(isMulti)
+            if(IsMultiSelect)
             {
                 _selectedDisplayText = "Select Options";
                 SelectedItems = new List<T>();
             }
 
-            return base.SetParametersAsync(parameters);
+            return base.OnInitializedAsync();
         }
 
         protected void OpenDropDown()
@@ -102,9 +96,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         protected async Task SelectItem(T selectedItem)
         {
             SelectedItem = selectedItem;
+            await SelectedItemChanged.InvokeAsync(selectedItem);
         }
 
-        protected void MultiSelectChanged(CheckBoxChangedArgs args)
+        protected async Task MultiSelectChanged(CheckBoxChangedArgs args)
         {
             T tempItem = ItemsSource.FirstOrDefault(x => x.ToString() == args.ViewModel.Label);
 
@@ -120,6 +115,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
                 temp.Remove(tempItem);
                 SelectedItems = new List<T>(temp);
             }
+
+            await SelectedItemsChanged.InvokeAsync(SelectedItems);
         }
     }
 }

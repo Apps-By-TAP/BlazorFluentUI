@@ -29,7 +29,9 @@
                 }
                 else if(IsMultiSelect)
                 {
-                    <CheckBox Label="@item.ToString()" OnChanged="MultiSelectChanged" />
+                    <div class="item">
+                        <CheckBox Label="@item.ToString()" OnChanged="MultiSelectChanged" />
+                    </div>
                 }
                 else
                 {

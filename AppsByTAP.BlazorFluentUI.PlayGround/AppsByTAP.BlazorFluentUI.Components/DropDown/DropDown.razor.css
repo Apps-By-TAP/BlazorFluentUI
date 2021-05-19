@@ -38,7 +38,6 @@
     position: absolute;
     background-color: var(--semanticColors-ListBackground);
     width: 300px;
-    padding-left: 8px;
 }
 
 .dropDownSelection {
@@ -55,7 +54,7 @@
     -khtml-user-select: none; /* Konqueror HTML */
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
-    padding: 3px 0px 3px 0px
+    padding: 0.1875em 0px 0.1875em .5em;
 }
 
 .item:hover {
