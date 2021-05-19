@@ -96,7 +96,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         protected async Task SelectItem(T selectedItem)
         {
             SelectedItem = selectedItem;
-            await SelectedItemChanged.InvokeAsync(SelectedItem);
+            await SelectedItemChanged.InvokeAsync(selectedItem);
         }
 
         protected async Task MultiSelectChanged(CheckBoxChangedArgs args)
