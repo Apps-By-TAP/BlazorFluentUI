@@ -1,0 +1,56 @@
+﻿
+.container, .thumbnail, .text, .removal {
+    display: inline-block;
+}
+
+.container {
+    border-radius: 16px;
+    height: 32px;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0px;
+    border: 1px solid var(--semanticColors-ButtonBorder);
+}
+
+.container:hover {
+    background-color: var(--semanticColors-ButtonBackgroundHovered);
+    cursor: pointer;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    width: 100%;
+    font-size: 1.25em;
+    margin-left: 4px;
+}
+
+.removal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    background-color: var(--palette-Black);
+    color: var(--palette-White);
+    margin: 0px .5em 0px 0px;
+    padding: 0px;
+    flex-shrink: 0;
+    font-size: .7em;
+    font-weight: 700;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.removal:hover {
+    background-color: var(--semanticColors-ButtonBorder);
+    cursor: pointer;
+}
