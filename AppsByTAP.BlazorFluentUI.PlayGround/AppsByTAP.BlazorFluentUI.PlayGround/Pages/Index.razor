@@ -10,6 +10,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Spinner
 @using AppsByTAP.BlazorFluentUI.Components.Modal
 @using AppsByTAP.BlazorFluentUI.Components.CheckBox
+@using AppsByTAP.BlazorFluentUI.Components.Chip
 
 @inject IThemeProvider ThemeProvider
 
@@ -46,6 +47,9 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
 <CheckBox Label="Hello World Start" />
 <CheckBox Label="Hello World End" BoxSide="BoxSide.End" />
 
+<Chip Text="Hello World" OnRemove="RemoveChip" OnEdit="EditChip" />
+<Chip Text="Hello World" OnRemove="RemoveChip" OnEdit="EditChip" ShowRemoval="true" />
+
 <Modal @bind-ShowWindow="_showModal">
     <Header>
         My Header
@@ -77,7 +81,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
         new DropDownItem("Item 6", DropDownItemType.Item),
         new DropDownItem("Item 7", DropDownItemType.Item),
         new DropDownItem("Item 8", DropDownItemType.Item)
-                                };
+                                    };
 
     List<string> strs = new List<string> { "Apple", "Banana", "Strawberry", "Blackberry", "Blueberry", "Raspberry", "Grapes", "Plum", "Pear" };
 
@@ -116,6 +120,16 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
 
         public MeTest(string str) => MyStr = str;
         public override string ToString() => MyStr;
+    }
+
+    public void RemoveChip()
+    {
+        Console.WriteLine("Remove the chip");
+    }
+
+    public void EditChip()
+    {
+        Console.WriteLine("Edit the chip");
     }
 
 }

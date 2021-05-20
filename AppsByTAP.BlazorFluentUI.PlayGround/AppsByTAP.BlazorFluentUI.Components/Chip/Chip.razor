@@ -1,0 +1,15 @@
+﻿@namespace AppsByTAP.BlazorFluentUI.Components.Chip
+@inherits ChipViewModel
+
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<div class="container @ClassName" @onclick="OnEdit">
+    <div class="wrapper">
+        <div class="thumbnail"></div>
+        <div class="text" style="margin: @_textMargin">@Text</div>
+        @if(ShowRemoval)
+        {
+            <span class="removal" @onclick="OnRemove">X</span>
+        }
+    </div>
+</div>
