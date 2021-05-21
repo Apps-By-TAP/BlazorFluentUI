@@ -5,9 +5,11 @@
 
 .container {
     border-radius: 16px;
-    height: 32px;
-    width: -moz-fit-content;
+    min-height: 32px;
     width: fit-content;
+    width: -moz-fit-content;
+    height: fit-content;
+    height: -moz-fit-content;
     padding: 0px;
     border: 1px solid var(--semanticColors-ButtonBorder);
 }
