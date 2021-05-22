@@ -7,6 +7,7 @@
 @inherits DropDownViewModel<TItem>
 
 <div class="dropDownWrapper @ClassName" style="@Style" @onblur="Close">
+    <div class="label @(Disabled ? "disabledText" : "")">@Label</div>
     <div class="dropDownCtrl @(Disabled ? "disabled" : "")" @onclick="OpenDropDown">
         <span class="dropDownSelection">@_selectedDisplayText</span>
         <span class="dropDownChenron"><Icon IconType="IconTypes.ChevronDown" /></span>
