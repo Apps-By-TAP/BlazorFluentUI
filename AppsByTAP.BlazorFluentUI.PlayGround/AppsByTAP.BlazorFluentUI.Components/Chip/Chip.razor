@@ -3,13 +3,13 @@
 
 @using AppsByTAP.BlazorFluentUI.Components.Button
 
-<div class="container @ClassName" @onclick="OnEdit">
+<div class="container @ClassName" @onclick="Edit">
     <div class="wrapper">
         <div class="thumbnail"></div>
         <div class="text" style="margin: @_textMargin">@Text</div>
         @if(ShowRemoval)
         {
-            <span class="removal" @onclick="OnRemove">X</span>
+            <span class="removal" @onclick="Removal">X</span>
         }
     </div>
 </div>

@@ -1,0 +1,15 @@
+﻿@namespace AppsByTAP.BlazorFluentUI.Components.Chip
+@inherits ChipSetViewModel<TItem>
+@typeparam TItem
+
+<div id="customNotes">
+    <span class="customTagLabel">@Label</span>
+    @foreach (ChipViewModel item in _chips)
+    {
+        <Chip Text="@item.Text" ChipType="@item.ChipType" ID="@item.ID" OnRemove="RemoveChip" OnEdit="EditChip" />
+    }
+    @if (ChipType == ChipType.Input)
+    {
+        <input class="textInput" type="text" @bind-value="NextChipText" @bind-value:event="oninput" />
+    }
+</div>

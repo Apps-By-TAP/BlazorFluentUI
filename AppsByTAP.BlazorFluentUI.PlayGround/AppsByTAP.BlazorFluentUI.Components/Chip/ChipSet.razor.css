@@ -1,0 +1,35 @@
+﻿input[type=text] {
+    background-color: transparent;
+    border-width: 1px;
+    border-radius: 2px;
+    border-color: var(--pallette-Black);
+    outline: none;
+    color: var(--semanticTextColors-BodyText);
+}
+
+.textInput {
+    display: inline-flex;
+    border: none;
+    border-bottom: 1px solid var(--semanticColors-ButtonBorder);
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
+.textInput:focus {
+    outline: none;
+}
+
+#customNotes {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 8px;
+    min-height: 38px;
+    margin: 10px;
+}
+
+.customTagLabel {
+    margin-right: 10px;
+    align-self: flex-end;
+}
+

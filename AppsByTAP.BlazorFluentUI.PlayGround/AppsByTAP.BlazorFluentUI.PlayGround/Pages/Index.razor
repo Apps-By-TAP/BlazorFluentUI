@@ -47,8 +47,8 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
 <CheckBox Label="Hello World Start" />
 <CheckBox Label="Hello World End" BoxSide="BoxSide.End" />
 
-<Chip Text="Hello World" OnRemove="RemoveChip" OnEdit="EditChip" />
-<Chip Text="Hello World" OnRemove="RemoveChip" OnEdit="EditChip" ShowRemoval="true" />
+<ChipSet ItemsSource="strs" ChipType="ChipType.Input" Label="Test: " CreateNewItem="CreateNewItem" />
+
 
 <Modal @bind-ShowWindow="_showModal">
     <Header>
@@ -122,14 +122,16 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
         public override string ToString() => MyStr;
     }
 
-    public void RemoveChip()
+    public void RemoveChip(string id)
     {
-        Console.WriteLine("Remove the chip");
+        Console.WriteLine("Remove the chip: " + id);
     }
 
     public void EditChip()
     {
         Console.WriteLine("Edit the chip");
     }
+
+    public string CreateNewItem(string str) => str;
 
 }
