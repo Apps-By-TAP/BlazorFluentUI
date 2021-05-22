@@ -1,7 +1,6 @@
 ﻿.dropDownWrapper {
     display: block;
     width: 300px;
-    height: 32px;
 }
 
 .dropDownCtrl {
@@ -73,5 +72,9 @@
 .disabled {
     background-color: var(--semanticColors-ListItemBackgroundCheckedHovered);
     border: none;
+    color: var(--semanticTextColors-DisabledText);
+}
+
+.disabledText {
     color: var(--semanticTextColors-DisabledText);
 }
