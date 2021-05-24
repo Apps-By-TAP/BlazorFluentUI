@@ -28,7 +28,11 @@ Welcome to your new app.
 
 <DropDown ItemsSource="ints2" Disabled="true" />
 <DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" Label="My Label" Disabled="true" />
-<DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="true" />
+<DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="true" SelectedItems="selectedItemsStr" />
+<DefaultButton Text="Reset strs" OnClick="() => selectedItemsStr = new List<string>() { strs[0]}" />
+
+
+
 <Expander Header="Expander">
     <ChildContent>
         <p>Hello World</p>
@@ -40,7 +44,7 @@ Welcome to your new app.
 <Spinner Label="Hello World" Position="SpinnerLabelPosition.Right" Size="SpinnerSize.xSmall" IsLoading="_isLoading" />
 
 @counter
-Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("", DropDownItemType.Header).ToString()))
+Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<string>("", DropDownItemType.Header).ToString()))
 
 <DefaultButton Text="Show Modal" OnClick="() => _showModal = !_showModal" />
 
@@ -64,26 +68,27 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem("
     private int counter = 0;
     private bool _isDark = true;
     private bool _isLoading = true;
-    private DropDownItem _selectedItem = null;
+    private DropDownItem<string> _selectedItem = null;
     private string _selectedStr = "";
     private bool _showModal;
 
-    List<DropDownItem>
-    ints2 = new List<DropDownItem>
+    List<DropDownItem<string>>
+    ints2 = new List<DropDownItem<string>>
         {
-        new DropDownItem("Header1", DropDownItemType.Header),
-        new DropDownItem("Item 1", DropDownItemType.Item),
-        new DropDownItem("Item 2", DropDownItemType.Item),
-        new DropDownItem("Item 3", DropDownItemType.Item),
-        new DropDownItem("Item 4", DropDownItemType.Item),
-        new DropDownItem("Header 2", DropDownItemType.Header),
-        new DropDownItem("Item 5", DropDownItemType.Item),
-        new DropDownItem("Item 6", DropDownItemType.Item),
-        new DropDownItem("Item 7", DropDownItemType.Item),
-        new DropDownItem("Item 8", DropDownItemType.Item)
+        new DropDownItem<string>("Header1", DropDownItemType.Header),
+        new DropDownItem<string>("Item 1", DropDownItemType.Item),
+        new DropDownItem<string>("Item 2", DropDownItemType.Item),
+        new DropDownItem<string>("Item 3", DropDownItemType.Item),
+        new DropDownItem<string>("Item 4", DropDownItemType.Item),
+        new DropDownItem<string>("Header 2", DropDownItemType.Header),
+        new DropDownItem<string>("Item 5", DropDownItemType.Item),
+        new DropDownItem<string>("Item 6", DropDownItemType.Item),
+        new DropDownItem<string>("Item 7", DropDownItemType.Item),
+        new DropDownItem<string>("Item 8", DropDownItemType.Item)
                                     };
 
     List<string> strs = new List<string> { "Apple", "Banana", "Strawberry", "Blackberry", "Blueberry", "Raspberry", "Grapes", "Plum", "Pear" };
+    List<string> selectedItemsStr = new List<string>();
 
     public Index()
     {

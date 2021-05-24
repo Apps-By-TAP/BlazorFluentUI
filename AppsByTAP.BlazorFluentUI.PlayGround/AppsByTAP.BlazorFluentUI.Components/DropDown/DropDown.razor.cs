@@ -33,8 +33,23 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         [Parameter]
         public EventCallback<T> SelectedItemChanged { get; set; }
 
+        private List<T> _itemsSource;
         [Parameter]
-        public List<T> ItemsSource { get; set; }
+        public List<T> ItemsSource 
+        {
+            get => _itemsSource;
+            set
+            {
+                if(_itemsSource == value) { return; }
+
+                _itemsSource = value;
+
+                Items = value.Select(x => new DropDownItem<T>(x, (x is DropDownItem<T> ddi ? ddi.Type : DropDownItemType.Item), false)).ToList();
+
+            }
+        }
+
+        protected List<DropDownItem<T>> Items { get; set; }
 
         [Parameter]
         public bool Disabled { get; set; }
@@ -55,10 +70,16 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
                 if(SelectedItems.Count > 0)
                 {
                     _selectedDisplayText = SelectedItems.Select(x => x.ToString()).Aggregate((x, y) => $"{x}, {y}");
+
+
+                    Items.ForEach(x => x.IsSelected = SelectedItems.Contains(x.Item));
+
                 }
                 else
                 {
                     _selectedDisplayText = "Select Options";
+
+                    Items.ForEach(x => x.IsSelected = false);
                 }
             }
         }
@@ -95,10 +116,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
             _displayDropDown = false;
         }
 
-        protected async Task SelectItem(T selectedItem)
+        protected async Task SelectItem(DropDownItem<T> selectedItem)
         {
-            SelectedItem = selectedItem;
-            await SelectedItemChanged.InvokeAsync(selectedItem);
+            SelectedItem = selectedItem.Item;
+            await SelectedItemChanged.InvokeAsync(selectedItem.Item);
         }
 
         protected async Task MultiSelectChanged(CheckBoxChangedArgs args)
