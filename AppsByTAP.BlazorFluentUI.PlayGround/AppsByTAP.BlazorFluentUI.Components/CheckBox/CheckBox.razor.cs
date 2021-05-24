@@ -6,11 +6,27 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckBox
 {
     public class CheckBoxViewModel : BaseComponentViewModel
     {
+        private const string _showCheckMark = "showCheckMark";
+        private const string _hideCheckMark = "hideCheckMark";
+
         [Parameter]
         public string Label { get; set; }
 
+        private bool _isChecked;
         [Parameter]
-        public bool IsChecked { get; set; }
+        public bool IsChecked 
+        {
+            get => _isChecked;
+            set
+            {
+                if(_isChecked == value) { return; }
+
+                _isChecked = value;
+
+                CheckVisibility = value ? _showCheckMark : _hideCheckMark;
+            }
+        }
+
         [Parameter]
         public EventCallback<bool> IsCheckedChanged { get; set; }
         [Parameter]
@@ -18,7 +34,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckBox
         [Parameter]
         public BoxSide BoxSide { get; set; } = BoxSide.Start;
 
-        protected string CheckVisibility { get; set; } = "hideCheckMark";
+        protected string CheckVisibility { get; set; } = _hideCheckMark;
 
         protected async Task Clicked()
         {
@@ -31,7 +47,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckBox
         {
             if(!IsChecked)
             {
-                CheckVisibility = "showCheckMark";
+                CheckVisibility = _showCheckMark;
             }
         }
 
@@ -39,7 +55,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckBox
         {
             if(!IsChecked)
             {
-                CheckVisibility = "hideCheckMark";
+                CheckVisibility = _hideCheckMark;
             }
         }
     }

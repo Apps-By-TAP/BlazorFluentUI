@@ -1,14 +1,16 @@
 ﻿namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 {
-    public record DropDownItem
+    public class DropDownItem<T>
     {
-        public object Item { get; set; }
+        public T Item { get; set; }
         public DropDownItemType Type { get; set; }
+        public bool IsSelected { get; set; }
 
-        public DropDownItem(object item, DropDownItemType type)
+        public DropDownItem(T item, DropDownItemType type, bool isSelected = false)
         {
             Item = item;
             Type = type;
+            IsSelected = isSelected;
         }
 
         public override string ToString() => Item.ToString();

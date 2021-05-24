@@ -16,20 +16,29 @@
     <div class="itemsPanel" style="display: @(_displayDropDown ? "block" : "none"); z-index: @(LayerCounter.GetLayer());">
         @if (ItemsSource is not null)
         {
-            @foreach (TItem item in ItemsSource)
+            @foreach (DropDownItem<TItem> item in Items)
             {
-                if (item is DropDownItem ddi)
+                //if (item is DropDownItem ddi)
+                //{
+                if (item.Type == DropDownItemType.Item)
                 {
-                    if (ddi.Type == DropDownItemType.Item)
+                    if (IsMultiSelect)
                     {
-                        <div class="item" @onclick="() => SelectItem(item)">@ddi.Item</div>
+                        <div class="item">
+                            <CheckBox Label="@item.ToString()" OnChanged="MultiSelectChanged" @bind-IsChecked="item.IsSelected" />
+                        </div>
                     }
                     else
                     {
-                        <div class="header">@ddi.Item</div>
+                        <div class="item" @onclick="() => SelectItem(item)">@item.Item</div>
                     }
                 }
-                else if(IsMultiSelect)
+                else
+                {
+                    <div class="header">@item.Item</div>
+                }
+                //}
+                @*else if (IsMultiSelect)
                 {
                     <div class="item">
                         <CheckBox Label="@item.ToString()" OnChanged="MultiSelectChanged" />
@@ -38,7 +47,7 @@
                 else
                 {
                     <div class="item" @onclick="() => SelectItem(item)">@item</div>
-                }
+                }*@
             }
         }
     </div>
