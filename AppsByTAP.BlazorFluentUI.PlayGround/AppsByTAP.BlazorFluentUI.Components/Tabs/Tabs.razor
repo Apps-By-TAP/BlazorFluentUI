@@ -1,0 +1,57 @@
+﻿
+<CascadingValue Value="this">
+    <div class="TabContainer">
+        <div class="TabHeader" role="group">
+            @foreach (Tab tabPage in Pages)
+            {
+                <div class="TabHeaderItem" @onclick="() => ActivatePage(tabPage)">
+                    @tabPage.Header
+                </div>
+            }
+        </div>
+        <div class="Indictor" style="width: @_percent%; left: @_left%; background-color: @(ActivePage?.Color ?? "black");"></div>
+
+        @ChildContent
+    </div>
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public Tab ActivePage { get; set; }
+    public Tab LastTab;
+
+    private List<Tab> Pages = new List<Tab>();
+
+    private double _left;
+    private int _indictorPosition;
+    private double _percent;
+
+    internal void AddPage(Tab tabPage)
+    {
+        Pages.Add(tabPage);
+        if (Pages.Count == 1)
+            ActivePage = tabPage;
+
+        _percent = (1d / (double)Pages.Count) * 100;
+        _left = _indictorPosition * _percent;
+
+        StateHasChanged();
+    }
+
+    string GetButtonClass(Tab page)
+    {
+        return page == ActivePage ? "btn-primary" : "btn-secondary";
+    }
+
+    void ActivatePage(Tab page)
+    {
+        LastTab = ActivePage;
+        ActivePage = page;
+
+        _indictorPosition = Pages.IndexOf(page);
+        _left = _indictorPosition * _percent;
+    }
+}
+

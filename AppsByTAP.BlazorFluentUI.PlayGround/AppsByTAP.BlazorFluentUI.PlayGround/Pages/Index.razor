@@ -11,6 +11,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Modal
 @using AppsByTAP.BlazorFluentUI.Components.CheckBox
 @using AppsByTAP.BlazorFluentUI.Components.Chip
+@using AppsByTAP.BlazorFluentUI.Components.Tabs
 
 @inject IThemeProvider ThemeProvider
 
@@ -52,6 +53,24 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 <CheckBox Label="Hello World End" BoxSide="BoxSide.End" />
 
 <ChipSet ItemsSource="strs" ChipType="ChipType.Input" Label="Test: " CreateNewItem="CreateNewItem" />
+
+<Tabs>
+    <Tab Header="Tab 1" Color="Blue">
+        <div style="width: 900px; ">
+            <p>Hello world</p>
+        </div>
+    </Tab>
+    <Tab Header="2" Color="Orange">
+        <div style="width: 900px; ">
+            <p>This is some awesome text</p>
+        </div>
+    </Tab>
+    <Tab Header="3 Tab" Color="Yellow">
+        <div style="width: 900px;">
+            <p>I cannot believe I am a tab control</p>
+        </div>
+    </Tab>
+</Tabs>
 
 
 <Modal @bind-ShowWindow="_showModal">

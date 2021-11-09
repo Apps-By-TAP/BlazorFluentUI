@@ -1,0 +1,22 @@
+﻿.TabContainer {
+    display: inline-block;
+}
+
+.TabHeader {
+    display: flex;
+    flex-direction: row;
+    background-color: red;
+}
+
+.TabHeaderItem {
+    flex: 1 1 0px;
+    text-align: center;
+}
+
+.Indictor {
+    height: 2px;
+    position: relative;
+    transition-property: background-color, left;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0, 0, 0, 1);
+}
