@@ -54,7 +54,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
 <ChipSet ItemsSource="strs" ChipType="ChipType.Input" Label="Test: " CreateNewItem="CreateNewItem" />
 
-<Tabs>
+<Tabs Width="500px" >
     <Tab Header="Tab 1" Color="Blue">
         <div style="width: 900px; ">
             <p>Hello world</p>
@@ -71,6 +71,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
         </div>
     </Tab>
 </Tabs>
+<p>non tab content</p>
 
 
 <Modal @bind-ShowWindow="_showModal">

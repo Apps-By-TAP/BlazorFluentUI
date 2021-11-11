@@ -1,39 +1,10 @@
 ﻿
 @if (Parent.ActivePage == this || Parent.LastTab == this)
 {
-    <div class="tabItem @(Parent.LastTab != this ? "slideOut" : "slideIn")"
-         style="display: @(Parent.LastTab == this ? Delay() : "block")">
+    <div class="tabItem"
+         style="left: @(_left)px; opacity: @_opacity;">
         @ChildContent
     </div>
-}
-
-@code {
-
-    [CascadingParameter]
-    private Tabs Parent { get; set; }
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
-
-    [Parameter]
-    public string Header { get; set; }
-
-    [Parameter]
-    public string Color { get; set; } = "var(--semanticTextColors-PrimaryButtonText)";
-
-    protected override void OnInitialized()
-    {
-        if (Parent == null)
-            throw new ArgumentNullException(nameof(Parent), "TabPage must exist within a TabControl");
-        base.OnInitialized();
-
-        Parent.AddPage(this);
-    }
-
-    private string Delay()
-    {
-        Task.Delay(300).Wait();
-        return "none";
-    }
 }
 
 <style>
@@ -47,8 +18,13 @@
     }
 
     .tabItem{
-        position: relative;
-        top: 0px;
+        position: absolute;
+        /*top: 0px;*/
+        left: -200%;
         display: inline-block;
+
+        transition: left, opacity;
+        transition-duration: 300ms;
+        transition-timing-function: cubic-bezier(0,0,0,1);
     }
 </style>

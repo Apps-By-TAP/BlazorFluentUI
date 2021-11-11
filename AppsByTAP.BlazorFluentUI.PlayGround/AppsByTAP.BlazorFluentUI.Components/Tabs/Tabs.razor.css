@@ -1,11 +1,13 @@
 ﻿.TabContainer {
     display: inline-block;
+    overflow: hidden;
+    position: relative;
 }
 
 .TabHeader {
     display: flex;
     flex-direction: row;
-    background-color: red;
+    transition: color 300ms cubic-bezier(0,0,0,1);
 }
 
 .TabHeaderItem {
