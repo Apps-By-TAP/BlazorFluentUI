@@ -11,7 +11,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Expander
     public class ExpanderViewModel : BaseComponentViewModel
     {
         [Parameter]
-        public string Header { get; set; }
+        public RenderFragment Header { get; set; }
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
