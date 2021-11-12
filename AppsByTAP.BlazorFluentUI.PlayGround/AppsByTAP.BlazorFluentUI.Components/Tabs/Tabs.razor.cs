@@ -16,6 +16,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.Tabs
         public string Width { get; set; }
         [Parameter]
         public string Height { get; set; } = "100%";
+        [Parameter]
+        public string Class { get; set; }
+        [Parameter]
+        public string Style { get; set; }
 
         public event Action SelectionChanged;
 
