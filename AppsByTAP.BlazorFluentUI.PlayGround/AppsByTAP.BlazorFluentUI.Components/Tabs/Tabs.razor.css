@@ -1,7 +1,5 @@
 ﻿.TabContainer {
     display: inline-block;
-    overflow: hidden;
-    position: relative;
 }
 
 .TabHeader {

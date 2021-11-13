@@ -20,6 +20,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.Tabs
         public string Class { get; set; }
         [Parameter]
         public string Style { get; set; }
+        [Parameter]
+        public bool TabContentCanScroll { get; set; }
 
         public event Action SelectionChanged;
 

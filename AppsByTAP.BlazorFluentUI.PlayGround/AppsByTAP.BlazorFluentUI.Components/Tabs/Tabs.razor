@@ -1,17 +1,19 @@
 ﻿
 <CascadingValue Value="this">
-    <div class="TabContainer @Class" style="width: @Width; height: @Height; @Style" >
+    <div class="TabContainer @Class" style="width: @Width;  @Style;">
         <div class="TabHeader" role="group">
             @foreach (Tab tabPage in Pages)
             {
-                <div class="TabHeaderItem" @onclick="() => ActivatePage(tabPage)" style="color: @(ActivePage == tabPage? tabPage.Color : "var(--semanticColors-ButtonText)")">
-                    @tabPage.Header
-                </div>
+            <div class="TabHeaderItem" @onclick="() => ActivatePage(tabPage)" style="color: @(ActivePage == tabPage? tabPage.Color : "var(--semanticColors-ButtonText)")">
+                @tabPage.Header
+            </div>
             }
         </div>
         <div class="Indictor" style="width: @_percent%; left: @_left%; background-color: @(ActivePage?.Color ?? "black");"></div>
 
-        @ChildContent
+        <div style="overflow-x: hidden; position: relative; overflow-y: @(TabContentCanScroll ? "auto" : "hidden"); height: @Height;">
+            @ChildContent
+        </div>
     </div>
 </CascadingValue>
 

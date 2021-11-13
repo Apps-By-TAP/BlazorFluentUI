@@ -36,7 +36,7 @@ Welcome to your new app.
 
 <Expander>
     <Header>
-        Header
+        <span style="display: flex">Hello world </span>
     </Header>
     <ChildContent>
         <p>Hello World</p>
@@ -57,20 +57,28 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
 <ChipSet ItemsSource="strs" ChipType="ChipType.Input" Label="Test: " CreateNewItem="CreateNewItem" />
 
-<Tabs Width="500px" >
+<Tabs Width="500px" Height="200px" TabContentCanScroll="true" >
     <Tab Header="Tab 1" Color="Blue">
-        <div style="width: 900px; ">
+        <div>
             <p>Hello world</p>
         </div>
     </Tab>
     <Tab Header="2" Color="Orange">
-        <div style="width: 900px; ">
+        <div>
             <p>This is some awesome text</p>
         </div>
     </Tab>
     <Tab Header="3 Tab" Color="Yellow">
-        <div style="width: 900px;">
-            <p>I cannot believe I am a tab control</p>
+        <div >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut molestie commodo dictum. Fusce nulla lacus, rhoncus vel placerat in, finibus sed neque. Aliquam non arcu nec ipsum molestie condimentum. Praesent lobortis felis sodales malesuada pulvinar. Etiam laoreet erat ac odio ullamcorper pretium. Donec pellentesque leo eu consequat faucibus. Duis ornare dapibus purus sed porttitor. Vestibulum consequat at ante vitae posuere. Sed ut justo sed arcu faucibus tempor. Nulla in egestas dolor, quis semper lacus. Sed interdum nisi quis ligula commodo pulvinar.
+
+            Duis at magna vestibulum, dictum libero nec, commodo augue. Phasellus aliquam orci non consequat faucibus. Morbi pulvinar eros vel lobortis iaculis. Mauris commodo auctor egestas. Cras iaculis sollicitudin nisl, a dictum ipsum porta et. Phasellus vitae tincidunt arcu. Nullam rutrum et velit eu gravida.
+
+            Cras lacinia dui tellus, vitae mollis diam ullamcorper a. Nulla quis orci vel diam finibus consequat. Integer scelerisque molestie sagittis. Suspendisse sit amet auctor elit. Aliquam scelerisque ipsum lacus, id tempus metus luctus sit amet. Etiam tincidunt diam nisi, ut euismod mauris fringilla a. Curabitur tempus ultricies sodales. Sed fringilla pretium est, ut tincidunt ipsum semper et. Aenean eu sagittis tellus, quis condimentum massa. Phasellus rutrum ultrices dolor, in tincidunt arcu finibus pellentesque. Sed varius fermentum dui, dignissim pharetra neque consectetur in.
+
+            Ut ligula enim, egestas egestas massa et, pulvinar iaculis libero. Nulla consequat, sapien nec porta mollis, odio enim ultricies lorem, ut eleifend urna orci et enim. Praesent gravida ultrices felis, sed luctus nulla scelerisque ut. Etiam id magna vitae diam dictum placerat. Curabitur pretium elit in ipsum lobortis, ac vehicula ex dictum. Mauris dictum odio sed nisl consequat consequat. Nunc luctus, ex ut vestibulum posuere, nunc odio tristique augue, sed dignissim nunc felis sit amet lectus. Donec est velit, maximus nec pulvinar rutrum, lobortis sed ipsum. Nulla leo ipsum, feugiat ac ipsum non, posuere consectetur leo. In in mattis tortor. Maecenas quis pharetra urna. Aliquam eleifend at arcu quis accumsan. Suspendisse varius, libero ut ullamcorper dictum, ipsum nulla placerat justo, a viverra ante lorem id nibh. Proin fermentum augue sit amet mattis sollicitudin.
+
+            Fusce elementum imperdiet diam vitae sollicitudin. Donec est nunc, mattis in sem maximus, luctus posuere arcu. In rhoncus est a nunc egestas luctus. Sed ac efficitur urna. Donec vitae augue iaculis, sollicitudin urna eu, condimentum ipsum. Donec id ultricies nisi, quis accumsan mi. Nullam quis pellentesque erat, ut molestie ligula. Vivamus iaculis ac eros a egestas. Sed feugiat, lectus a volutpat dignissim, sem enim varius lacus, quis semper orci libero in ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et elit nec odio vestibulum semper. Nulla nisi nibh, ullamcorper id tempor in, ullamcorper vel leo. Donec cursus eget mauris non commodo. Nullam quis pellentesque dui.
         </div>
     </Tab>
 </Tabs>
