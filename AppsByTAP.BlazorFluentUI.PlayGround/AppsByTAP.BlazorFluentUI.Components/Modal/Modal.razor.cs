@@ -24,14 +24,26 @@ namespace AppsByTAP.BlazorFluentUI.Components.Modal
         public RenderFragment Content { get; set; }
         [Parameter]
         public RenderFragment Header { get; set; }
+        [Parameter]
+        public EventCallback OnClose { get; set; }
+        [Parameter]
+        public string Width { get; set; } = "fit-content";
+        [Parameter]
+        public bool ShowHeader { get; set; } = true;
+        [Parameter]
+        public bool CanLightDismiss { get; set; } = true;
 
 
         protected string _displayType;
 
-        protected async void Close()
+        protected async void Close(bool close)
         {
-            ShowWindow = false;
-            await ShowWindowChanged.InvokeAsync(false);
+            if(close)
+            {
+                ShowWindow = false;
+                await OnClose.InvokeAsync();
+                await ShowWindowChanged.InvokeAsync(false);
+            }
         }
     }
 }

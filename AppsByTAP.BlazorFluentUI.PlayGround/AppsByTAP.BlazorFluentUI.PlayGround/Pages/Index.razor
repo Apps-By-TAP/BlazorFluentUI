@@ -26,6 +26,7 @@ Welcome to your new app.
 <DefaultButton Text="My Btn" IsPrimary="true" OnClick="Add" />
 <CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="false" OnClick="Add" />
 <CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="true" OnClick="Add" />
+<IconButton Icon="IconTypes.Delete" OnClick="Add" />
 
 <DropDown ItemsSource="ints2" Disabled="true" />
 <DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" Label="My Label" Disabled="true" />
@@ -82,10 +83,10 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
         </div>
     </Tab>
 </Tabs>
-<p>non tab content</p>
 
 
-<Modal @bind-ShowWindow="_showModal">
+
+<Modal @bind-ShowWindow="_showModal" ShowHeader="false" CanLightDismiss="true">
     <Header>
         My Header
     </Header>

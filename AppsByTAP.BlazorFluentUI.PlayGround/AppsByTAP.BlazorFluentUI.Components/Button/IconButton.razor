@@ -1,0 +1,42 @@
+﻿@using AppsByTAP.BlazorFluentUI.Components.Icon
+
+<div @onclick="@OnClick" class="IconButtonContainer @Class" style="@Style">
+    <Icon IconType="@Icon" />
+</div>
+
+@code {
+    [Parameter]
+    public IconTypes Icon { get; set; }
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter]
+    public string Class { get; set; }
+    [Parameter]
+    public string Style { get; set; }
+}
+
+<style>
+    .IconButtonContainer {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 12px;
+        border: 1px solid var(--semanticColors-ButtonBorder);
+        border-radius: 2px;
+
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
+
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .IconButtonContainer:hover {
+        cursor: pointer;
+        background-color: var(--semanticColors-ButtonBackgroundHovered);
+    }
+</style>

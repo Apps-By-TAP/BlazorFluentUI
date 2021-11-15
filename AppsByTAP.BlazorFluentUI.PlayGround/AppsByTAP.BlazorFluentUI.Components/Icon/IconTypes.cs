@@ -5,5 +5,9 @@
         ChevronDown,
         ChevronUp,
         CheckMark,
+        Calculator,
+        Delete,
+        ReceiptProcessing,
+        Search,
     }
 }

@@ -4,15 +4,17 @@
 @using AppsByTAP.BlazorFluentUI.Components.Button
 
 <div class="modal" style="display: @_displayType;">
-    <div class="modalClickToClose" @onclick="Close"></div>
+    <div class="modalClickToClose" @onclick="() => Close(CanLightDismiss)"></div>
     <div class="modalPositioner">
-        <div class="modal-content">
+        <div class="modal-content" style="width: @Width;">
 
-            <div class="header">
-                @*<span class="close" @onclick="Close">&times;</span>*@
-                <DefaultButton @onclick="Close" ClassName="close" Text="&times;" />
-                <div>@Header</div>
-            </div>
+            @if (ShowHeader)
+            {
+                <div class="header">
+                    <DefaultButton @onclick="() => Close(true)" ClassName="close" Text="&times;" />
+                    <div>@Header</div>
+                </div>
+            }
 
             <div>@Content</div>
         </div>
