@@ -9,5 +9,7 @@
         Delete,
         ReceiptProcessing,
         Search,
+        Calendar,
+        ChromeClose,
     }
 }

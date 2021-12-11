@@ -12,6 +12,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.CheckBox
 @using AppsByTAP.BlazorFluentUI.Components.Chip
 @using AppsByTAP.BlazorFluentUI.Components.Tabs
+@using AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
 
 @inject IThemeProvider ThemeProvider
 
@@ -83,6 +84,18 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
         </div>
     </Tab>
 </Tabs>
+
+<ChoiceGroup>
+    <Choice>
+        Option 1
+    </Choice>
+    <Choice>
+        Option 2
+    </Choice>
+    <Choice>
+        Option 3
+    </Choice>
+</ChoiceGroup>
 
 
 
