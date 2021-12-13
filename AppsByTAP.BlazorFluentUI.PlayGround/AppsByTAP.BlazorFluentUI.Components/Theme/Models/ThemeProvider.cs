@@ -111,6 +111,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.Theme.Models
                 WarningBackground = !isDark ? "rgba(255, 200, 10, .2)" : "rgba(255, 251, 0, .6)",
                 WarningHighlight = !isDark ? "#ffb900" : "#fff100",
                 SuccessBackground = !isDark ? "rgba(95, 210, 85, .2)" : "rgba(186, 216, 10, .4)",
+
+                //scrollbar
+                ScrollbarTrack = isDark ? "#212121" : "#f4f4f4",
+                ScrollbarThumb = isDark ? "#636363" : "#cecece"
             };
         }
 

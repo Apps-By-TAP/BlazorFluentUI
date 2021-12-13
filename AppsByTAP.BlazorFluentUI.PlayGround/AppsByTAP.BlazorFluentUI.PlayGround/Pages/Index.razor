@@ -30,7 +30,7 @@ Welcome to your new app.
 <IconButton Icon="IconTypes.Delete" OnClick="Add" />
 
 <DropDown ItemsSource="ints2" Disabled="true" />
-<DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" Label="My Label" Disabled="true" />
+<DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" Label="My Label" Disabled="false" />
 <DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="true" SelectedItems="selectedItemsStr" />
 <DefaultButton Text="Reset strs" OnClick="() => selectedItemsStr = new List<string>() { strs[0]}" />
 
@@ -122,6 +122,48 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
         {
         new DropDownItem<string>("Header1", DropDownItemType.Header),
         new DropDownItem<string>("Item 1", DropDownItemType.Item),
+        new DropDownItem<string>("Item 2", DropDownItemType.Item),
+        new DropDownItem<string>("Item 3", DropDownItemType.Item),
+        new DropDownItem<string>("Item 4", DropDownItemType.Item),
+        new DropDownItem<string>("Header 2", DropDownItemType.Header),
+        new DropDownItem<string>("Item 5", DropDownItemType.Item),
+        new DropDownItem<string>("Item 6", DropDownItemType.Item),
+        new DropDownItem<string>("Item 7", DropDownItemType.Item),
+        new DropDownItem<string>("Item 2", DropDownItemType.Item),
+        new DropDownItem<string>("Item 3", DropDownItemType.Item),
+        new DropDownItem<string>("Item 4", DropDownItemType.Item),
+        new DropDownItem<string>("Header 2", DropDownItemType.Header),
+        new DropDownItem<string>("Item 5", DropDownItemType.Item),
+        new DropDownItem<string>("Item 6", DropDownItemType.Item),
+        new DropDownItem<string>("Item 7", DropDownItemType.Item),
+        new DropDownItem<string>("Item 2", DropDownItemType.Item),
+        new DropDownItem<string>("Item 3", DropDownItemType.Item),
+        new DropDownItem<string>("Item 4", DropDownItemType.Item),
+        new DropDownItem<string>("Header 2", DropDownItemType.Header),
+        new DropDownItem<string>("Item 5", DropDownItemType.Item),
+        new DropDownItem<string>("Item 6", DropDownItemType.Item),
+        new DropDownItem<string>("Item 7", DropDownItemType.Item),
+        new DropDownItem<string>("Item 2", DropDownItemType.Item),
+        new DropDownItem<string>("Item 3", DropDownItemType.Item),
+        new DropDownItem<string>("Item 4", DropDownItemType.Item),
+        new DropDownItem<string>("Header 2", DropDownItemType.Header),
+        new DropDownItem<string>("Item 5", DropDownItemType.Item),
+        new DropDownItem<string>("Item 6", DropDownItemType.Item),
+        new DropDownItem<string>("Item 7", DropDownItemType.Item),
+        new DropDownItem<string>("Item 2", DropDownItemType.Item),
+        new DropDownItem<string>("Item 3", DropDownItemType.Item),
+        new DropDownItem<string>("Item 4", DropDownItemType.Item),
+        new DropDownItem<string>("Header 2", DropDownItemType.Header),
+        new DropDownItem<string>("Item 5", DropDownItemType.Item),
+        new DropDownItem<string>("Item 6", DropDownItemType.Item),
+        new DropDownItem<string>("Item 7", DropDownItemType.Item),
+        new DropDownItem<string>("Item 2", DropDownItemType.Item),
+        new DropDownItem<string>("Item 3", DropDownItemType.Item),
+        new DropDownItem<string>("Item 4", DropDownItemType.Item),
+        new DropDownItem<string>("Header 2", DropDownItemType.Header),
+        new DropDownItem<string>("Item 5", DropDownItemType.Item),
+        new DropDownItem<string>("Item 6", DropDownItemType.Item),
+        new DropDownItem<string>("Item 7", DropDownItemType.Item),
         new DropDownItem<string>("Item 2", DropDownItemType.Item),
         new DropDownItem<string>("Item 3", DropDownItemType.Item),
         new DropDownItem<string>("Item 4", DropDownItemType.Item),

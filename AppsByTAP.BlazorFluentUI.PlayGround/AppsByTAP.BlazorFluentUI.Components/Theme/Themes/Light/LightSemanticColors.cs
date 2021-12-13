@@ -58,5 +58,7 @@
         public string ListItemBackgroundCheckedHovered { get; set; }
         public string ListHeaderBackgroundHovered { get; set; }
         public string ListHeaderBackgroundPressed { get; set; }
+        public string ScrollbarTrack { get; set; }
+        public string ScrollbarThumb { get; set; }
     }
 }
