@@ -7,15 +7,18 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
     {
         [Parameter]
         public RenderFragment ChildContent { get; set; }
+        [Parameter]
+        public EventCallback<T> SelectionChanged { get; set; }
 
-        public event Action SelectionChanged;
+        public event Action SelectionChanged_ChildUpdate;
 
         public Choice<T> SelectedChoice { get; set; }
 
-        public void ChildSelected(Choice<T> selectedChild)
+        public async void ChildSelected(Choice<T> selectedChild)
         {
             SelectedChoice = selectedChild;
-            SelectionChanged?.Invoke();
+            SelectionChanged_ChildUpdate?.Invoke();
+            await SelectionChanged.InvokeAsync(selectedChild.Value);
         }
     }
 }
