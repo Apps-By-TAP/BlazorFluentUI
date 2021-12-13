@@ -3,10 +3,12 @@ using System;
 
 namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
 {
-    public partial class Choice : ComponentBase
+    public partial class Choice<T> : ComponentBase
     {
+        [Parameter]
+        public T Value { get; set; }
         [CascadingParameter]
-        public ChoiceGroup Parent { get; set; }
+        public ChoiceGroup<T> Parent { get; set; }
         [Parameter]
         public RenderFragment ChildContent { get; set; }
         [Parameter]
@@ -17,7 +19,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
         protected override void OnInitialized()
         {
             if (Parent == null)
-                throw new ArgumentNullException(nameof(Parent), "TabPage must exist within a TabControl");
+                throw new ArgumentNullException(nameof(Parent), "Choice must exist within a ChoiceGroup. Also, make sure the T of ChoiceGroup matched the data type of Value.");
             base.OnInitialized();
 
             Parent.SelectionChanged += Parent_SelectionChanged;
