@@ -1,0 +1,38 @@
+﻿.choiceContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radioBtn {
+    border: 1px solid;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fill {
+    display: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--palette-Black);
+}
+
+.choiceContainer:hover .fill {
+    display: block;
+}
+
+.selected {
+    border-color: var(--semanticColors-PrimaryButtonBackground);
+}
+
+    .selected .fill {
+        display: block;
+        background-color: var(--semanticColors-PrimaryButtonBackground);
+    }

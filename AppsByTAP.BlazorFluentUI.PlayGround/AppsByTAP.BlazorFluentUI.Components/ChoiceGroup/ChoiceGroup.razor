@@ -4,21 +4,3 @@
         @ChildContent
     </div>
 </CascadingValue>
-
-
-@code {
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
-
-    public event Action SelectionChanged;
-
-    private List<Choice> _choices = new List<Choice>();
-
-    public Choice SelectedChoice { get; set; }
-
-    public void ChildSelected(Choice selectedChild)
-    {
-        SelectedChoice = selectedChild;
-        SelectionChanged?.Invoke();
-    }
-}
