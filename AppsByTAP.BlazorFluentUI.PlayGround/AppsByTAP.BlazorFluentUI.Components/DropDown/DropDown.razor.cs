@@ -88,6 +88,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         public EventCallback<IList<T>> SelectedItemsChanged { get; set; }
         [Parameter]
         public string Label { get; set; }
+        [Parameter]
+        public string Width { get; set; } = "300px";
 
         protected bool _displayDropDown = false;
         protected string _selectedDisplayText { get; set; } = "Select an option";

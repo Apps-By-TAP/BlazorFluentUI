@@ -6,18 +6,20 @@
 @typeparam TItem
 @inherits DropDownViewModel<TItem>
 
-<div class="dropDownWrapper @ClassName" style="@Style" @onblur="Close">
+<div class="dropDownWrapper @ClassName" style="width: @Width; @Style" @onblur="Close">
     <div class="label @(Disabled ? "disabledText" : "")">@Label</div>
-    <div class="dropDownCtrl @(Disabled ? "disabled" : "")" @onclick="OpenDropDown">
+    <div class="dropDownCtrl @(Disabled ? "disabled" : "")" @onclick="OpenDropDown" style="width: @Width;">
         <span class="dropDownSelection">@_selectedDisplayText</span>
         <span class="dropDownChenron"><Icon IconType="IconTypes.ChevronDown" /></span>
     </div>
     <div class="lightDismiss" style="display: @(_displayDropDown ? "block" : "none")" @onclick="Close" @onmousewheel="Close"></div>
-    <div class="itemsPanel" style="display: @(_displayDropDown ? "block" : "none"); z-index: @(LayerCounter.GetLayer());">
+    <div class="itemsPanel" style="display: @(_displayDropDown ? "block" : "none"); z-index: @(LayerCounter.GetLayer()); width: @Width;">
         @if (ItemsSource is not null)
         {
             @foreach (DropDownItem<TItem> item in Items)
             {
+                //if (item is DropDownItem ddi)
+                //{
                 if (item.Type == DropDownItemType.Item)
                 {
                     if (IsMultiSelect)
@@ -35,6 +37,17 @@
                 {
                     <div class="header">@item.Item</div>
                 }
+                //}
+                @*else if (IsMultiSelect)
+                {
+                    <div class="item">
+                        <CheckBox Label="@item.ToString()" OnChanged="MultiSelectChanged" />
+                    </div>
+                }
+                else
+                {
+                    <div class="item" @onclick="() => SelectItem(item)">@item</div>
+                }*@
             }
         }
     </div>
