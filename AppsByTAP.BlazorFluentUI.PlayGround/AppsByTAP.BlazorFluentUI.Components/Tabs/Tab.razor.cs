@@ -17,9 +17,9 @@ namespace AppsByTAP.BlazorFluentUI.Components.Tabs
         [Parameter]
         public string Color { get; set; } = "var(--semanticColors-ButtonText)";
 
-        private string _viewState;
         private double _left = -40;
         private int _opacity;
+        private string _display = "inline-block";
 
         protected override void OnInitialized()
         {
@@ -35,24 +35,19 @@ namespace AppsByTAP.BlazorFluentUI.Components.Tabs
         {
             if(Parent.LastTab == this)
             {
-                //_viewState = await Delay();
                 _opacity = 0;
                 _left = -40;
+                await Task.Delay(100);
+                _display = "none";
             }
             else
             {
-                //_viewState = "block";
+                _display = "inline-block";
                 await Task.Delay(100);
                 _opacity = 1;
                 _left = 0;
             }
             StateHasChanged();
-        }
-
-        private async Task<string> Delay()
-        {
-            await Task.Delay(300);
-            return "none";
         }
     }
 }
