@@ -12,5 +12,6 @@
         Calendar,
         ChromeClose,
         StatusCircleErrorX,
+        More,
     }
 }
