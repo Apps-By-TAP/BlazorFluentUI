@@ -11,5 +11,6 @@
         Search,
         Calendar,
         ChromeClose,
+        StatusCircleErrorX,
     }
 }
