@@ -29,6 +29,12 @@ Welcome to your new app.
 <CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="true" OnClick="Add" />
 <IconButton Icon="IconTypes.Delete" OnClick="Add" />
 
+<div @onclick="() => guid = Guid.NewGuid().ToString()">
+    Guid: @guid
+    <br />
+    <DefaultButton Text="New Guid" OnClick="() => Console.WriteLine('I')" OnClickStopPropagation="true"  />
+</div>
+
 <DropDown ItemsSource="ints2" Disabled="true" />
 <DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" Label="My Label" Disabled="false" Width="100px" />
 <DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="true" SelectedItems="selectedItemsStr" />
@@ -110,6 +116,8 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
 @code
 {
+    private string guid = "";
+
     private int counter = 0;
     private bool _isDark = true;
     private bool _isLoading = true;

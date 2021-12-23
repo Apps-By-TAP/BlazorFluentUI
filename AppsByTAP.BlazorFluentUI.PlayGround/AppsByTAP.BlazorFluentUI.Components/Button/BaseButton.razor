@@ -2,7 +2,8 @@
 
 @inherits BaseButtonViewModel
 
-<div @onclick="OnClick" class="@(string.IsNullOrEmpty(SecondaryText) ? "withoutSecondaryText" : "withSecondaryText") @(IsPrimary? "primaryBtn" : "secondaryBtn") @ClassName" style="@Style">
+<div @onclick="OnClick" class="@(string.IsNullOrEmpty(SecondaryText) ? "withoutSecondaryText" : "withSecondaryText") @(IsPrimary? "primaryBtn" : "secondaryBtn") @ClassName" style="@Style"
+     @onclick:stopPropagation="OnClickStopPropagation">
     <span class="primaryText">@Text</span>
     <span class="secondary">@SecondaryText</span>
 </div>

@@ -13,5 +13,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Button
         public bool IsPrimary { get; set; }
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
+        [Parameter]
+        public bool OnClickStopPropagation { get; set; }
     }
 }
