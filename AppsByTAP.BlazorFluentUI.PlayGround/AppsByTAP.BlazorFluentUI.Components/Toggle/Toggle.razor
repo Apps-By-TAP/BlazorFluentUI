@@ -1,0 +1,43 @@
+﻿<div class="toggleContainer" @onclick="Clicked">
+    <div class="label" style="display: @(LabelIsInline ? "none" : "block");"> 
+        @Label
+    </div>
+    <div class="innerContainer">
+        <div class="label" style="display: @(LabelIsInline ? "blcok" : "none");">
+            @Label
+        </div>
+        <div class="toggle @(IsChecked ? "checked" : "")" >
+            <div class="ball @(IsChecked ? "checkedBall" : "")"></div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Label { get; set; }
+    [Parameter]
+    public bool LabelIsInline { get; set; }
+
+    private bool _isChecked;
+    [Parameter]
+    public bool IsChecked 
+    {
+        get => _isChecked;
+        set
+        {
+            if (_isChecked == value) { return; }
+
+            _isChecked = value;
+
+            IsCheckedChanged.InvokeAsync(value);
+        }
+    }
+    [Parameter]
+    public EventCallback<bool> IsCheckedChanged { get; set; }
+
+    private void Clicked()
+    {
+        IsChecked = !IsChecked;
+    }
+
+}

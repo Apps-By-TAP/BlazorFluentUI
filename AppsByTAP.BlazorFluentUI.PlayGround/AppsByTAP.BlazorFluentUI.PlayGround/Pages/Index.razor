@@ -43,14 +43,9 @@ Welcome to your new app.
 <DefaultButton Text="Hide Drop Down" OnClick="@(() => _hideDropDown = !_hideDropDown)" />
 <DefaultButton Text="Reset strs" OnClick="() => selectedItemsStr = new List<string>() { strs[0]}" />
 
-@{
-    <ol>
-    @foreach(string s in selectedItemsStr)
-    {
-        <li>@s</li>
-    }
-    </ol>
-}
+<AppsByTAP.BlazorFluentUI.Components.Toggle.Toggle />
+<AppsByTAP.BlazorFluentUI.Components.Toggle.Toggle Label="Hello world"/>
+<AppsByTAP.BlazorFluentUI.Components.Toggle.Toggle Label="Hello world" LabelIsInline="true" />
 
 
 
