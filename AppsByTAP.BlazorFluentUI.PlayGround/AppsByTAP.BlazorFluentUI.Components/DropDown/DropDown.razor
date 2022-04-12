@@ -18,8 +18,6 @@
         {
             @foreach (DropDownItem<TItem> item in Items)
             {
-                //if (item is DropDownItem ddi)
-                //{
                 if (item.Type == DropDownItemType.Item)
                 {
                     if (IsMultiSelect)
@@ -37,17 +35,6 @@
                 {
                     <div class="header">@item.Item</div>
                 }
-                //}
-                @*else if (IsMultiSelect)
-                {
-                    <div class="item">
-                        <CheckBox Label="@item.ToString()" OnChanged="MultiSelectChanged" />
-                    </div>
-                }
-                else
-                {
-                    <div class="item" @onclick="() => SelectItem(item)">@item</div>
-                }*@
             }
         }
     </div>

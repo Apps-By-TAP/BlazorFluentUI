@@ -1,9 +1,5 @@
 ﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AppsByTAP.BlazorFluentUI.Components.Expander
@@ -14,8 +10,19 @@ namespace AppsByTAP.BlazorFluentUI.Components.Expander
         public RenderFragment Header { get; set; }
         [Parameter]
         public RenderFragment ChildContent { get; set; }
+        private bool _isOpen;
+        [Parameter]
+        public bool IsOpen 
+        {
+            get => _isOpen;
+            set
+            {
+                if(value == _isOpen) { return; }
 
-        protected bool IsOpen { get; set; }
+                _isOpen = value;
+                ChevronIsDown = value;
+            }
+        }
         protected bool ChevronIsDown { get; set; } = false;
 
         protected async Task Clicked()
@@ -23,7 +30,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.Expander
             IsOpen = !IsOpen;
 
             await Task.Delay(200);
-            ChevronIsDown = !ChevronIsDown;
         }
     }
 }

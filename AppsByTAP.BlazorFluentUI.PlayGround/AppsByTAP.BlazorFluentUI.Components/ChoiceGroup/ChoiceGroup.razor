@@ -1,6 +1,6 @@
 ﻿@typeparam T
 <CascadingValue Value="this">
-    <div>
+    <div style="display: flex; flex-direction: @(GroupDirection == GroupDirection.Vertical ? "column": "row");">
         @ChildContent
     </div>
 </CascadingValue>

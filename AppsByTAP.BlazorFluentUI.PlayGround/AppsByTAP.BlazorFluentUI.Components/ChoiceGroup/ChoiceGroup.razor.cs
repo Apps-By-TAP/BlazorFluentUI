@@ -9,6 +9,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
         public RenderFragment ChildContent { get; set; }
         [Parameter]
         public EventCallback<T> SelectionChanged { get; set; }
+        [Parameter]
+        public GroupDirection GroupDirection { get; set; } = GroupDirection.Vertical;
 
         public event Action SelectionChanged_ChildUpdate;
 
