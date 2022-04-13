@@ -1,5 +1,5 @@
 ﻿.spinButtonContainer {
-    display: inherit;
+    display: flex;
 }
 
 .spinButton {
@@ -24,4 +24,6 @@
 .labelContainer { 
     font-weight: var(--label-font-weight);
     padding: 0px 5px 5px 0px;
+    display: flex;
+    align-items: center;
 }

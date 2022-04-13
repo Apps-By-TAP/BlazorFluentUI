@@ -2,8 +2,8 @@
 @using AppsByTAP.BlazorFluentUI.Components.Icon
 @using AppsByTAP.BlazorFluentUI.Components.TextField
 
-<div class="spinButtonContainer">
-    <div class="labelContainer" style="flex-direction: @(LabelPosition == Common.LabelPosition.Above ? "column" : "row");">
+<div class="spinButtonContainer" style="flex-direction: @(LabelPosition == Common.LabelPosition.Above ? "column" : "row");">
+    <div class="labelContainer">
         @Label
     </div>
     <div class="spinButton" @onmousewheel="OnMouseWheel" @onmousewheel:preventDefault="true" @onscroll:preventDefault="true">
