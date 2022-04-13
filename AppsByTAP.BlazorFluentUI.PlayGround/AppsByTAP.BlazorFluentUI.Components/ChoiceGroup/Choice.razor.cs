@@ -22,6 +22,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
                 throw new ArgumentNullException(nameof(Parent), "Choice must exist within a ChoiceGroup. Also, make sure the T of ChoiceGroup matched the data type of Value.");
             base.OnInitialized();
 
+            Parent.Register(this);
+
             Parent.SelectionChanged_ChildUpdate += Parent_SelectionChanged_ChildUpdate;
         }
 

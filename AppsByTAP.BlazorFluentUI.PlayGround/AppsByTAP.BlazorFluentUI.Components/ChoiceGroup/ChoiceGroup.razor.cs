@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
 {
@@ -9,18 +11,71 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
         public RenderFragment ChildContent { get; set; }
         [Parameter]
         public EventCallback<T> SelectionChanged { get; set; }
+
+        private T _selectedItem;
+        [Parameter]
+        public T SelectedItem 
+        {
+            get => _selectedItem;
+            set
+            {
+                if (_selectedItem.Equals(value)) { return; }
+
+                _selectedItem = value;
+                ChildSelected(_choises.FirstOrDefault(x => x.Value.Equals(value)));
+                SelectedItemChanged.InvokeAsync(value);
+            }
+        }
+        [Parameter]
+        public EventCallback<T> SelectedItemChanged { get; set; }
         [Parameter]
         public GroupDirection GroupDirection { get; set; } = GroupDirection.Vertical;
 
         public event Action SelectionChanged_ChildUpdate;
 
-        public Choice<T> SelectedChoice { get; set; }
+        private Choice<T> _selectedChoise;
+        public Choice<T> SelectedChoice
+        {
+            get => _selectedChoise;
+            set
+            {
+                if(_selectedChoise == value) { return; }
+
+                _selectedChoise = value;
+            }
+        }
+
+        private List<Choice<T>> _choises = new List<Choice<T>>();
+
+        protected override void OnAfterRender(bool firstRender)
+        {
+            if(firstRender)
+            {
+                if (SelectedItem is not null)
+                {
+                    ChildSelected(_choises.FirstOrDefault(x => x.Value.Equals(SelectedItem)));
+                }
+            }
+        }
+
+        public void Register(Choice<T> child)
+        {
+            if(!_choises.Contains(child))
+            {
+                _choises.Add(child);
+            }
+        }
 
         public async void ChildSelected(Choice<T> selectedChild)
         {
-            SelectedChoice = selectedChild;
-            SelectionChanged_ChildUpdate?.Invoke();
-            await SelectionChanged.InvokeAsync(selectedChild.Value);
+            if(selectedChild is not null)
+            {
+                SelectedItem = selectedChild.Value;
+                SelectedChoice = selectedChild;
+                SelectionChanged_ChildUpdate?.Invoke();
+                await SelectionChanged.InvokeAsync(selectedChild.Value);
+            }
+
         }
     }
 }

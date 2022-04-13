@@ -98,14 +98,14 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     </Tab>
 </Tabs>
 
-<ChoiceGroup T="char">
+<ChoiceGroup T="char" SelectedItem="@('b')">
     <Choice Value="@('a')">
         Option 1
     </Choice>
-    <Choice Value="@('a')">
+    <Choice Value="@('b')">
         Option 2
     </Choice>
-    <Choice Value="@('a')">
+    <Choice Value="@('c')">
         Option 3
     </Choice>
 </ChoiceGroup>
