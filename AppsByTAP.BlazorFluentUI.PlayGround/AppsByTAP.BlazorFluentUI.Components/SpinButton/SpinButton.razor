@@ -1,0 +1,25 @@
+﻿@using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.Icon
+@using AppsByTAP.BlazorFluentUI.Components.TextField
+
+<div class="spinButtonContainer">
+    <div class="labelContainer" style="flex-direction: @(LabelPosition == Common.LabelPosition.Above ? "column" : "row");">
+        @Label
+    </div>
+    <div class="spinButton" @onmousewheel="OnMouseWheel" @onmousewheel:preventDefault="true" @onscroll:preventDefault="true">
+        <div class="valueContainer">
+            <TextField @bind-Value="@DisplayValue" DisplayBorder="false" Width="60" />
+        </div>
+        <div class="arrowContainer">
+            <IconButton Icon="IconTypes.ChevronUp" OnClick="Increment" Class="arrowBtn" />
+            <IconButton Icon="IconTypes.ChevronDown" OnClick="Decrement" Class="arrowBtn" />
+        </div>
+    </div>
+</div>
+
+<style>
+.arrowBtn {
+    font-size: .5em !important;
+    padding: 2px !important;
+    margin: 0px !important;
+}</style>

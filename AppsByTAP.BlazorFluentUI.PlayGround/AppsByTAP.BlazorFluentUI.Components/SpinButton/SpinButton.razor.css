@@ -1,0 +1,26 @@
+﻿.spinButtonContainer {
+    display: inherit;
+}
+
+.spinButton {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid var(--palette-Black);
+    border-radius: 2px;
+    padding-left: 5px;
+}
+
+.arrowContainer {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.valueContainer{
+    min-width: 40px;
+}
+
+.labelContainer { 
+    font-weight: var(--label-font-weight);
+    padding-bottom: 5px;
+}

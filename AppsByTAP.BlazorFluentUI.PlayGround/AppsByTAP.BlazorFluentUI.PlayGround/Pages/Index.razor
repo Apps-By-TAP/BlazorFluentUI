@@ -13,6 +13,8 @@
 @using AppsByTAP.BlazorFluentUI.Components.Chip
 @using AppsByTAP.BlazorFluentUI.Components.Tabs
 @using AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
+@using AppsByTAP.BlazorFluentUI.Components.SpinButton
+@using AppsByTAP.BlazorFluentUI.Components.TextField
 
 @inject IThemeProvider ThemeProvider
 
@@ -20,7 +22,9 @@
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<SpinButton Label="My Spin Button" Suffix="cm" Type="SpinButtonType.Decimal" RoundingPlaces="3" />
+
+<TextField Label="My Text Area" IsMultiLine="true" PlaceHolder="Write here" />
 
 <button @onclick="ChangeTheme">Change Theme</button>
 <DefaultButton Text="Toggle Spinners" IsPrimary="false" OnClick="ToggleSpinners" />

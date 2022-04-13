@@ -1,0 +1,18 @@
+﻿<div>
+    <div class="labelContainer" style="display: @(string.IsNullOrEmpty(Label) ? "none": "block");">
+        @Label
+    </div>
+    @if(!IsMultiLine)
+    {
+        <input @bind="@Value" class="textArea" type="text" 
+        style="@(Width >= 0 ? $"width: {Width}px;" : "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" 
+        placeholder="@PlaceHolder" />
+    }
+    else
+    {
+        <textarea @bind="@Value" class="textArea" placeholder="@PlaceHolder"
+        style="resize: @(MultiLineCanResize ? "both" : "none"); @(Width >= 0 ? $"width: {Width}px;" : "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" />
+    }
+</div>
+
+
