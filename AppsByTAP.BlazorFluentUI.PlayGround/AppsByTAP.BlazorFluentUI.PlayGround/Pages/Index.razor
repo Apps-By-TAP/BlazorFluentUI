@@ -18,13 +18,21 @@
 
 @inject IThemeProvider ThemeProvider
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
 <SpinButton Label="My Spin Button" Suffix="cm" Type="SpinButtonType.Decimal" RoundingPlaces="3" />
 
 <TextField Label="My Text Area" IsMultiLine="true" PlaceHolder="Write here" />
+
+<ChoiceGroup T="char" SelectedItem="@_selectedChar" SelectedItemChanged="SelectionChanged">
+    <Choice Value="@('a')">
+        Option 1
+    </Choice>
+    <Choice Value="@('b')">
+        Option 2
+    </Choice>
+    <Choice Value="@('c')">
+        Option 3
+    </Choice>
+</ChoiceGroup>
 
 <button @onclick="ChangeTheme">Change Theme</button>
 <DefaultButton Text="Toggle Spinners" IsPrimary="false" OnClick="ToggleSpinners" />
@@ -102,17 +110,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     </Tab>
 </Tabs>
 
-<ChoiceGroup T="char" @bind-SelectedItem="@_selectedChar">
-    <Choice Value="@('a')">
-        Option 1
-    </Choice>
-    <Choice Value="@('b')">
-        Option 2
-    </Choice>
-    <Choice Value="@('c')">
-        Option 3
-    </Choice>
-</ChoiceGroup>
+
 
 
 

@@ -73,7 +73,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
                 SelectedChoice = selectedChild;
                 SelectionChanged_ChildUpdate?.Invoke();
             }
-
         }
     }
 }

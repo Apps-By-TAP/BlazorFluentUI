@@ -102,6 +102,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
             {
                 IncrementAmount = Type == SpinButtonType.Whole ? 1d : .1;
             }
+
+            DisplayValue = Type == SpinButtonType.Whole ? WholeValue.ToString() : DecimalValue.ToString();
         }
 
         private void OnMouseWheel(WheelEventArgs args)
