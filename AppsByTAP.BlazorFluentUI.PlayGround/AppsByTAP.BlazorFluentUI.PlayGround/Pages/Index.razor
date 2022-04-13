@@ -98,7 +98,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     </Tab>
 </Tabs>
 
-<ChoiceGroup T="char" SelectedItem="@('b')">
+<ChoiceGroup T="char" @bind-SelectedItem="@_selectedChar">
     <Choice Value="@('a')">
         Option 1
     </Choice>
@@ -132,6 +132,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     private string _selectedStr = "";
     private bool _showModal;
     private bool _hideDropDown = false;
+    private char _selectedChar = 'b';
 
     List<DropDownItem<string>>
     ints2 = new List<DropDownItem<string>>
@@ -199,5 +200,10 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     }
 
     public string CreateNewItem(string str) => str;
+
+    private void SelectionChanged(char c)
+    {
+        Console.WriteLine(c);
+    }
 
 }

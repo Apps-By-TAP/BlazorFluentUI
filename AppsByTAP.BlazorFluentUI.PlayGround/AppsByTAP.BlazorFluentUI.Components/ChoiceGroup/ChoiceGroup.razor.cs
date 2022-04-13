@@ -22,7 +22,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
                 if (_selectedItem.Equals(value)) { return; }
 
                 _selectedItem = value;
-                ChildSelected(_choises.FirstOrDefault(x => x.Value.Equals(value)));
                 SelectedItemChanged.InvokeAsync(value);
             }
         }
@@ -73,7 +72,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
                 SelectedItem = selectedChild.Value;
                 SelectedChoice = selectedChild;
                 SelectionChanged_ChildUpdate?.Invoke();
-                await SelectionChanged.InvokeAsync(selectedChild.Value);
             }
 
         }
