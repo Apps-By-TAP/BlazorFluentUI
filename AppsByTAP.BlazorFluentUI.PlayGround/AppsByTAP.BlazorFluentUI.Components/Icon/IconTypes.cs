@@ -2,6 +2,7 @@
 {
     public enum IconTypes
     {
+        None,
         ChevronDown,
         ChevronUp,
         CheckMark,
@@ -13,5 +14,12 @@
         ChromeClose,
         StatusCircleErrorX,
         More,
+        MoreVertical,
+        Pause,
+        Play,
+        PlaySolid,
+        PowerButton,
+        Stop,
+        StopSolid
     }
 }

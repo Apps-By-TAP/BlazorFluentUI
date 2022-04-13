@@ -1,4 +1,5 @@
 ﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
+using AppsByTAP.BlazorFluentUI.Components.Icon;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
@@ -15,5 +16,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Button
         public EventCallback<MouseEventArgs> OnClick { get; set; }
         [Parameter]
         public bool OnClickStopPropagation { get; set; }
+        [Parameter]
+        public IconTypes Icon { get; set; } = IconTypes.None;
     }
 }

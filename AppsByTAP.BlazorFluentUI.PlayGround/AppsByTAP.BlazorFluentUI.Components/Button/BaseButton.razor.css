@@ -1,8 +1,8 @@
 ﻿
-div {
+.btnContainer {
     display: inline-block;
     border: 1px solid var(--semanticColors-ButtonBorder);
-    border-radius: 2px;    
+    border-radius: 2px;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
@@ -19,8 +19,8 @@ div {
     padding: 16px 11px;
 }
 
-div span{
-    display: block;
+div > div{
+    display: flex;
     font-weight: 600;
     font-size: 14px;
 }
@@ -47,6 +47,8 @@ div:hover:active:not(.secondaryBtn) {
 
 .primaryText{
     text-align: center;
+    gap: 5px;
+    align-items: center;
 }
 
 .primaryBtn {

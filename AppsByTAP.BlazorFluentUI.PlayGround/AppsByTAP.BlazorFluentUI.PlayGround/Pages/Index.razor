@@ -41,7 +41,7 @@ Welcome to your new app.
     <DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="true" @bind-SelectedItems="selectedItemsStr" />
 </div>
 <DefaultButton Text="Hide Drop Down" OnClick="@(() => _hideDropDown = !_hideDropDown)" />
-<DefaultButton Text="Reset strs" OnClick="() => selectedItemsStr = new List<string>() { strs[0]}" />
+<DefaultButton Text="Reset strs" OnClick="() => selectedItemsStr = new List<string>() { strs[0]}" Icon="IconTypes.PowerButton" />
 
 <AppsByTAP.BlazorFluentUI.Components.Toggle.Toggle />
 <AppsByTAP.BlazorFluentUI.Components.Toggle.Toggle Label="Hello world"/>
