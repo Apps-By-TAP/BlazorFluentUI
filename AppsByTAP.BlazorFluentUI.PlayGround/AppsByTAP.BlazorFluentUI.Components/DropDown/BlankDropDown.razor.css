@@ -33,7 +33,6 @@
     position: absolute;
     background-color: var(--semanticColors-ListBackground);
     overflow-y: auto;
-    max-height: 250px;
     scrollbar-width: thin; /* "auto" or "thin" */
     scrollbar-color: var(--semanticColors-ScrollbarThumb) var(--semanticColors-ScrollbarTrack); /* scroll thumb and track */
 }

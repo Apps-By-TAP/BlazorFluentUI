@@ -16,6 +16,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         [Parameter]
         public string Width { get; set; } = "300px";
         [Parameter]
+        public int ItemsPanelHeight { get; set; } = -1;
+        [Parameter]
         public EventCallback OnOpen { get; set; }
         [Parameter]
         public EventCallback OnClose { get; set; }
