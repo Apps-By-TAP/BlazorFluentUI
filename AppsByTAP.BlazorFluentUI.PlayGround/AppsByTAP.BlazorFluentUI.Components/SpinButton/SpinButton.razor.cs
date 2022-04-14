@@ -64,6 +64,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
         public EventCallback<double> OnIncrement { get; set; }
         [Parameter]
         public EventCallback<double> OnDecrement { get; set; }
+        [Parameter]
+        public int TextFieldWidth { get; set; } = 60;
 
         private string _displayValue;
         public string DisplayValue
