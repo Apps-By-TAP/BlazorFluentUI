@@ -1,0 +1,69 @@
+﻿.dropDownWrapper {
+    display: block;
+}
+
+.dropDownCtrl {
+    display: flex;
+    border: 1px solid var(--semanticColors-ButtonBorder);
+    border-radius: 2px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    height: 32px;
+}
+
+.dropDownChenron {
+    padding: 3px 7px 0px 13px;
+}
+
+.dropDownCtrl:hover:not(.disabled) {
+    cursor: pointer;
+}
+
+.dropDownCtrl:hover:active:not(.disabled) {
+    border-color: var(--palette-ThemePrimary);
+    border-width: 2px;
+}
+
+.itemsPanel {
+    display: none;
+    position: absolute;
+    background-color: var(--semanticColors-ListBackground);
+    overflow-y: auto;
+    max-height: 250px;
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: var(--semanticColors-ScrollbarThumb) var(--semanticColors-ScrollbarTrack); /* scroll thumb and track */
+}
+
+.itemsPanel::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+}
+
+.itemsPanel::-webkit-scrollbar-track {
+    background: var(--semanticColors-ScrollbarTrack); /* color of the tracking area */
+}
+
+.itemsPanel::-webkit-scrollbar-thumb {
+    background-color: var(--semanticColors-ScrollbarThumb); /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid var(--semanticColors-ScrollbarThumb); /* creates padding around scroll thumb */
+}
+
+
+.lightDismiss {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.disabled {
+    background-color: var(--semanticColors-ListItemBackgroundCheckedHovered);
+    border: none;
+    color: var(--semanticTextColors-DisabledText);
+}
