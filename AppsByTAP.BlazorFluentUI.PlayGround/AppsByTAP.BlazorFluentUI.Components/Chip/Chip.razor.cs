@@ -19,6 +19,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Chip
         public EventCallback<string> OnRemove { get; set; }
         [Parameter]
         public EventCallback<string> OnEdit { get; set; }
+        public int GroupIndex { get; set; }
 
         protected bool ShowRemoval;
 

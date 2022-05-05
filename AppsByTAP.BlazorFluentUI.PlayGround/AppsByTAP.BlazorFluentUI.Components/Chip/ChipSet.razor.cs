@@ -22,12 +22,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Chip
 
                 _itemsSource = value;
 
-                _chips = _itemsSource.Select(x => new ChipViewModel
-                {
-                    ChipType = ChipType,
-                    Text = x.ToString(),
-                    ID = Guid.NewGuid().ToString()
-                }).ToList();
+                GenerateChips();
             }
         }
 
@@ -42,7 +37,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Chip
         [Parameter]
         public Func<string, T> CreateNewItem { get; set; }
 
-        protected List<ChipViewModel> _chips;
+        protected List<ChipViewModel> _chips = new List<ChipViewModel>();
 
         private string _nextChipText = "";
         protected string NextChipText
@@ -79,7 +74,9 @@ namespace AppsByTAP.BlazorFluentUI.Components.Chip
 
             if(toRemove is not null)
             {
-                _chips.Remove(toRemove);
+                _itemsSource.RemoveAt(toRemove.GroupIndex);
+
+                GenerateChips();
             }
         }
 
@@ -110,6 +107,21 @@ namespace AppsByTAP.BlazorFluentUI.Components.Chip
                     }
                 }
 
+            }
+        }
+
+        private void GenerateChips()
+        {
+            _chips.Clear();
+            for (int i = 0; i < _itemsSource.Count; i++)
+            {
+                _chips.Add(new ChipViewModel
+                {
+                    ChipType = ChipType,
+                    Text = _itemsSource[i].ToString(),
+                    ID = Guid.NewGuid().ToString(),
+                    GroupIndex = i
+                });
             }
         }
     }
