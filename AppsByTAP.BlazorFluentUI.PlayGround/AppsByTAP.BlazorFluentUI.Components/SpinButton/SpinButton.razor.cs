@@ -85,11 +85,11 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
 
                     if(Type == SpinButtonType.Whole)
                     {
-                        _wholeValue = int.Parse(decodedVal);
+                        WholeValue = int.Parse(decodedVal);
                     }
                     else
                     {
-                        _decimalValue = Math.Round(double.Parse(decodedVal), RoundingPlaces);
+                        DecimalValue = Math.Round(double.Parse(decodedVal), RoundingPlaces);
                         decodedVal = _decimalValue.ToString();
                     }
 
