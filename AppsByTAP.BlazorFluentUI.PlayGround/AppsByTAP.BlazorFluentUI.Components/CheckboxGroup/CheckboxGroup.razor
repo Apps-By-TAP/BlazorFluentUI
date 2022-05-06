@@ -1,0 +1,21 @@
+﻿@typeparam T
+
+@using AppsByTAP.BlazorFluentUI.Components.Toggle
+@using AppsByTAP.BlazorFluentUI.Components.CheckBox
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+
+<div class="checkboxGroupContainer" style="flex-direction: @(IsVertical ? "column": "row"); flex-wrap : @(WrapItems ? "wrap" : "nowrap"); width: @Width; height: @Height;">
+    <Virtualize Items="ItemsSource">
+        @if(UseToggleSwitches)
+        {
+            <div class="toggleContainer">
+                <Toggle IsCheckedChanged="x => CheckChanged(x, context)" LabelIsInline="true"/> 
+                <div class="label">@context.ToString()</div>
+            </div>
+        }
+        else
+        {
+            <CheckBox Label="@(context.ToString())" IsCheckedChanged="x => CheckChanged(x, context)" />
+        }
+    </Virtualize>
+</div>
