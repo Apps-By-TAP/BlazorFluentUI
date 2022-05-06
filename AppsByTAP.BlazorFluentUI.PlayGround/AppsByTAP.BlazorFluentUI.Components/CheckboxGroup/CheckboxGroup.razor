@@ -8,7 +8,7 @@
     <div class="label">
         @Label
     </div>
-    <div class="checkboxGroupContainer" style="flex-direction: @(IsVertical ? "column": "row"); flex-wrap : @(WrapItems ? "wrap" : "nowrap"); width: @Width; height: @Height;">
+    <div class="checkboxGroupContainer" style="flex-direction: @(GroupDirection == Common.GroupDirection.Vertical ? "column": "row"); flex-wrap : @(WrapItems ? "wrap" : "nowrap"); width: @Width; height: @Height;">
         <Virtualize Items="ItemsSource">
             @if(UseToggleSwitches)
             {

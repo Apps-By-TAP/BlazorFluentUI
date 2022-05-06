@@ -1,6 +1,7 @@
 ﻿.checkboxGroupContainer {
     display: flex;
     overflow: auto;
+    gap: 5px;
 }
 
 .toggleContainer{

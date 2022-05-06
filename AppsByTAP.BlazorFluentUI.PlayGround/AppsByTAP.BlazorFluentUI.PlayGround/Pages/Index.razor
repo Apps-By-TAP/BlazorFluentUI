@@ -10,6 +10,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Spinner
 @using AppsByTAP.BlazorFluentUI.Components.Modal
 @using AppsByTAP.BlazorFluentUI.Components.CheckBox
+@using AppsByTAP.BlazorFluentUI.Components.Common
 @using AppsByTAP.BlazorFluentUI.Components.Chip
 @using AppsByTAP.BlazorFluentUI.Components.Tabs
 @using AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
@@ -19,7 +20,7 @@
 
 @inject IThemeProvider ThemeProvider
 
-<CheckboxGroup ItemsSource="strs" @bind-SelectedItems="selectedItemsStr2" UseToggleSwitches="true" Label="Select your fruit" />
+<CheckboxGroup ItemsSource="strs" @bind-SelectedItems="selectedItemsStr2" UseToggleSwitches="false" Label="Select your fruit" GroupDirection="GroupDirection.Horizontal" />
 
 <div>
     @string.Join(',', selectedItemsStr2)

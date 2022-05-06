@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
+using AppsByTAP.BlazorFluentUI.Components.Common;
 
 namespace AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
 {
@@ -14,7 +15,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
         [Parameter]
         public bool UseToggleSwitches { get; set; }
         [Parameter]
-        public bool IsVertical { get; set; } = true;
+        public GroupDirection GroupDirection { get; set; } = GroupDirection.Vertical;
         [Parameter]
         public bool WrapItems { get; set; }
         [Parameter]

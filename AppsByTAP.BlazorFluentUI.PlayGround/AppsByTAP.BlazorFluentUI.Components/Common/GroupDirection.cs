@@ -1,4 +1,4 @@
-﻿namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
+﻿namespace AppsByTAP.BlazorFluentUI.Components.Common
 {
     public enum GroupDirection
     {
