@@ -21,6 +21,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
         public string Width { get; set; } = "auto";
         [Parameter]
         public string Height { get; set; } = "auto";
+        [Parameter]
+        public string Label { get; set; }
 
         private void CheckChanged(bool isChecked, T value)
         {

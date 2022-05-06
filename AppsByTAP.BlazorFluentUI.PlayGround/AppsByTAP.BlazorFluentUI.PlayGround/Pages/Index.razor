@@ -19,7 +19,7 @@
 
 @inject IThemeProvider ThemeProvider
 
-<CheckboxGroup ItemsSource="strs" @bind-SelectedItems="selectedItemsStr2" UseToggleSwitches="true" IsVertical="false" WrapItems="true" Width="100px" Height="100px" />
+<CheckboxGroup ItemsSource="strs" @bind-SelectedItems="selectedItemsStr2" UseToggleSwitches="true" Label="Select your fruit" />
 
 <div>
     @string.Join(',', selectedItemsStr2)

@@ -8,6 +8,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
     public partial class ChoiceGroup<T> : ComponentBase
     {
         [Parameter]
+        public string Label { get; set; }
+        [Parameter]
         public RenderFragment ChildContent { get; set; }
         [Parameter]
         public EventCallback<T> SelectionChanged { get; set; }
