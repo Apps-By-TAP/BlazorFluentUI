@@ -11,8 +11,10 @@
         </div>
         <div class="Indictor" style="width: @_percent%; left: @_left%; background-color: @(ActivePage?.Color ?? "black");"></div>
 
-        <div class="TabContentContainer" style="overflow-x: hidden; position: relative; overflow-y: @(TabContentCanScroll ? "auto" : "hidden"); height: @Height;">
-            @ChildContent
+        <div style="position: relative;">
+            <div class="TabContentContainer" style="overflow-x: hidden; overflow-y: @(TabContentCanScroll ? "auto" : "hidden"); height: @Height;">
+                @ChildContent
+            </div>
         </div>
     </div>
 </CascadingValue>
