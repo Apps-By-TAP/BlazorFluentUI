@@ -21,7 +21,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
         [Parameter]
         public string Width { get; set; } = "auto";
         [Parameter]
-        public string Height { get; set; } = "auto";
+        public string Height { get; set; } = "fit-content";
         [Parameter]
         public string Label { get; set; }
 

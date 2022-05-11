@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 {
     public class DropDownViewModel<T> : BaseComponentViewModel
-    {
+    {//TODO: document.getElementById("1").parentNode.getBoundingClientRect()
         private T _selectedItem;
         [Parameter]
         public T SelectedItem
@@ -93,6 +93,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 
         protected bool _displayDropDown = false;
         protected string _selectedDisplayText { get; set; } = "Select an option";
+        protected bool _isOpen;
 
         protected override Task OnInitializedAsync()
         {
@@ -105,23 +106,11 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
             return base.OnInitializedAsync();
         }
 
-        protected void OpenDropDown()
-        {
-            if(!Disabled)
-            {
-                _displayDropDown = !_displayDropDown;
-            }
-        }
-
-        protected void Close()
-        {
-            _displayDropDown = false;
-        }
-
         protected async Task SelectItem(DropDownItem<T> selectedItem)
         {
             SelectedItem = selectedItem.Item;
             await SelectedItemChanged.InvokeAsync(selectedItem.Item);
+            _isOpen = false;
         }
 
         protected async Task MultiSelectChanged(CheckBoxChangedArgs args)

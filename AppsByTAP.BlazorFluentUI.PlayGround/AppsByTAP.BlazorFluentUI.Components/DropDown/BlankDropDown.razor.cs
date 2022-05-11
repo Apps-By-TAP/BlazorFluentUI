@@ -21,29 +21,48 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         public EventCallback OnOpen { get; set; }
         [Parameter]
         public EventCallback OnClose { get; set; }
+        [Parameter]
+        public string ClassName { get; set; }
+        [Parameter]
+        public string Style { get; set; }
 
-        protected bool _displayDropDown = false;
-
-        protected async void OpenDropDown()
+        private bool _isOpen;
+        [Parameter]
+        public bool IsOpen 
         {
-            if (!Disabled)
+            get => _isOpen;
+            set
             {
-                _displayDropDown = !_displayDropDown;
+                if(_isOpen == value) { return; }
 
-                if(_displayDropDown)
+                _isOpen = value;
+                IsOpenChanged.InvokeAsync(IsOpen);
+
+                if(value)
                 {
-                    await OnOpen.InvokeAsync();
+                    OnOpen.InvokeAsync();
                 }
-                else{
-                    await OnClose.InvokeAsync();
+                else
+                {
+                    OnClose.InvokeAsync();
                 }
             }
         }
+        [Parameter]
+        public EventCallback<bool> IsOpenChanged { get; set; }
 
-        protected async void Close()
+
+        protected void OpenDropDown()
         {
-            _displayDropDown = false;
-            await OnClose.InvokeAsync();
+            if (!Disabled)
+            {
+                IsOpen = !IsOpen;
+            }
+        }
+
+        protected void Close()
+        {
+            IsOpen = false;
         }
     }
 }

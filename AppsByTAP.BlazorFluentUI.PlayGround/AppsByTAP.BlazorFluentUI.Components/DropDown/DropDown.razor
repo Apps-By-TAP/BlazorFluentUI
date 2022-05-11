@@ -6,14 +6,11 @@
 @typeparam TItem
 @inherits DropDownViewModel<TItem>
 
-<div class="dropDownWrapper @ClassName" style="width: @Width; @Style" @onblur="Close">
-    <div class="label @(Disabled ? "disabledText" : "")">@Label</div>
-    <div class="dropDownCtrl @(Disabled ? "disabled" : "")" @onclick="OpenDropDown" style="width: @Width;">
-        <span class="dropDownSelection">@_selectedDisplayText</span>
-        <span class="dropDownChenron"><Icon IconType="IconTypes.ChevronDown" /></span>
-    </div>
-    <div class="lightDismiss" style="display: @(_displayDropDown ? "block" : "none")" @onclick="Close" @onmousewheel="Close"></div>
-    <div class="itemsPanel" style="display: @(_displayDropDown ? "block" : "none"); z-index: @(LayerCounter.GetLayer()); width: @Width;">
+<BlankDropDown Label="@Label" Disabled=@Disabled ClassName="@ClassName" Width=@Width Style=@Style @bind-IsOpen=@_isOpen>
+    <DisplayInfo>
+        @_selectedDisplayText
+    </DisplayInfo>
+    <Content>
         @if (ItemsSource is not null)
         {
             @foreach (DropDownItem<TItem> item in Items)
@@ -37,5 +34,5 @@
                 }
             }
         }
-    </div>
-</div>
+    </Content>
+</BlankDropDown>

@@ -29,6 +29,14 @@
     border-width: 2px;
 }
 
+.dropDownSelection {
+    padding-left: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
 .itemsPanel {
     display: none;
     position: absolute;
