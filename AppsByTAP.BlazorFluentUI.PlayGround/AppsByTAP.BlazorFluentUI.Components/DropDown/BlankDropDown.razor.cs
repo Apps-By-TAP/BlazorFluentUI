@@ -1,10 +1,15 @@
-﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
+﻿using System;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using System.Threading.Tasks;
 
 namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 {
     public partial class BlankDropDown : ComponentBase
     {
+        [Inject] IJSRuntime JSRuntime { get; set; }
+
+
         [Parameter]
         public RenderFragment DisplayInfo { get; set; }
         [Parameter]
@@ -51,12 +56,29 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         [Parameter]
         public EventCallback<bool> IsOpenChanged { get; set; }
 
+        private Task<IJSObjectReference> _module;
+        private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/BlankDropDown.js";
+        private Task<IJSObjectReference> Module => _module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", ImportPath).AsTask();
 
-        protected void OpenDropDown()
+        private readonly string _id = Guid.NewGuid().ToString();
+        private int _top = -1;
+
+        protected async void OpenDropDown()
         {
             if (!Disabled)
             {
+                _top = -1;
+                await Task.Delay(5); //Time for UI to update
+
+                IJSObjectReference mod = await Module;
+
+                if(!await mod.InvokeAsync<bool>("canExpandDown", _id))
+                {
+                    _top = (int)await mod.InvokeAsync<double>("getNewTopLocation", _id);
+                }
+
                 IsOpen = !IsOpen;
+                StateHasChanged();
             }
         }
 

@@ -6,7 +6,7 @@
 @typeparam TItem
 @inherits DropDownViewModel<TItem>
 
-<BlankDropDown Label="@Label" Disabled=@Disabled ClassName="@ClassName" Width=@Width Style=@Style @bind-IsOpen=@_isOpen>
+<BlankDropDown Label="@Label" Disabled=@Disabled ClassName="@ClassName" Width=@Width Style=@Style @bind-IsOpen=@_isOpen ItemsPanelHeight="250">
     <DisplayInfo>
         @_selectedDisplayText
     </DisplayInfo>

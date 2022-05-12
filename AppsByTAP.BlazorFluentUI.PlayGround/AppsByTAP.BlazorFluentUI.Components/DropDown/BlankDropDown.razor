@@ -13,7 +13,7 @@
         <span class="dropDownChenron"><Icon IconType="IconTypes.ChevronDown" /></span>
     </div>
     <div class="lightDismiss" style="display: @(IsOpen ? "block" : "none")" @onclick="Close" @onmousewheel="Close"></div>
-    <div class="itemsPanel" style="display: @(IsOpen ? "block" : "none"); z-index: @(LayerCounter.GetLayer()); width: @Width; height: @(ItemsPanelHeight < 0 ? "fit-content" : $"{ItemsPanelHeight}px");">
+    <div id="@_id" class="itemsPanel" style="visibility: @(IsOpen ? "visible" : "hidden"); z-index: @(LayerCounter.GetLayer()); width: @Width; @(ItemsPanelHeight < 0 ? "height: fit-content;" : $"max-height: {ItemsPanelHeight}px;") @(_top > -1 ? $"top: {_top}px;" : "")">
         @Content
     </div>
 </div>

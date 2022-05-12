@@ -38,7 +38,6 @@
 }
 
 .itemsPanel {
-    display: none;
     position: absolute;
     background-color: var(--semanticColors-ListBackground);
     overflow-y: auto;
