@@ -151,7 +151,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     private string _selectedStr = "";
     private bool _showModal;
     private bool _hideDropDown = false;
-    private char _selectedChar = 'b';
+    private char _selectedChar = 'a';
 
     List<DropDownItem<string>>
     ints2 = new List<DropDownItem<string>>
@@ -175,6 +175,17 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     public Index()
     {
 
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await Task.Delay(150);
+        _selectedChar = 'c';
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
     }
 
     private void ChangeTheme()
@@ -223,7 +234,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
     private void SelectionChanged(char c)
     {
-        Console.WriteLine(c);
+        _selectedChar = c;
     }
 
 }

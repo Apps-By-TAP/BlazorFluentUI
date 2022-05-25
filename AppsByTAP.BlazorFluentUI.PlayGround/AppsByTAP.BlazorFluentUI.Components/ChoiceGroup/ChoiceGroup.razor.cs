@@ -22,10 +22,13 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
             get => _selectedItem;
             set
             {
-                if (_selectedItem.Equals(value)) { return; }
+                if (_selectedItem.Equals(value) && SelectedChoice is not null) { return; }
 
                 _selectedItem = value;
                 SelectedItemChanged.InvokeAsync(value);
+
+                SelectedChoice = _choises.FirstOrDefault(x => x.Value.Equals(value));
+                SelectionChanged_ChildUpdate?.Invoke();
             }
         }
         [Parameter]
@@ -51,7 +54,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
 
         protected override void OnAfterRender(bool firstRender)
         {
-            if(firstRender)
+            if (firstRender)
             {
                 if (SelectedItem is not null)
                 {
@@ -73,8 +76,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
             if(selectedChild is not null)
             {
                 SelectedItem = selectedChild.Value;
-                SelectedChoice = selectedChild;
-                SelectionChanged_ChildUpdate?.Invoke();
                 await SelectionChanged.InvokeAsync(selectedChild.Value);
             }
         }
