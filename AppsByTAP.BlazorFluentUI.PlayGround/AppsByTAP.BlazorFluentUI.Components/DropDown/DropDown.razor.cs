@@ -1,14 +1,14 @@
-﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
-using AppsByTAP.BlazorFluentUI.Components.CheckBox;
+﻿using AppsByTAP.BlazorFluentUI.Components.CheckBox;
 using Microsoft.AspNetCore.Components;
-using System;
+using Microsoft.AspNetCore.Components.Forms;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 {
-    public class DropDownViewModel<T> : BaseComponentViewModel
+    public class DropDownViewModel<T> : InputBase<string>
     {//TODO: document.getElementById("1").parentNode.getBoundingClientRect()
         private T _selectedItem;
         [Parameter]
@@ -30,8 +30,16 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
             }
         }
 
+        private EventCallback<T> _selectedItemChanged;
         [Parameter]
-        public EventCallback<T> SelectedItemChanged { get; set; }
+        public EventCallback<T> SelectedItemChanged 
+        {
+            get => _selectedItemChanged;
+            set
+            {
+                _selectedItemChanged = value;
+            }
+        }
 
         private List<T> _itemsSource;
         [Parameter]
@@ -90,10 +98,26 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         public string Label { get; set; }
         [Parameter]
         public string Width { get; set; } = "300px";
+        [Parameter]
+        public bool Required { get; set; }
+        [Parameter]
+        public string ClassName { get; set; }
+        [Parameter]
+        public string Style { get; set; }
+
 
         protected bool _displayDropDown = false;
         protected string _selectedDisplayText { get; set; } = "Select an option";
-        protected bool _isOpen;
+
+        private bool _isOpen;
+        protected bool IsOpen
+        {
+            get => _isOpen;
+            set
+            {
+                _isOpen = value;
+            }
+        }
 
         protected override Task OnInitializedAsync()
         {
@@ -110,7 +134,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         {
             SelectedItem = selectedItem.Item;
             await SelectedItemChanged.InvokeAsync(selectedItem.Item);
-            _isOpen = false;
+            IsOpen = false;
         }
 
         protected async Task MultiSelectChanged(CheckBoxChangedArgs args)
@@ -131,6 +155,43 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
             }
 
             await SelectedItemsChanged.InvokeAsync(SelectedItems);
+        }
+
+        //public override bool Validate()
+        //{
+        //    bool isValid = IsMultiSelect ? SelectedItems is not null && SelectedItems.Count > 0 : SelectedItem is not null;
+        //    ValidationState = isValid ? ValidationState.Valid : ValidationState.Invalid;
+
+        //    return isValid;
+        //}
+
+        protected override bool TryParseValueFromString(string value, [MaybeNullWhen(false)] out string result, [NotNullWhen(false)] out string validationErrorMessage)
+        {
+            validationErrorMessage = "";
+
+            if (IsMultiSelect)
+            {
+                result = string.Join(',', SelectedItems) ?? "";
+            }
+            else
+            {
+                result = SelectedItem.ToString() ?? "";
+            }
+
+            if (Required)
+            {
+                if(string.IsNullOrEmpty(result))
+                {
+                    validationErrorMessage = "Please select a value";
+                    return false;
+                }
+
+                return true;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

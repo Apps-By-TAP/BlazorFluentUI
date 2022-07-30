@@ -6,7 +6,7 @@
 
 <div class="dropDownWrapper @ClassName" style="width: @Width;" @onblur="Close">
     <div class="label @(Disabled ? "disabledText" : "")">@Label</div>
-    <div class="dropDownCtrl @(Disabled ? "disabled" : "")" @onclick="OpenDropDown" style="width: @Width;">
+    <div class="dropDownCtrl @(Disabled ? "disabled" : "") @(ValidationState == ValidationState.Valid ? "" : "invalid")" @onclick="OpenDropDown" style="width: @Width;">
         <div class="dropDownSelection" style="flex: 1;">
             @DisplayInfo
         </div>

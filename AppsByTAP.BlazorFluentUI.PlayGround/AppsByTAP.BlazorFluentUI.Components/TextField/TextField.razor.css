@@ -5,11 +5,15 @@
     color: var(--palette-Black);
 }
 
-.textArea:focus{
+.textArea:focus:not(.invalid){
     outline: none;
 }
 
 .labelContainer {
     font-weight: var(--label-font-weight);
     padding-bottom: 5px;
+}
+
+.invalid {
+    border: 1px solid var(--red);
 }

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
+using Microsoft.AspNetCore.Components;
+using System.Text.RegularExpressions;
 
 namespace AppsByTAP.BlazorFluentUI.Components.TextField
 {
-    public partial class TextField : ComponentBase
+    public partial class TextFieldViewModel : BaseComponentViewModel
     {
         [Parameter]
         public string Label { get; set; }
@@ -18,6 +20,11 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
 
                 _value = value;
                 ValueChanged.InvokeAsync(Value);
+                
+                if(Required)
+                {
+                    Validate();
+                }
             }
         }
         [Parameter]
@@ -34,5 +41,24 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
         public string PlaceHolder { get; set; }
         [Parameter]
         public bool DisplayBorder { get; set; } = true;
+        [Parameter]
+        public string Regex { get; set; } = "";
+
+        public override bool Validate()
+        {
+            bool isValid = false;
+            if (!string.IsNullOrEmpty(Regex))
+            {
+                isValid = new Regex(Regex).IsMatch(Value);
+            }
+            else
+            {
+                isValid = !string.IsNullOrEmpty(Value);
+            }
+
+            ValidationState = isValid ? ValidationState.Valid : ValidationState.Invalid;
+
+            return isValid;
+        }
     }
 }

@@ -17,26 +17,35 @@
 @using AppsByTAP.BlazorFluentUI.Components.SpinButton
 @using AppsByTAP.BlazorFluentUI.Components.TextField
 @using AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
+@using System.ComponentModel.DataAnnotations
 
 @inject IThemeProvider ThemeProvider
+
+<EditForm OnInvalidSubmit=@InValidSubmit OnValidSubmit=@ValidSumbit 
+    Model="exampleModel">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <DropDown ItemsSource="strs" @bind-Value="exampleModel.DropDownVal" Label="My Label req" Required="true" />
+    <input type="submit" class="btn btn-primary" value="Save" />
+</EditForm>
 
 <CheckboxGroup ItemsSource="strs" @bind-SelectedItems="selectedStrs" UseToggleSwitches="true" Label="Select your fruit" GroupDirection="GroupDirection.Horizontal" />
 <div>
     @(string.Join(',', selectedStrs))
 </div>
 
-<BlankDropDown>
+@*<BlankDropDown>
     <DisplayInfo>
         hello world
     </DisplayInfo>
     <Content>
         <h1>hi there</h1>
     </Content>
-</BlankDropDown>
+</BlankDropDown>*@
 
 <SpinButton LabelPosition="Components.Common.LabelPosition.Left" Label="My Spin Button" Suffix="cm" Type="SpinButtonType.Decimal" RoundingPlaces="3" />
 
-<TextField Label="My Text Area" IsMultiLine="true" PlaceHolder="Write here" />
+<TextField Label="My Text Area" IsMultiLine="false" PlaceHolder="Write here" Required="true" Regex="[0-9]+" />
 
 <ChoiceGroup T="char" SelectedItem="@_selectedChar" SelectedItemChanged="SelectionChanged">
     <Choice Value="@('a')">
@@ -63,12 +72,15 @@
     <DefaultButton Text="New Guid" OnClick="() => Console.WriteLine('I')" OnClickStopPropagation="true"  />
 </div>
 
-<DropDown ItemsSource="ints2" Disabled="true" />
-<DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" Label="My Label" Disabled="false" Width="100px" />
-<div style="display: @(_hideDropDown ? "none" : "block");">
+@*<DropDown ItemsSource="ints2" Disabled="true" />*@
+@*<DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" Label="My Label req" Disabled="false" Width="100px" Required="true" />*@
+@*<div style="display: @(_hideDropDown ? "none" : "block");">
     <DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="true" @bind-SelectedItems="selectedItemsStr" />
     <DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="false"  />
-</div>
+</div>*@
+<TemplateButton>
+    This can be what ever I want
+</TemplateButton>
 <DefaultButton Text="Hide Drop Down" OnClick="@(() => _hideDropDown = !_hideDropDown)" />
 <DefaultButton Text="Reset strs" OnClick="() => selectedItemsStr = new List<string>() { strs[0]}" Icon="IconTypes.PowerButton" />
 
@@ -142,6 +154,9 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
 @code
 {
+    private EditContext _editContext;
+    private TestForm exampleModel = new TestForm();
+
     private string guid = "";
 
     private int counter = 0;
@@ -173,9 +188,20 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     IList<string> selectedItemsStr = new List<string>() {"Strawberry"};
     List<string> selectedItemsStr2 = new List<string>();
 
-    public Index()
+    private void InValidSubmit(EditContext ctx)
     {
+        Console.WriteLine("Invalid submit");
+    }
 
+    private void ValidSumbit(EditContext ctx)
+    {
+        Console.WriteLine("valid submit");
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _editContext = new EditContext(exampleModel);
     }
 
     protected override async Task OnParametersSetAsync()
@@ -236,6 +262,13 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     private void SelectionChanged(char c)
     {
         _selectedChar = c;
+    }
+
+
+    public class TestForm
+    {
+        [Required]
+        public string DropDownVal { get; set; } = "";
     }
 
 }

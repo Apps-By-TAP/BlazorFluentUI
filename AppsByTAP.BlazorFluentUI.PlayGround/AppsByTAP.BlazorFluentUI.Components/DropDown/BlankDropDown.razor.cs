@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
+using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
 
 namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 {
@@ -55,6 +56,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         }
         [Parameter]
         public EventCallback<bool> IsOpenChanged { get; set; }
+        [Parameter]
+        public ValidationState ValidationState { get; set; }
 
         private Task<IJSObjectReference> _module;
         private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/BlankDropDown.js";
