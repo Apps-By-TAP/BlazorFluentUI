@@ -1,0 +1,6 @@
+﻿@inherits TemplateButtonViewModel
+
+<div @onclick="OnClick" class="btnContainer @ClassName" style="border: @Border; border-radius: @BorderRadius;  @Style"
+     @onclick:stopPropagation="OnClickStopPropagation">
+    @ChildContent
+</div>
