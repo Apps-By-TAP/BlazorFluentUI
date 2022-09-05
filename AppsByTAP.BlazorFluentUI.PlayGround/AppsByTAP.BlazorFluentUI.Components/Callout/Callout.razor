@@ -1,0 +1,6 @@
+﻿@using AppsByTAP.BlazorFluentUI.Components.BaseComponent
+
+<div class="itemsPanel" 
+style="visibility: @(IsOpen ? "visible" : "hidden"); z-index: @(LayerCounter.GetLayer()); width: @Width; @(ItemsPanelHeight < 0 ? "height: fit-content;" : $"max-height: {ItemsPanelHeight}px;")">
+    @ChildContent
+</div>

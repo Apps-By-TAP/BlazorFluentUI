@@ -1,0 +1,21 @@
+﻿.itemsPanel {
+    position: absolute;
+    background-color: var(--semanticColors-ListBackground);
+    overflow-y: auto;
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: var(--semanticColors-ScrollbarThumb) var(--semanticColors-ScrollbarTrack); /* scroll thumb and track */
+}
+
+.itemsPanel::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+}
+
+.itemsPanel::-webkit-scrollbar-track {
+    background: var(--semanticColors-ScrollbarTrack); /* color of the tracking area */
+}
+
+.itemsPanel::-webkit-scrollbar-thumb {
+    background-color: var(--semanticColors-ScrollbarThumb); /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid var(--semanticColors-ScrollbarThumb); /* creates padding around scroll thumb */
+}

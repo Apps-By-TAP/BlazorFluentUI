@@ -17,8 +17,17 @@
 @using AppsByTAP.BlazorFluentUI.Components.SpinButton
 @using AppsByTAP.BlazorFluentUI.Components.TextField
 @using AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
+@using AppsByTAP.BlazorFluentUI.Components.Callout
 
 @inject IThemeProvider ThemeProvider
+
+<DefaultButton OnClick="() => _calloutIsOpen = !_calloutIsOpen" />
+<Callout @bind-IsOpen="_calloutIsOpen">
+    Hello there!
+</Callout>
+
+<Icon IconType="selectedIcon" />
+<DropDown ItemsSource="icons" @bind-SelectedItem="selectedIcon" />
 
 <CheckboxGroup ItemsSource="strs" @bind-SelectedItems="selectedStrs" UseToggleSwitches="true" Label="Select your fruit" GroupDirection="GroupDirection.Horizontal" />
 <div>
@@ -152,6 +161,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     private bool _showModal;
     private bool _hideDropDown = false;
     private char _selectedChar = 'a';
+    private bool _calloutIsOpen = false;
 
     List<DropDownItem<string>>
     ints2 = new List<DropDownItem<string>>
@@ -173,6 +183,9 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     IList<string> selectedItemsStr = new List<string>() {"Strawberry"};
     List<string> selectedItemsStr2 = new List<string>();
 
+    List<IconTypes> icons = Enum.GetValues<IconTypes>().ToList();
+    IconTypes selectedIcon = IconTypes.Bank;
+
     public Index()
     {
 
@@ -182,6 +195,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     {
         await Task.Delay(150);
         _selectedChar = 'c';
+        StateHasChanged();
     }
 
     protected override void OnAfterRender(bool firstRender)
