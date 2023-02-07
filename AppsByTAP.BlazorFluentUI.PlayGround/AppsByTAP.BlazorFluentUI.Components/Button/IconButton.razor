@@ -1,6 +1,6 @@
 ﻿@using AppsByTAP.BlazorFluentUI.Components.Icon
 
-<div @onclick="@OnClick" class="IconButtonContainer @Class" style="@Style">
+<div @onclick="@OnClick" class="IconButtonContainer @Class @(Disabled ? "disabled" : "")" style="@Style">
     <Icon IconType="@Icon" />
 </div>
 
@@ -13,6 +13,8 @@
     public string Class { get; set; }
     [Parameter]
     public string Style { get; set; }
+    [Parameter]
+    public bool Disabled { get; set; }
 }
 
 <style>
@@ -35,7 +37,13 @@
         height: fit-content;
     }
 
-    .IconButtonContainer:hover {
+    .disabled {
+        background-color: var(--semanticColors-ListItemBackgroundCheckedHovered);
+        border: none;
+        color: var(--semanticTextColors-DisabledText);
+    }
+
+    .IconButtonContainer:hover:active:not(.disabled) {
         cursor: pointer;
         background-color: var(--semanticColors-ButtonBackgroundHovered);
     }
