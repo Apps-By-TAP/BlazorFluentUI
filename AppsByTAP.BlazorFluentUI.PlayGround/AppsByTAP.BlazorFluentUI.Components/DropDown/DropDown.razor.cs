@@ -90,6 +90,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         public string Label { get; set; }
         [Parameter]
         public string Width { get; set; } = "300px";
+        [Parameter]
+        public bool OnClickStopPropagation { get; set; } = true;
 
         protected bool _displayDropDown = false;
         protected string _selectedDisplayText { get; set; } = "Select an option";

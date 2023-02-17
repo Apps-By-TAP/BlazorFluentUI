@@ -55,6 +55,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         }
         [Parameter]
         public EventCallback<bool> IsOpenChanged { get; set; }
+        [Parameter]
+        public bool OnClickStopPropagation { get; set; } = true;
 
         private Task<IJSObjectReference> _module;
         private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/BlankDropDown.js";
