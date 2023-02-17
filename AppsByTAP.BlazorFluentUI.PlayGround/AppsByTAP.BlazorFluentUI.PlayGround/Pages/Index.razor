@@ -24,7 +24,7 @@
 <IconButton Disabled="true" Icon="IconTypes.Bank" />
 test
 
-<DefaultButton OnClick="() => _calloutIsOpen = !_calloutIsOpen" />
+<DefaultButton OnClick="() => _calloutIsOpen = !_calloutIsOpen" Disabled=true />
 <Callout @bind-IsOpen="_calloutIsOpen">
     Hello there!
 </Callout>
@@ -66,7 +66,7 @@ test
 <DefaultButton Text="Toggle Spinners" IsPrimary="false" OnClick="ToggleSpinners" />
 <DefaultButton Text="My Btn" IsPrimary="true" OnClick="Add" />
 <CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="false" OnClick="Add" />
-<CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="true" OnClick="Add" />
+<CompoundButton Text="TAP Standard" SecondaryText="My Sec txt" IsPrimary="true" Disabled="true" OnClick="Add" />
 <IconButton Icon="IconTypes.Delete" OnClick="Add" />
 
 <div @onclick="() => guid = Guid.NewGuid().ToString()">

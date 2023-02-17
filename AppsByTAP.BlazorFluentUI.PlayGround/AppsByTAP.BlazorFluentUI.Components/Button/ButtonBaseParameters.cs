@@ -18,5 +18,15 @@ namespace AppsByTAP.BlazorFluentUI.Components.Button
         public bool OnClickStopPropagation { get; set; }
         [Parameter]
         public IconTypes Icon { get; set; } = IconTypes.None;
+        [Parameter]
+        public bool Disabled { get; set; }
+
+        protected async void OnClickInternal(MouseEventArgs args)
+        {
+            if(!Disabled)
+            {
+                await OnClick.InvokeAsync(args);
+            }
+        }
     }
 }
