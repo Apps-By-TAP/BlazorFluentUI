@@ -5,6 +5,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
     public partial class TextField : ComponentBase
     {
         [Parameter]
+        public string ID { get; set; }
+        [Parameter]
         public string Label { get; set; }
 
         private string _value;
