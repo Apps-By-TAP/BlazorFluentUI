@@ -1,9 +1,16 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace AppsByTAP.BlazorFluentUI.Components.TextField
 {
     public partial class TextField : ComponentBase
     {
+        [Inject] 
+        IJSRuntime JSRuntime { get; set; }
+
         [Parameter]
         public string ID { get; set; }
         [Parameter]
@@ -36,5 +43,27 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
         public string PlaceHolder { get; set; }
         [Parameter]
         public bool DisplayBorder { get; set; } = true;
+        [Parameter]
+        public string Mask { get; set; }
+        [Parameter]
+        public TextFieldType Type { get; set; }
+
+        private Task<IJSObjectReference> _module;
+        private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/Mask.js";
+        private Task<IJSObjectReference> Module => _module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", ImportPath).AsTask();
+
+        protected async override Task OnAfterRenderAsync(bool firstRender)
+        {
+            if(firstRender && !string.IsNullOrEmpty(Mask))
+            {
+                if (string.IsNullOrEmpty(ID))
+                {
+                    throw new ArgumentNullException(nameof(ID));
+                }
+
+                IJSObjectReference mod = await Module;
+                await mod.InvokeVoidAsync("GenerateMask", ID, Mask);
+            }
+        }
     }
 }
