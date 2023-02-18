@@ -21,7 +21,7 @@
 
 @inject IThemeProvider ThemeProvider
 
-<TextField ID="phoenMask" Mask="(000)000-0000" />
+<TextField ID="phoenMask" Mask="(000)000-0000" OnBlur="OnBlur" />
 <TextField Type="TextFieldType.password" />
 
 <IconButton Disabled="true" Icon="IconTypes.Bank" />
@@ -256,6 +256,11 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     private void SelectionChanged(char c)
     {
         _selectedChar = c;
+    }
+
+    private void OnBlur(FocusEventArgs args)
+    {
+        Console.Write(args);
     }
 
 }

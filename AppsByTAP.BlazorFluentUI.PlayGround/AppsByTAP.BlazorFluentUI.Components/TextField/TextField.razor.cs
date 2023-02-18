@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using System;
 using System.Text.RegularExpressions;
@@ -65,5 +66,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
                 await mod.InvokeVoidAsync("GenerateMask", ID, Mask);
             }
         }
+
+        [Parameter]
+        public EventCallback<FocusEventArgs> OnBlur { get; set; }
     }
 }

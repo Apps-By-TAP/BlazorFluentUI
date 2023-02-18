@@ -6,12 +6,12 @@
     {
         <input id="@ID" @bind="@Value" class="textArea" type="@Type.ToString()"
         style="@(Width >= 0 ? $"width: {Width}px;" : "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" 
-        placeholder="@PlaceHolder" />
+        placeholder="@PlaceHolder" @onblur=OnBlur />
     }
     else
     {
         <textarea id="@ID" @bind="@Value" class="textArea" placeholder="@PlaceHolder"
-        style="resize: @(MultiLineCanResize ? "both" : "none"); @(Width >= 0 ? $"width: {Width}px;" : "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" />
+                  style="resize: @(MultiLineCanResize ? "both" : "none"); @(Width >= 0 ? $"width: {Width}px;" : "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" @onblur=OnBlur />
     }
 </div>
 
