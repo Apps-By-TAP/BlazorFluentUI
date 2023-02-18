@@ -5,13 +5,13 @@
     @if(!IsMultiLine)
     {
         <input id="@ID" @bind="@Value" class="textArea" type="@Type.ToString()"
-        style="@(Width >= 0 ? $"width: {Width}px;" : "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" 
+        style="@(!string.IsNullOrEmpty(MaxWidth) ? $"max-width: {MaxWidth};" : "") @(!string.IsNullOrEmpty(Width) ? $"width: {Width};": "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" 
         placeholder="@PlaceHolder" @onblur=OnBlur />
     }
     else
     {
         <textarea id="@ID" @bind="@Value" class="textArea" placeholder="@PlaceHolder"
-                  style="resize: @(MultiLineCanResize ? "both" : "none"); @(Width >= 0 ? $"width: {Width}px;" : "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" @onblur=OnBlur />
+                  style="resize: @(MultiLineCanResize ? "both" : "none");@(!string.IsNullOrEmpty(MaxWidth) ? $"max-width: {MaxWidth};" : "") @(!string.IsNullOrEmpty(Width) ? $"width: {Width};": "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" @onblur=OnBlur />
     }
 </div>
 

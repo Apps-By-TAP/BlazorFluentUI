@@ -37,7 +37,9 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
         [Parameter]
         public bool MultiLineCanResize { get; set; } = true;
         [Parameter]
-        public int Width { get; set; } = -1;
+        public string Width { get; set; }
+        [Parameter]
+        public string MaxWidth { get; set; }
         [Parameter]
         public int Height { get; set; } = -1;
         [Parameter]
