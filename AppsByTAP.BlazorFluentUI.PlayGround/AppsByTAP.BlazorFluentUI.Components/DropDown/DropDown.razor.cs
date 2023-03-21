@@ -17,6 +17,13 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
             get => _selectedItem;
             set
             {
+                if(value is null)
+                {
+                    _selectedItem = value;
+                    _selectedDisplayText = "Select an option";
+                    return;
+                }
+
                 if(_selectedItem is not null && _selectedItem.Equals(value)) { return; }
 
                 _selectedItem = value;
@@ -63,6 +70,13 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
             get => _selectedItems;
             set
             {
+                if (value is null)
+                {
+                    _selectedItems = new List<T>();
+                    _selectedDisplayText = "Select Options";
+                    return;
+                }
+
                 if (_selectedItems is not null && _selectedItems.Equals(value)) { return; }
 
                 _selectedItems = value;

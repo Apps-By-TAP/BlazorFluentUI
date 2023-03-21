@@ -45,13 +45,16 @@ namespace AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
         {
             _internalItemsSource.ForEach(x => x.IsSelected = false);
 
-            foreach (T item in SelectedItems)
+            if(SelectedItems is not null)
             {
-                ItemWrapper<T> temp = _internalItemsSource.FirstOrDefault(x => x.Item.Equals(item));
-
-                if(temp is not null)
+                foreach (T item in SelectedItems)
                 {
-                    temp.IsSelected = true;
+                    ItemWrapper<T> temp = _internalItemsSource.FirstOrDefault(x => x.Item.Equals(item));
+
+                    if (temp is not null)
+                    {
+                        temp.IsSelected = true;
+                    }
                 }
             }
         }

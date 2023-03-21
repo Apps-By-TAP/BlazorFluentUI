@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppsByTAP.BlazorFluentUI.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppsByTAP.BlazorFluentUi.Formatter", "AppsByTAP.BlazorFluentUi.Formatter\AppsByTAP.BlazorFluentUi.Formatter.csproj", "{1F1F8C48-8961-43BC-8F8A-50CF2685B30B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppsByTAP.BlazorUi.Playground.Net6", "AppsByTAP.BlazorUi.Playground.Net6\AppsByTAP.BlazorUi.Playground.Net6.csproj", "{A64C292C-6B6E-46EB-8E0B-8AFC4FD49921}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1F1F8C48-8961-43BC-8F8A-50CF2685B30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F1F8C48-8961-43BC-8F8A-50CF2685B30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F1F8C48-8961-43BC-8F8A-50CF2685B30B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A64C292C-6B6E-46EB-8E0B-8AFC4FD49921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A64C292C-6B6E-46EB-8E0B-8AFC4FD49921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A64C292C-6B6E-46EB-8E0B-8AFC4FD49921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A64C292C-6B6E-46EB-8E0B-8AFC4FD49921}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
