@@ -1,0 +1,15 @@
+﻿@using System.Drawing
+@using System.Text.RegularExpressions
+@using Microsoft.AspNetCore.Components.Forms
+@inherits InputBase<string>
+
+<input type="text" @attributes=AdditionalAttributes class=@CssClass @bind-value=CurrentValueAsString />
+
+@code {
+    protected override bool TryParseValueFromString(string value, out string result, out string validationErrorMessage)
+    {
+        result = value;
+        validationErrorMessage = value is null || value.Trim() == string.Empty ? "Value cannot be blank" : "";
+        return !(value is null || value.Trim() == string.Empty);
+    }
+}

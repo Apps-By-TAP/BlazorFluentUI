@@ -6,7 +6,7 @@
 @namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 
 <div class="dropDownWrapper @ClassName" style="width: @Width;" @onblur="Close" @onclick:stopPropagation="OnClickStopPropagation">
-    <div class="label @(Disabled ? "disabledText" : "")">@Label</div>
+    <AppsByTAP.BlazorFluentUI.Components.Label.Label Text="@Label" Disabled=Disabled />
     <div class="dropDownCtrl @(Disabled ? "disabled" : "")" @onclick="OpenDropDown" style="width: @Width;">
         <div class="dropDownSelection" style="flex: 1;">
             @DisplayInfo

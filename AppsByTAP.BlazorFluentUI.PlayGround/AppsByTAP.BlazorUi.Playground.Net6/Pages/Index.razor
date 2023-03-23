@@ -87,7 +87,7 @@ test
     <DefaultButton Text="New Guid" OnClick="() => Console.WriteLine('I')" OnClickStopPropagation="true"  />
 </div>
 
-<DropDown ItemsSource="ints2" Disabled="true" />
+<DropDown ItemsSource="ints2" Disabled="true" Label="This is a test" />
 <DropDown ItemsSource="ints2" @bind-SelectedItem="_selectedItem" Label="My Label" Disabled="false" Width="400px" IsMultiSelect=true />
 
 <DefaultButton Text="Set to null" OnClick="() => _selectedItem = null"/>

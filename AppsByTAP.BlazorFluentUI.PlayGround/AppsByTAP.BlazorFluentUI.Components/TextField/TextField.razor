@@ -1,7 +1,5 @@
 ﻿<div>
-    <div class="labelContainer" style="display: @(string.IsNullOrEmpty(Label) ? "none": "block");">
-        @Label
-    </div>
+    <AppsByTAP.BlazorFluentUI.Components.Label.Label Text="@Label" />
     @if(!IsMultiLine)
     {
         <input id="@ID" @bind="@Value" class="textArea" type="@Type.ToString()"
