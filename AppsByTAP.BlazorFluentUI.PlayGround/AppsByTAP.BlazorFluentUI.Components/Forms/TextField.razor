@@ -1,0 +1,92 @@
+﻿@using Microsoft.AspNetCore.Components.Forms;
+@using AppsByTAP.BlazorFluentUI.Components.TextField;
+@using Microsoft.JSInterop;
+
+@inherits InputBase<string>
+
+<div>
+    <div class="labelContainer" style="display: @(string.IsNullOrEmpty(Label) ? "none": "block");">
+        @Label
+    </div>
+    @if (!IsMultiLine)
+    {
+        <input id="@ID" @bind="@CurrentValueAsString" class="textArea" type="@Type.ToString()"
+               style="@(!string.IsNullOrEmpty(MaxWidth) ? $"max-width: {MaxWidth};" : "") @(!string.IsNullOrEmpty(Width) ? $"width: {Width};": "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")"
+               placeholder="@PlaceHolder" @onblur=OnBlur />
+    }
+    else
+    {
+        <textarea id="@ID" @bind="@CurrentValueAsString" class="textArea" placeholder="@PlaceHolder"
+                  style="resize: @(MultiLineCanResize ? "both" : "none");@(!string.IsNullOrEmpty(MaxWidth) ? $"max-width: {MaxWidth};" : "") @(!string.IsNullOrEmpty(Width) ? $"width: {Width};": "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "")" @onblur=OnBlur />
+    }
+</div>
+
+
+@code {
+
+    [Parameter]
+    public Func<string, ValendationResult<string>> CustomValendation { get; set; }
+
+    [Inject]
+    IJSRuntime JSRuntime { get; set; }
+    [Parameter]
+    public string ID { get; set; }
+    [Parameter]
+    public string Label { get; set; }
+    [Parameter]
+    public bool IsMultiLine { get; set; }
+    [Parameter]
+    public bool MultiLineCanResize { get; set; } = true;
+    [Parameter]
+    public string Width { get; set; }
+    [Parameter]
+    public string MaxWidth { get; set; }
+    [Parameter]
+    public int Height { get; set; } = -1;
+    [Parameter]
+    public string PlaceHolder { get; set; }
+    [Parameter]
+    public bool DisplayBorder { get; set; } = true;
+    [Parameter]
+    public string Mask { get; set; }
+    [Parameter]
+    public TextFieldType Type { get; set; }
+
+    private Task<IJSObjectReference> _module;
+    private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/Mask.js";
+    private Task<IJSObjectReference> Module => _module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", ImportPath).AsTask();
+
+    protected override bool TryParseValueFromString(string value, out string result, out string validationErrorMessage)
+    {
+        if(CustomValendation is not null)
+        {
+            ValendationResult<string> cvr = CustomValendation.Invoke(value);
+            result = cvr.Result;
+            validationErrorMessage = cvr.ValidationErrorMessage;
+            return cvr.Success;
+        }
+        else
+        {
+            result = value;
+            validationErrorMessage = value is null || value.Trim() == string.Empty ? "Value cannot be blank" : "";
+            return !(value is null || value.Trim() == string.Empty);
+        }       
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !string.IsNullOrEmpty(Mask))
+        {
+            if (string.IsNullOrEmpty(ID))
+            {
+                throw new ArgumentNullException(nameof(ID));
+            }
+
+            IJSObjectReference mod = await Module;
+            await mod.InvokeVoidAsync("GenerateMask", ID, Mask);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<FocusEventArgs> OnBlur { get; set; }
+}

@@ -11,8 +11,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.Label
         [Parameter]
         public string Class { get; set; }
         [Parameter]
-        public bool Hide { get; set; }
+        public bool Hidden { get; set; }
         [Parameter]
         public bool Disabled { get; set; }
+        [Parameter]
+        public string Style { get; set; }
     }
 }
