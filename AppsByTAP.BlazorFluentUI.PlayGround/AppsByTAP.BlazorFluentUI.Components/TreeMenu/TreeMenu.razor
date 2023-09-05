@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Components.Web.Virtualization
+
+@namespace AppsByTAP.BlazorFluentUI.Components.TreeMenu
+@typeparam T
+
+<div>
+    <CascadingValue Value="this">
+        @foreach(T item in Items)
+        {
+            <BranchComponent T="T" BranchRoot="@(new Branch<T>(item, true, new List<BranchItem<T>>(), null))" />
+        }
+    </CascadingValue>
+</div>
+
+@code {
+
+    [Parameter]
+    public List<T> Items { get; set; }
+
+    [Parameter]
+    public Func<ItemsProviderRequest, T, IEnumerable<BranchItem<T>>> GetItems { get; set; }
+
+    private T _selectedItem;
+    [Parameter]
+    public T SelectedItem
+    {
+        get => _selectedItem;
+        set
+        {
+            if (_selectedItem?.Equals(value) ?? false) { return; }
+
+            _selectedItem = value;
+            SelectedItemChanged.InvokeAsync(value);
+        }
+    }
+    [Parameter]
+    public EventCallback<T> SelectedItemChanged { get; set; }
+
+    public event Action<Branch<T>> SelectionChanged_ChildUpdate;
+
+    public void ChangeSelection(Branch<T> selectedValue)
+    {
+        SelectedItem = selectedValue.RootItem;
+        SelectionChanged_ChildUpdate?.Invoke(selectedValue);
+    }
+
+}
+
+<style>
+
+</style>

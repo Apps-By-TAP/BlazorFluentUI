@@ -50,6 +50,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
         public string Mask { get; set; }
         [Parameter]
         public TextFieldType Type { get; set; }
+        [Parameter]
+        public string Class { get; set; }
+        [Parameter]
+        public string Style { get; set; }
 
         private Task<IJSObjectReference> _module;
         private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/Mask.js";

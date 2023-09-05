@@ -18,10 +18,15 @@
 @using AppsByTAP.BlazorFluentUI.Components.TextField
 @using AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
 @using AppsByTAP.BlazorFluentUI.Components.Callout
+@using AppsByTAP.BlazorFluentUI.Components.TreeMenu
 @using System.Drawing
 @using System.ComponentModel.DataAnnotations;
 
 @inject IThemeProvider ThemeProvider
+
+<DropDown ItemsSource="_memberSelectionTypes" @bind-SelectedItem="_memberSelectionType" />
+
+<TreeMenu GetItems="GetBranchItems" Items="strs" />
 
 @*<EditForm Model=@MeTester>
     <ValidationSummary />
@@ -60,9 +65,10 @@ test
 
 <SpinButton LabelPosition="AppsByTAP.BlazorFluentUI.Components.Common.LabelPosition.Left" Label="My Spin Button" Suffix="cm" Type="SpinButtonType.Decimal" RoundingPlaces="3" />
 
+<TextField Label="My Text Area" IsMultiLine="false" PlaceHolder="Write here" />
 <TextField Label="My Text Area" IsMultiLine="true" PlaceHolder="Write here" />
 
-<ChoiceGroup T="char" SelectedItem="@_selectedChar" SelectedItemChanged="SelectionChanged">
+<ChoiceGroup T="char" SelectedItem="@_selectedChar" SelectedItemChanged="SelectionChanged" Disabled=true>
     <Choice Value="@('a')">
         Option 1
     </Choice>
@@ -158,7 +164,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
 
 
-<Modal @bind-ShowWindow="_showModal" ShowHeader="false" CanLightDismiss="true">
+<Modal @bind-ShowWindow="_showModal" ShowHeader="true" CanLightDismiss="false">
     <Header>
         My Header
     </Header>
@@ -169,6 +175,22 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
 @code
 {
+    public enum MemberSelectionType
+    {
+        All,
+        PieceMarks,
+        Sequence
+    }
+
+    private List<MemberSelectionType> _memberSelectionTypes = new List<MemberSelectionType>
+    {
+        MemberSelectionType.All,
+        MemberSelectionType.PieceMarks,
+        MemberSelectionType.Sequence
+    };
+
+    private MemberSelectionType _memberSelectionType = MemberSelectionType.All;
+
     public class Test
     {
         [Required]
@@ -189,7 +211,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     private string _selectedStr = "Strawberry";
     private bool _showModal;
     private bool _hideDropDown = false;
-    private char _selectedChar = 'a';
+    private char _selectedChar = ' ';
     private bool _calloutIsOpen = false;
 
     List<DropDownItem<string>>
@@ -217,6 +239,31 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
     public Index()
     {
+
+    }
+
+    private Branch<string> Root = new Branch<string>(@"C:\\", true, new List<BranchItem<string>>(), null);
+
+    private IEnumerable<BranchItem<string>> GetBranchItems(ItemsProviderRequest request, string item)
+    {
+        int r = new Random(Guid.NewGuid().GetHashCode()).Next(1, 100);
+
+        if(r % 2 == 0)
+        {
+            return new List<BranchItem<string>>
+            {
+                new BranchItem<string>("temp", true),
+                new BranchItem<string>("test2", true),
+                new BranchItem<string>("test", false)
+            };
+        }
+        else
+        {
+            return new List<BranchItem<string>>
+            {
+                
+            };
+        }
 
     }
 

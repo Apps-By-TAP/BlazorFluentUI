@@ -1,7 +1,7 @@
 ﻿@typeparam T
-<div class="choiceContainer" @onclick="() => Parent.ChildSelected(this)">
-    <div class="radioBtn @(IsSelected ? "selected" : "")">
-        <div class="fill">
+<div class="choiceContainer  @(Parent.Disabled ? "disabled2" : "")" @onclick="OnClick">
+    <div class="radioBtn @(IsSelected ? "selected" : "") @(Parent.Disabled ? "disabled" : "")">
+        <div class="fill @(Parent.Disabled ? "disabled" : "")">
 
         </div>
     </div>

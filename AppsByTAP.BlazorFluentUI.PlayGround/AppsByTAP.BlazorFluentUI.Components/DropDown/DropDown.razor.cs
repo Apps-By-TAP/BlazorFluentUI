@@ -24,7 +24,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
                     return;
                 }
 
-                if(_selectedItem is not null && _selectedItem.Equals(value)) { return; }
+                if(_selectedItem is not null && _selectedItem.Equals(value) && _selectedDisplayText == value.ToString()) { return; }
 
                 _selectedItem = value;
 

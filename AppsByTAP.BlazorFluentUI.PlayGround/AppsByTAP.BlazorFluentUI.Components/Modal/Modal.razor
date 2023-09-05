@@ -11,8 +11,8 @@
             @if (ShowHeader)
             {
                 <div class="header">
+                    <div style="flex: 1;">@Header</div>
                     <DefaultButton @onclick="() => Close(true)" ClassName="close" Text="&times;" />
-                    <div>@Header</div>
                 </div>
             }
 

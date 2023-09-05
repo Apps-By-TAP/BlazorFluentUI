@@ -1,0 +1,117 @@
+﻿@using Microsoft.AspNetCore.Components.Web.Virtualization
+
+@namespace AppsByTAP.BlazorFluentUI.Components.TreeMenu
+@typeparam T
+
+<div>
+    <div class="level @(_isSelected ? "selected" : "")">
+        <div @onclick=OnClick style="display: @(_hideArrow? "none" : "block")">
+            <AppsByTAP.BlazorFluentUI.Components.Icon.Icon IconType="Icon.IconTypes.ChevronUp" ClassName=@_class Style="display: inline-block" />
+        </div>
+        <div @onclick=Select style="flex: 1; margin-left: 5px;">
+            @BranchRoot.RootItem
+        </div>
+    </div>
+    <div style="display: @(isExpanded ? "visible" : "none"); padding-left: 20px;">
+        <Virtualize TItem="BranchItem<T>" ItemsProvider="LoadTree" Context="BranchItem">
+            <ItemContent>
+                @if (BranchItem.IsExpandable)
+                {
+                    <BranchComponent BranchRoot="@(new Branch<T>(BranchItem.RootItem, BranchItem.IsExpandable, new List<BranchItem<T>>(), BranchRoot))" T="T" />
+                }
+                else
+                {
+                    <div>@BranchItem.RootItem</div>
+                }
+            </ItemContent>
+        </Virtualize>
+    </div>
+
+</div>
+
+@code {
+
+    private bool isExpanded = false;
+    private bool _showArrow = true;
+
+    private bool _hideArrow = false;
+
+    private string _class = "arrow";
+    private bool _isSelected;
+
+    [Parameter]
+    public Branch<T> BranchRoot { get; set; }
+
+
+    [CascadingParameter]
+    public TreeMenu<T> Parent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "Choice must exist within a ChoiceGroup. Also, make sure the T of ChoiceGroup matched the data type of Value.");
+        base.OnInitialized();
+
+        Parent.SelectionChanged_ChildUpdate += Parent_SelectionChanged_ChildUpdate;
+    }
+
+
+    private async ValueTask<ItemsProviderResult<BranchItem<T>>> LoadTree(ItemsProviderRequest request)
+    {
+        IEnumerable<BranchItem<T>> items = Parent.GetItems?.Invoke(request, BranchRoot.RootItem) ?? Enumerable.Empty<BranchItem<T>>();
+
+        int count = items.Count();
+
+        _hideArrow = count == 0;
+
+        await InvokeAsync(() => StateHasChanged());
+
+        return new ItemsProviderResult<BranchItem<T>>(items, count);
+    }
+
+    private void OnClick()
+    {
+        if (BranchRoot.IsExpandable && !_hideArrow)
+        {
+            isExpanded = !isExpanded;
+        }
+
+        _class = isExpanded ? "arrow expanded" : "arrow";
+    }
+
+    private void Select()
+    {
+        Parent.ChangeSelection(BranchRoot);
+    }
+
+    private async void Parent_SelectionChanged_ChildUpdate(Branch<T> selectedValue)
+    {
+        _isSelected = selectedValue.Equals(BranchRoot);
+        await InvokeAsync(() => StateHasChanged());
+    }
+
+}
+
+<style>
+    .arrow {
+        transform: scale(.8) rotate(90deg);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .expanded {
+        transform: rotate(180deg);
+    }
+
+    .level {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .level:hover {
+        background-color: var(--semanticColors-ListItemBackgroundHovered);
+    }
+
+    .selected {
+        background-color: var(--semanticColors-ListItemBackgroundChecked);
+    }
+</style>

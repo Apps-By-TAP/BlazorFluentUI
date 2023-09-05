@@ -35,6 +35,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
         public EventCallback<T> SelectedItemChanged { get; set; }
         [Parameter]
         public GroupDirection GroupDirection { get; set; } = GroupDirection.Vertical;
+        [Parameter]
+        public bool Disabled { get; set; }
 
         public event Action SelectionChanged_ChildUpdate;
 

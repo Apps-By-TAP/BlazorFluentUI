@@ -33,5 +33,13 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
             IsSelected = Parent.SelectedChoice == this;
             await InvokeAsync(() => StateHasChanged());
         }
+
+        private void OnClick()
+        {
+            if (!Parent.Disabled)
+            {
+                Parent.ChildSelected(this);
+            }            
+        }
     }
 }

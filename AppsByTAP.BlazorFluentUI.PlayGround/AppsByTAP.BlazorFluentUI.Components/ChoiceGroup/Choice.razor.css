@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    cursor: pointer;
 }
 
 .radioBtn {
@@ -24,15 +23,34 @@
     background-color: var(--palette-Black);
 }
 
-.choiceContainer:hover .fill {
+.choiceContainer:hover:not(.disabled2) .fill {
     display: block;
+}
+
+.choiceContainer:hover:not(.disabled2) {
+    cursor: pointer;
 }
 
 .selected {
     border-color: var(--semanticColors-PrimaryButtonBackground);
 }
 
-    .selected .fill {
-        display: block;
-        background-color: var(--semanticColors-PrimaryButtonBackground);
-    }
+.selected .fill {
+    display: block;
+    background-color: var(--semanticColors-PrimaryButtonBackground);
+}
+
+.disabled {
+    background-color: var(--semanticColors-ListItemBackgroundCheckedHovered);
+    border: none;
+    color: var(--semanticTextColors-DisabledText);
+}
+
+.disabled2 {
+    border: none;
+    color: var(--semanticTextColors-DisabledText);
+}
+
+.fill.disabled {
+    background-color: var(--palette-Black);
+}
