@@ -13,8 +13,8 @@
         </div>
         <span class="dropDownChenron"><Icon IconType="IconTypes.ChevronDown" /></span>
     </div>
-    <LightDismiss @bind-IsOpen="IsOpen" OnClose="Close" />
-    <div id="@_id" class="itemsPanel" style="visibility: @(IsOpen ? "visible" : "hidden"); z-index: @(LayerCounter.GetLayer()); width: @Width; @(ItemsPanelHeight < 0 ? "height: fit-content;" : $"max-height: {ItemsPanelHeight}px;") @(_top > -1 ? $"top: {_top}px;" : "")">
+    <LightDismiss @bind-IsOpen="IsOpen" OnClose="Close" Layer="@(_layer - 1)" />
+    <div id="@_id" class="itemsPanel" style="visibility: @(IsOpen ? "visible" : "hidden"); z-index: @(_layer); width: @Width; @(ItemsPanelHeight < 0 ? "height: fit-content;" : $"max-height: {ItemsPanelHeight}px;") @(_top > -1 ? $"top: {_top}px;" : "")">
         @Content
     </div>
 </div>

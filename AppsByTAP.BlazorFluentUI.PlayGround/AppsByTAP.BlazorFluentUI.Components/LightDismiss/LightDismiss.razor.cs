@@ -10,6 +10,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.LightDismiss
         public EventCallback<bool> IsOpenChanged { get; set; }
         [Parameter]
         public EventCallback OnClose { get; set; }
+        [Parameter]
+        public int Layer { get; set; } = -1;
 
         protected void Close()
         {

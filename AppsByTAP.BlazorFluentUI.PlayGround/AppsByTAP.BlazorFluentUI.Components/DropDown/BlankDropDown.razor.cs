@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
+using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
 
 namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 {
@@ -31,6 +32,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         [Parameter]
         public string Style { get; set; }
 
+        private int _layer;
+
         private bool _isOpen;
         [Parameter]
         public bool IsOpen 
@@ -45,6 +48,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 
                 if(value)
                 {
+                    _layer = LayerCounter.GetLayer();
                     OnOpen.InvokeAsync();
                 }
                 else

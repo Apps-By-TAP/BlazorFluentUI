@@ -1,3 +1,3 @@
 ﻿@using AppsByTAP.BlazorFluentUI.Components.BaseComponent
 
-<div class="lightDismiss" style="display: @(IsOpen ? "block" : "none"); z-index: @(LayerCounter.GetLayer() - 2);" @onclick="Close" @onmousewheel="Close"></div>
+<div class="lightDismiss" style="display: @(IsOpen ? "block" : "none"); z-index: @(Layer > 0 ? Layer : LayerCounter.GetLayer() - 2);" @onclick="Close" @onmousewheel="Close"></div>

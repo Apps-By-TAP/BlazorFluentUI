@@ -99,7 +99,7 @@ test
 <DefaultButton Text="Set to null" OnClick="() => _selectedItem = null"/>
 
 <div style="display: @(_hideDropDown ? "none" : "block");">
-    <DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="true" @bind-SelectedItems="selectedItemsStr" />
+    <DropDown ItemsSource="strs" IsMultiSelect="true" @bind-SelectedItems="selectedItemsStr" Width="400px" />
     <DropDown ItemsSource="strs" @bind-SelectedItem="_selectedStr" IsMultiSelect="false"  />
 </div>
 <DefaultButton Text="Hide Drop Down" OnClick="@(() => _hideDropDown = !_hideDropDown)" />
