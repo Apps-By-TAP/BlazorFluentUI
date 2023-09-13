@@ -8,8 +8,8 @@ export function canExpandDown(guid) {
 
 export function getNewTopLocation(guid) {
     var ele = document.getElementById(guid);
-    var parentRect = ele.parentNode.getBoundingClientRect();
+    var parentRect = ele.parentNode.offsetTop;
     var eleRect = ele.getBoundingClientRect();
 
-    return parentRect.y + 3 - eleRect.height;
+    return parentRect + 3 - eleRect.height;
 }

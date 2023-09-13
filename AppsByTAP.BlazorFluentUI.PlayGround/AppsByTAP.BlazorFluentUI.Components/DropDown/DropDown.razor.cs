@@ -107,9 +107,23 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         [Parameter]
         public bool OnClickStopPropagation { get; set; } = true;
 
+        private bool _isOpen = false;
+        [Parameter]
+        public bool IsOpen
+        {
+            get => _isOpen;
+            set
+            {
+                if (_isOpen == value) { return; }
+                _isOpen = value;
+                IsOpenChanged.InvokeAsync(value);
+            }
+        }
+        [Parameter]
+        public EventCallback<bool> IsOpenChanged { get; set; }
+
         protected bool _displayDropDown = false;
         protected string _selectedDisplayText { get; set; } = "Select an option";
-        protected bool _isOpen;
 
         protected override Task OnInitializedAsync()
         {
@@ -126,7 +140,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         {
             SelectedItem = selectedItem.Item;
             await SelectedItemChanged.InvokeAsync(selectedItem.Item);
-            _isOpen = false;
+            IsOpen = false;
         }
 
         protected async Task MultiSelectChanged(CheckBoxChangedArgs args)
