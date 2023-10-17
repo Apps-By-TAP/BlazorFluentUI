@@ -1,43 +1,10 @@
 ﻿@using Microsoft.JSInterop;
 
-@*<div id="@_id">
-    @Text
-</div>*@
 <div id="@_id" class="@Class" style="font-size: @(_fontSize); width: 100%; height: 100%; display: flex; align-items: center; justify-content: @Alignment; @Style">
     @Text
 </div>
 
 @code {
-    //[Inject]
-    //IJSRuntime JSRuntime { get; set; }
-
-    //private string _text;
-    //[Parameter]
-    //public string Text 
-    //{
-    //    get => _text;
-    //    set
-    //    {
-    //        if(_text == value ) { return; }
-    //        _text = value;
-    //        ResizeText();
-    //    }
-    //}
-    //[Parameter]
-    //public double Compressor { get; set; } = 1d;
-
-    //private readonly string _id = Guid.NewGuid().ToString();
-
-    //private Task<IJSObjectReference> _module;
-    //private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/FitTextComponent.js";
-    //private Task<IJSObjectReference> Module => _module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", ImportPath).AsTask();
-
-    //private async Task ResizeText()
-    //{
-    //    IJSObjectReference mod = await Module;
-
-    //    await mod.InvokeVoidAsync("FitText", _id, Compressor);
-    //}
     [Inject]
     public IJSRuntime JSRuntime { get; set; }
 
@@ -80,7 +47,6 @@
     [JSInvokable]
     public async void SetElementBounds(double width, double height)
     {
-        //$this.css('font-size', Math.max(Math.min($this.width() / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
         double numericFontSize = Math.Max(Math.Min(width / (Compressor * 10), int.MaxValue), int.MinValue);
 
         _fontSize = numericFontSize < 1 ? "1em" : numericFontSize + "px";
