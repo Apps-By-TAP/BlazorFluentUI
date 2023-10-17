@@ -11,8 +11,8 @@
         </div>
         <div class="Indictor" style="width: @_percent%; left: @_left%; background-color: @(ActivePage?.Color ?? "black");"></div>
 
-        <div style="position: relative;">
-            <div class="TabContentContainer" style="overflow-x: hidden; overflow-y: @(TabContentCanScroll ? "auto" : "hidden"); height: @Height;">
+        <div style="position: relative; overflow: hidden; overflow-y: @(TabContentCanScroll ? "auto" : "hidden"); height: @Height;">
+            <div class="TabContentContainer">
                 @ChildContent
             </div>
         </div>

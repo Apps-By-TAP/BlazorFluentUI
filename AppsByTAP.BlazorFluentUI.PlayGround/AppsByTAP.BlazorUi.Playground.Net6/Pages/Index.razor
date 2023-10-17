@@ -3,7 +3,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Models
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Dark
-@using AppsByTAP.BlazorFluentUI.Components.Button
+@*@using AppsByTAP.BlazorFluentUI.Components.Button
 @using AppsByTAP.BlazorFluentUI.Components.DropDown
 @using AppsByTAP.BlazorFluentUI.Components.Icon
 @using AppsByTAP.BlazorFluentUI.Components.Expander
@@ -18,17 +18,22 @@
 @using AppsByTAP.BlazorFluentUI.Components.TextField
 @using AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
 @using AppsByTAP.BlazorFluentUI.Components.Callout
-@using AppsByTAP.BlazorFluentUI.Components.TreeMenu
+@using AppsByTAP.BlazorFluentUI.Components.TreeMenu *@
+@using AppsByTAP.BlazorFluentUI.Components.Persona
 @using System.Drawing
 @using System.ComponentModel.DataAnnotations;
 
 @inject IThemeProvider ThemeProvider
 
-<DropDown ItemsSource="_memberSelectionTypes" @bind-SelectedItem="_memberSelectionType" />
+<AppsByTAP.BlazorFluentUI.Components.FitText.FitText Text="Hello World" />
+
+<Persona FirstName="Bob" LastName="Smith" />
+
+@* <DropDown ItemsSource="_memberSelectionTypes" @bind-SelectedItem="_memberSelectionType" />
 
 <TreeMenu GetItems="GetBranchItems" Items="strs" />
 
-@*<EditForm Model=@MeTester>
+ <EditForm Model=@MeTester>
     <ValidationSummary />
     <DataAnnotationsValidator />
     <AppsByTAP.BlazorFluentUI.Components.Forms.TextField @bind-Value=@MeTester.Color />
@@ -36,9 +41,9 @@
     <CheckboxGroup ItemsSource="strs" @bind-SelectedItems="MeTester.Strs" UseToggleSwitches="true" Label="Select your fruit" GroupDirection="GroupDirection.Horizontal" />
     <ValidationMessage For="() => MeTester.Strs" />
     <input type="submit" />
-</EditForm>
-*@
-<TextField ID="phoenMask" Mask="(000)000-0000" OnBlur="OnBlur" Width="1000px" MaxWidth="100px" />
+</EditForm> 
+
+ <TextField ID="phoenMask" Mask="(000)000-0000" OnBlur="OnBlur" Width="1000px" MaxWidth="100px" />
 <TextField Type="TextFieldType.password" />
 
 <IconButton Disabled="true" Icon="IconTypes.Bank" />
@@ -134,31 +139,69 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
 <ChipSet ItemsSource="strs" ChipType="ChipType.Input" Label="Test: " CreateNewItem="CreateNewItem" />
 
-<Tabs Width="500px" Height="200px" TabContentCanScroll="true" >
-    <Tab Header="Tab 1" Color="Blue">
-        <div>
-            <p>Hello world</p>
-        </div>
-    </Tab>
-    <Tab Header="2" Color="Orange">
-        <div>
-            <p>This is some awesome text</p>
-        </div>
-    </Tab>
-    <Tab Header="3 Tab" Color="Yellow">
-        <div >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut molestie commodo dictum. Fusce nulla lacus, rhoncus vel placerat in, finibus sed neque. Aliquam non arcu nec ipsum molestie condimentum. Praesent lobortis felis sodales malesuada pulvinar. Etiam laoreet erat ac odio ullamcorper pretium. Donec pellentesque leo eu consequat faucibus. Duis ornare dapibus purus sed porttitor. Vestibulum consequat at ante vitae posuere. Sed ut justo sed arcu faucibus tempor. Nulla in egestas dolor, quis semper lacus. Sed interdum nisi quis ligula commodo pulvinar.
+<div>
+    <Tabs Width="500px" Height="calc(100vh - 120px);" TabContentCanScroll="true">
+        <Tab Header="Tab 1" Color="Blue">
+            <div>
+                <p>This is some awesome text</p>
+            </div>
+            <div>
+                <p>This is some awesome text</p>
+            </div>
+            <div>
+                <p>This is some awesome text</p>
+            </div><div>
+                <p>This is some awesome text</p>
+            </div><div>
+                <p>This is some awesome text</p>
+            </div>
+            <div>
+                <p>This is some awesome text</p>
+            </div><div>
+                <p>This is some awesome text</p>
+            </div>
+            <div>
+                <p>This is some awesome text</p>
+            </div><div>
+                <p>This is some awesome text</p>
+            </div>
+            <div>
+                <p>This is some awesome text</p>
+            </div>
+            <div>
+                <p>This is some awesome text</p>
+            </div><div>
+                <p>This is some awesome text</p>
+            </div>
+            <div>
+                <p>This is some awesome text</p>
+            </div>
+            <div>
+                <p>This is some awesome text</p>
+            </div>
+        </Tab>
+        <Tab Header="2" Color="Orange">
+            <div>
+                <p>This is some awesome text</p>
+            </div>
+        </Tab>
+        <Tab Header="3 Tab" Color="Yellow">
+            <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut molestie commodo dictum. Fusce nulla lacus, rhoncus vel placerat in, finibus sed neque. Aliquam non arcu nec ipsum molestie condimentum. Praesent lobortis felis sodales malesuada pulvinar. Etiam laoreet erat ac odio ullamcorper pretium. Donec pellentesque leo eu consequat faucibus. Duis ornare dapibus purus sed porttitor. Vestibulum consequat at ante vitae posuere. Sed ut justo sed arcu faucibus tempor. Nulla in egestas dolor, quis semper lacus. Sed interdum nisi quis ligula commodo pulvinar.
 
-            Duis at magna vestibulum, dictum libero nec, commodo augue. Phasellus aliquam orci non consequat faucibus. Morbi pulvinar eros vel lobortis iaculis. Mauris commodo auctor egestas. Cras iaculis sollicitudin nisl, a dictum ipsum porta et. Phasellus vitae tincidunt arcu. Nullam rutrum et velit eu gravida.
+                Duis at magna vestibulum, dictum libero nec, commodo augue. Phasellus aliquam orci non consequat faucibus. Morbi pulvinar eros vel lobortis iaculis. Mauris commodo auctor egestas. Cras iaculis sollicitudin nisl, a dictum ipsum porta et. Phasellus vitae tincidunt arcu. Nullam rutrum et velit eu gravida.
 
-            Cras lacinia dui tellus, vitae mollis diam ullamcorper a. Nulla quis orci vel diam finibus consequat. Integer scelerisque molestie sagittis. Suspendisse sit amet auctor elit. Aliquam scelerisque ipsum lacus, id tempus metus luctus sit amet. Etiam tincidunt diam nisi, ut euismod mauris fringilla a. Curabitur tempus ultricies sodales. Sed fringilla pretium est, ut tincidunt ipsum semper et. Aenean eu sagittis tellus, quis condimentum massa. Phasellus rutrum ultrices dolor, in tincidunt arcu finibus pellentesque. Sed varius fermentum dui, dignissim pharetra neque consectetur in.
+                Cras lacinia dui tellus, vitae mollis diam ullamcorper a. Nulla quis orci vel diam finibus consequat. Integer scelerisque molestie sagittis. Suspendisse sit amet auctor elit. Aliquam scelerisque ipsum lacus, id tempus metus luctus sit amet. Etiam tincidunt diam nisi, ut euismod mauris fringilla a. Curabitur tempus ultricies sodales. Sed fringilla pretium est, ut tincidunt ipsum semper et. Aenean eu sagittis tellus, quis condimentum massa. Phasellus rutrum ultrices dolor, in tincidunt arcu finibus pellentesque. Sed varius fermentum dui, dignissim pharetra neque consectetur in.
 
-            Ut ligula enim, egestas egestas massa et, pulvinar iaculis libero. Nulla consequat, sapien nec porta mollis, odio enim ultricies lorem, ut eleifend urna orci et enim. Praesent gravida ultrices felis, sed luctus nulla scelerisque ut. Etiam id magna vitae diam dictum placerat. Curabitur pretium elit in ipsum lobortis, ac vehicula ex dictum. Mauris dictum odio sed nisl consequat consequat. Nunc luctus, ex ut vestibulum posuere, nunc odio tristique augue, sed dignissim nunc felis sit amet lectus. Donec est velit, maximus nec pulvinar rutrum, lobortis sed ipsum. Nulla leo ipsum, feugiat ac ipsum non, posuere consectetur leo. In in mattis tortor. Maecenas quis pharetra urna. Aliquam eleifend at arcu quis accumsan. Suspendisse varius, libero ut ullamcorper dictum, ipsum nulla placerat justo, a viverra ante lorem id nibh. Proin fermentum augue sit amet mattis sollicitudin.
+                Ut ligula enim, egestas egestas massa et, pulvinar iaculis libero. Nulla consequat, sapien nec porta mollis, odio enim ultricies lorem, ut eleifend urna orci et enim. Praesent gravida ultrices felis, sed luctus nulla scelerisque ut. Etiam id magna vitae diam dictum placerat. Curabitur pretium elit in ipsum lobortis, ac vehicula ex dictum. Mauris dictum odio sed nisl consequat consequat. Nunc luctus, ex ut vestibulum posuere, nunc odio tristique augue, sed dignissim nunc felis sit amet lectus. Donec est velit, maximus nec pulvinar rutrum, lobortis sed ipsum. Nulla leo ipsum, feugiat ac ipsum non, posuere consectetur leo. In in mattis tortor. Maecenas quis pharetra urna. Aliquam eleifend at arcu quis accumsan. Suspendisse varius, libero ut ullamcorper dictum, ipsum nulla placerat justo, a viverra ante lorem id nibh. Proin fermentum augue sit amet mattis sollicitudin.
 
-            Fusce elementum imperdiet diam vitae sollicitudin. Donec est nunc, mattis in sem maximus, luctus posuere arcu. In rhoncus est a nunc egestas luctus. Sed ac efficitur urna. Donec vitae augue iaculis, sollicitudin urna eu, condimentum ipsum. Donec id ultricies nisi, quis accumsan mi. Nullam quis pellentesque erat, ut molestie ligula. Vivamus iaculis ac eros a egestas. Sed feugiat, lectus a volutpat dignissim, sem enim varius lacus, quis semper orci libero in ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et elit nec odio vestibulum semper. Nulla nisi nibh, ullamcorper id tempor in, ullamcorper vel leo. Donec cursus eget mauris non commodo. Nullam quis pellentesque dui.
-        </div>
-    </Tab>
-</Tabs>
+                Fusce elementum imperdiet diam vitae sollicitudin. Donec est nunc, mattis in sem maximus, luctus posuere arcu. In rhoncus est a nunc egestas luctus. Sed ac efficitur urna. Donec vitae augue iaculis, sollicitudin urna eu, condimentum ipsum. Donec id ultricies nisi, quis accumsan mi. Nullam quis pellentesque erat, ut molestie ligula. Vivamus iaculis ac eros a egestas. Sed feugiat, lectus a volutpat dignissim, sem enim varius lacus, quis semper orci libero in ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et elit nec odio vestibulum semper. Nulla nisi nibh, ullamcorper id tempor in, ullamcorper vel leo. Donec cursus eget mauris non commodo. Nullam quis pellentesque dui.
+            </div>
+        </Tab>
+    </Tabs>
+</div>
+
+
 
 
 
@@ -171,166 +214,166 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     <Content>
         sed est quis, pharetra consequat libero.
     </Content>
-</Modal>
+</Modal> *@
 
 @code
 {
-    public enum MemberSelectionType
-    {
-        All,
-        PieceMarks,
-        Sequence
-    }
+    // public enum MemberSelectionType
+    // {
+    //     All,
+    //     PieceMarks,
+    //     Sequence
+    // }
 
-    private List<MemberSelectionType> _memberSelectionTypes = new List<MemberSelectionType>
-    {
-        MemberSelectionType.All,
-        MemberSelectionType.PieceMarks,
-        MemberSelectionType.Sequence
-    };
+    // private List<MemberSelectionType> _memberSelectionTypes = new List<MemberSelectionType>
+    // {
+    //     MemberSelectionType.All,
+    //     MemberSelectionType.PieceMarks,
+    //     MemberSelectionType.Sequence
+    // };
 
-    private MemberSelectionType _memberSelectionType = MemberSelectionType.All;
+    // private MemberSelectionType _memberSelectionType = MemberSelectionType.All;
 
-    public class Test
-    {
-        [Required]
-        public string Color { get; set; }
-        [Required(ErrorMessage = "Select at least 1"), MinLength(1)]
-        public List<string> Strs { get; set; }
-    }
+    // public class Test
+    // {
+    //     [Required]
+    //     public string Color { get; set; }
+    //     [Required(ErrorMessage = "Select at least 1"), MinLength(1)]
+    //     public List<string> Strs { get; set; }
+    // }
 
-    public Test MeTester { get; set; } = new Test();
+    // public Test MeTester { get; set; } = new Test();
 
 
-    private string guid = "";
+    // private string guid = "";
 
-    private int counter = 0;
-    private bool _isDark = true;
-    private bool _isLoading = true;
-    private DropDownItem<string> _selectedItem = null;
-    private string _selectedStr = "Strawberry";
-    private bool _showModal;
-    private bool _hideDropDown = false;
-    private char _selectedChar = ' ';
-    private bool _calloutIsOpen = false;
+    // private int counter = 0;
+    // private bool _isDark = true;
+    // private bool _isLoading = true;
+    // private DropDownItem<string> _selectedItem = null;
+    // private string _selectedStr = "Strawberry";
+    // private bool _showModal;
+    // private bool _hideDropDown = false;
+    // private char _selectedChar = ' ';
+    // private bool _calloutIsOpen = false;
 
-    List<DropDownItem<string>>
-    ints2 = new List<DropDownItem<string>>
-        {
-        new DropDownItem<string>("Header1", DropDownItemType.Header),
-        new DropDownItem<string>("Item 1", DropDownItemType.Item),
-        new DropDownItem<string>("Item 2", DropDownItemType.Item),
-        new DropDownItem<string>("Item 3", DropDownItemType.Item),
-        new DropDownItem<string>("Item 4", DropDownItemType.Item),
-        new DropDownItem<string>("Header 2", DropDownItemType.Header),
-        new DropDownItem<string>("Item 5", DropDownItemType.Item),
-        new DropDownItem<string>("Item 6", DropDownItemType.Item),
-        new DropDownItem<string>("Item 7", DropDownItemType.Item),
-        new DropDownItem<string>("Item 8", DropDownItemType.Item)
-                                    };
+    // List<DropDownItem<string>>
+    // ints2 = new List<DropDownItem<string>>
+    //     {
+    //     new DropDownItem<string>("Header1", DropDownItemType.Header),
+    //     new DropDownItem<string>("Item 1", DropDownItemType.Item),
+    //     new DropDownItem<string>("Item 2", DropDownItemType.Item),
+    //     new DropDownItem<string>("Item 3", DropDownItemType.Item),
+    //     new DropDownItem<string>("Item 4", DropDownItemType.Item),
+    //     new DropDownItem<string>("Header 2", DropDownItemType.Header),
+    //     new DropDownItem<string>("Item 5", DropDownItemType.Item),
+    //     new DropDownItem<string>("Item 6", DropDownItemType.Item),
+    //     new DropDownItem<string>("Item 7", DropDownItemType.Item),
+    //     new DropDownItem<string>("Item 8", DropDownItemType.Item)
+    //                                 };
 
-    List<string> strs = new List<string> { "Apple", "Banana", "Strawberry", "Blackberry", "Blueberry", "Raspberry", "Grapes", "Plum", "Pear" };
-    List<string> selectedStrs = new List<string> { "Banana", "Strawberry" };
-    IList<string> selectedItemsStr = new List<string>() {"Strawberry"};
-    List<string> selectedItemsStr2 = new List<string>();
+    // List<string> strs = new List<string> { "Apple", "Banana", "Strawberry", "Blackberry", "Blueberry", "Raspberry", "Grapes", "Plum", "Pear" };
+    // List<string> selectedStrs = new List<string> { "Banana", "Strawberry" };
+    // IList<string> selectedItemsStr = new List<string>() {"Strawberry"};
+    // List<string> selectedItemsStr2 = new List<string>();
 
-    List<IconTypes> icons = Enum.GetValues<IconTypes>().ToList();
-    IconTypes selectedIcon = IconTypes.Bank;
+    // List<IconTypes> icons = Enum.GetValues<IconTypes>().ToList();
+    // IconTypes selectedIcon = IconTypes.Bank;
 
-    public Index()
-    {
+    // public Index()
+    // {
 
-    }
+    // }
 
-    private Branch<string> Root = new Branch<string>(@"C:\\", true, new List<BranchItem<string>>(), null);
+    // private Branch<string> Root = new Branch<string>(@"C:\\", true, new List<BranchItem<string>>(), null);
 
-    private IEnumerable<BranchItem<string>> GetBranchItems(ItemsProviderRequest request, string item)
-    {
-        int r = new Random(Guid.NewGuid().GetHashCode()).Next(1, 100);
+    // private IEnumerable<BranchItem<string>> GetBranchItems(ItemsProviderRequest request, string item)
+    // {
+    //     int r = new Random(Guid.NewGuid().GetHashCode()).Next(1, 100);
 
-        if(r % 2 == 0)
-        {
-            return new List<BranchItem<string>>
-            {
-                new BranchItem<string>("temp", true),
-                new BranchItem<string>("test2", true),
-                new BranchItem<string>("test", false)
-            };
-        }
-        else
-        {
-            return new List<BranchItem<string>>
-            {
+    //     if(r % 2 == 0)
+    //     {
+    //         return new List<BranchItem<string>>
+    //         {
+    //             new BranchItem<string>("temp", true),
+    //             new BranchItem<string>("test2", true),
+    //             new BranchItem<string>("test", false)
+    //         };
+    //     }
+    //     else
+    //     {
+    //         return new List<BranchItem<string>>
+    //         {
                 
-            };
-        }
+    //         };
+    //     }
 
-    }
+    // }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        await Task.Delay(150);
-        _selectedChar = 'c';
-        StateHasChanged();
-    }
+    // protected override async Task OnParametersSetAsync()
+    // {
+    //     await Task.Delay(150);
+    //     _selectedChar = 'c';
+    //     StateHasChanged();
+    // }
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-    }
+    // protected override void OnAfterRender(bool firstRender)
+    // {
+    //     base.OnAfterRender(firstRender);
+    // }
 
-    private void ChangeTheme()
-    {
-        if (_isDark)
-        {
-            ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new LightThemePalette()));
-        }
-        else
-        {
-            ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new DarkThemePalette()));
-        }
+    // private void ChangeTheme()
+    // {
+    //     if (_isDark)
+    //     {
+    //         ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new LightThemePalette()));
+    //     }
+    //     else
+    //     {
+    //         ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new DarkThemePalette()));
+    //     }
 
-        _isDark = !_isDark;
-    }
+    //     _isDark = !_isDark;
+    // }
 
-    private void Add()
-    {
-        counter++;
-    }
+    // private void Add()
+    // {
+    //     counter++;
+    // }
 
-    private void ToggleSpinners()
-    {
-        _isLoading = !_isLoading;
-    }
+    // private void ToggleSpinners()
+    // {
+    //     _isLoading = !_isLoading;
+    // }
 
-    public class MeTest
-    {
-        public string MyStr { get; set; }
+    // public class MeTest
+    // {
+    //     public string MyStr { get; set; }
 
-        public MeTest(string str) => MyStr = str;
-        public override string ToString() => MyStr;
-    }
+    //     public MeTest(string str) => MyStr = str;
+    //     public override string ToString() => MyStr;
+    // }
 
-    public void RemoveChip(string id)
-    {
-        Console.WriteLine("Remove the chip: " + id);
-    }
+    // public void RemoveChip(string id)
+    // {
+    //     Console.WriteLine("Remove the chip: " + id);
+    // }
 
-    public void EditChip()
-    {
-        Console.WriteLine("Edit the chip");
-    }
+    // public void EditChip()
+    // {
+    //     Console.WriteLine("Edit the chip");
+    // }
 
-    public string CreateNewItem(string str) => str;
+    // public string CreateNewItem(string str) => str;
 
-    private void SelectionChanged(char c)
-    {
-        _selectedChar = c;
-    }
+    // private void SelectionChanged(char c)
+    // {
+    //     _selectedChar = c;
+    // }
 
-    private void OnBlur(FocusEventArgs args)
-    {
-        Console.Write(args);
-    }
+    // private void OnBlur(FocusEventArgs args)
+    // {
+    //     Console.Write(args);
+    // }
 
 }

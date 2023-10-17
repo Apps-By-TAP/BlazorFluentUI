@@ -1,0 +1,13 @@
+﻿@namespace AppsByTAP.BlazorFluentUI.Components.Persona
+@using AppsByTAP.BlazorFluentUI.Components.FitText
+@inherits PersonaViewModel
+
+<div>
+    <div class="userIcon" style="background-color: @BackgroundColor; border-radius: @(BorderRadius)%; width: @(Size)px; height: @(Size)px;">
+        <FitText Text="@Initials" Compressor=".3" />
+    </div>
+    <div>
+        <div class="userName"></div>
+        <div class="userTitle"></div>
+    </div>
+</div>
