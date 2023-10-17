@@ -10,10 +10,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.Persona
         [Parameter]
         public int Size { get; set; } = 50;
         [Parameter]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = null;
         [Parameter]
-        public string LastName { get; set; }
-        public string Initials { get => FirstName.Substring(0, 1) + LastName.Substring(0, 1); }
+        public string LastName { get; set; } = null;
+        public string Initials { get => FirstName?.Substring(0, 1) ?? "" + LastName?.Substring(0, 1) ?? ""; }
         [Parameter]
         public string Title { get; set; }
         public string BackgroundColor { get; set; }
@@ -51,6 +51,23 @@ namespace AppsByTAP.BlazorFluentUI.Components.Persona
             base.OnInitialized();
 
             if (string.IsNullOrEmpty(BackgroundColor))
+            {
+                if(!string.IsNullOrEmpty(Initials))
+                {
+                    BackgroundColor = _colors[(Initials[0] + Initials[1]) % _colors.Count];
+                }
+                else
+                {
+                    BackgroundColor = _colors[new Random().Next(0, _colors.Count - 1)];
+                }
+            }
+        }
+
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            if (!string.IsNullOrEmpty(Initials))
             {
                 BackgroundColor = _colors[(Initials[0] + Initials[1]) % _colors.Count];
             }
