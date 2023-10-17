@@ -14,6 +14,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.Persona
         [Parameter]
         public string LastName { get; set; }
         public string Initials { get => FirstName.Substring(0, 1) + LastName.Substring(0, 1); }
+        [Parameter]
+        public string Title { get; set; }
         public string BackgroundColor { get; set; }
         [Parameter]
         public string UserImage { get; set; }
