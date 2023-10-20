@@ -3,8 +3,8 @@
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Models
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Dark
-@*@using AppsByTAP.BlazorFluentUI.Components.Button
-@using AppsByTAP.BlazorFluentUI.Components.DropDown
+@using AppsByTAP.BlazorFluentUI.Components.Button
+@*@using AppsByTAP.BlazorFluentUI.Components.DropDown
 @using AppsByTAP.BlazorFluentUI.Components.Icon
 @using AppsByTAP.BlazorFluentUI.Components.Expander
 @using AppsByTAP.BlazorFluentUI.Components.Spinner
@@ -25,9 +25,15 @@
 
 @inject IThemeProvider ThemeProvider
 
-<AppsByTAP.BlazorFluentUI.Components.FitText.FitText Text="Hello World" />
+<PostButton Text="Post Btn" IsPrimary=true Style="background-color: green;" />
+<PostButton Text="Post Btn" IsPrimary=false />
 
-<Persona Size="50" />
+<HyperLinkButton Url="https://www.google.com" Text="Google" TargetType="TargetTypes.Blank" IsPrimary=true />
+<HyperLinkButton Url="https://www.google.com" Text="Google 2" TargetType="TargetTypes.Blank" IsPrimary=false />
+
+<Persona Size="50" FirstName="@_firstName" LastName="@_lastName" />
+<DefaultButton Text="Click Me" OnClick="SetNames" IsPrimary=true />
+<DefaultButton Text="Click Me" OnClick="SetNames" />
 
 @* <DropDown ItemsSource="_memberSelectionTypes" @bind-SelectedItem="_memberSelectionType" />
 
@@ -218,6 +224,15 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 
 @code
 {
+    private string _firstName = null;
+    private string _lastName = null;
+
+    private void SetNames()
+    {
+        _firstName = "Tomas";
+        _lastName = "Aparicio";
+        StateHasChanged();
+    }
     // public enum MemberSelectionType
     // {
     //     All,

@@ -1,0 +1,41 @@
+﻿button {
+    color: var(--semanticColors-Link);
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid var(--semanticColors-ButtonBorder);
+    display: inline-block;
+    border-radius: 2px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    padding: 7px 10px;
+}
+
+.primaryBtn {
+    background-color: var(--semanticColors-PrimaryButtonBackground);
+    color: var(--semanticTextColors-PrimaryButtonText);
+}
+
+.primaryBtn:active:not(.disabled) {
+    background-color: var(--semanticColors-PrimaryButtonBackgroundPressed);
+}
+
+.primaryBtn:hover:not(.disabled) {
+    background-color: var(--semanticColors-PrimaryButtonBackgroundHovered);
+}
+
+.secondaryBtn {
+    color: var(--semanticColors-ButtonText);
+    background-color: var(--semanticColors-ButtonBackground);
+}
+
+.secondaryBtn:active:not(.disabled) {
+    background-color: var(--semanticColors-ButtonBackgroundChecked);
+}
+
+.secondaryBtn:hover:not(.disabled) {
+    background-color: var(--semanticColors-ButtonBackgroundHovered);
+}

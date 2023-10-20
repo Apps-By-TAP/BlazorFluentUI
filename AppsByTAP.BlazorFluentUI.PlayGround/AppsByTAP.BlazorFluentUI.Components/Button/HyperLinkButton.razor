@@ -1,0 +1,12 @@
+﻿@inherits HyperLinkButtonViewModel
+
+
+<div @onclick="OnClickInternal" class="btnContainer @(IsPrimary? "primaryBtn" : "secondaryBtn") @ClassName @(Disabled ? "disabled" : "")" style="@Style"
+     @onclick:stopPropagation="OnClickStopPropagation">
+    <div class="primaryText">
+        <a href="@Url" target="@_target">@Text</a>
+    </div>
+</div>
+
+@code {
+}
