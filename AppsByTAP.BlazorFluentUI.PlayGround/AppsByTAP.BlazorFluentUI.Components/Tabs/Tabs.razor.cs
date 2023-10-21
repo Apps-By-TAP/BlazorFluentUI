@@ -1,10 +1,6 @@
-﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppsByTAP.BlazorFluentUI.Components.Tabs
 {
@@ -22,6 +18,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.Tabs
         public string Style { get; set; }
         [Parameter]
         public bool TabContentCanScroll { get; set; }
+        [Parameter]
+        public int DefaultOpenTab { get; set; }
 
         public event Action SelectionChanged;
 
@@ -57,6 +55,16 @@ namespace AppsByTAP.BlazorFluentUI.Components.Tabs
             _left = _indictorPosition * _percent;
 
             StateHasChanged();
+
+            if(Pages.Count > DefaultOpenTab)
+            {
+                Tab tab = Pages[DefaultOpenTab];
+
+                if(ActivePage != tab)
+                {
+                    ActivatePage(tab);
+                }
+            }
         }
 
         string GetButtonClass(Tab page)

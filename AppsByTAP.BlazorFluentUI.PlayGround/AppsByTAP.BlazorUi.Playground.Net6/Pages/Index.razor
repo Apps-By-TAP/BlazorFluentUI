@@ -12,7 +12,9 @@
 @using AppsByTAP.BlazorFluentUI.Components.CheckBox
 @using AppsByTAP.BlazorFluentUI.Components.Common
 @using AppsByTAP.BlazorFluentUI.Components.Chip
+*@
 @using AppsByTAP.BlazorFluentUI.Components.Tabs
+@*
 @using AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
 @using AppsByTAP.BlazorFluentUI.Components.SpinButton
 @using AppsByTAP.BlazorFluentUI.Components.TextField
@@ -144,9 +146,9 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 <CheckBox Label="Hello World End" BoxSide="BoxSide.End" />
 
 <ChipSet ItemsSource="strs" ChipType="ChipType.Input" Label="Test: " CreateNewItem="CreateNewItem" />
-
+*@
 <div>
-    <Tabs Width="500px" Height="calc(100vh - 120px);" TabContentCanScroll="true">
+    <Tabs Width="500px" Height="calc(100vh - 120px);" TabContentCanScroll="true" DefaultOpenTab="1">
         <Tab Header="Tab 1" Color="Blue">
             <div>
                 <p>This is some awesome text</p>
@@ -208,8 +210,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 </div>
 
 
-
-
+@*
 
 
 
