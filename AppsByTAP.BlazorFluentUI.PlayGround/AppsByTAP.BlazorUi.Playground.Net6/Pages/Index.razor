@@ -4,6 +4,7 @@
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Dark
 @using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.Callout
 @*@using AppsByTAP.BlazorFluentUI.Components.DropDown
 @using AppsByTAP.BlazorFluentUI.Components.Icon
 @using AppsByTAP.BlazorFluentUI.Components.Expander
@@ -19,7 +20,6 @@
 @using AppsByTAP.BlazorFluentUI.Components.SpinButton
 @using AppsByTAP.BlazorFluentUI.Components.TextField
 @using AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
-@using AppsByTAP.BlazorFluentUI.Components.Callout
 @using AppsByTAP.BlazorFluentUI.Components.TreeMenu *@
 @using AppsByTAP.BlazorFluentUI.Components.Persona
 @using System.Drawing
@@ -27,7 +27,17 @@
 
 @inject IThemeProvider ThemeProvider
 
-<PostButton Text="Post Btn" IsPrimary=true Style="background-color: green;" />
+
+<div style="position: absolute; right: 0px;">
+    <DefaultButton Text="Open Callout" OnClick="OpenCallout" />
+    <Callout @bind-IsOpen=_isOpen Width="300px" ItemsPanelHeight="200">
+        <ChildContent>
+            hello there
+        </ChildContent>
+    </Callout>
+</div>
+
+@* <PostButton Text="Post Btn" IsPrimary=true Style="background-color: green;" />
 <PostButton Text="Post Btn" IsPrimary=false />
 
 <HyperLinkButton Url="https://www.google.com" Text="Google" TargetType="TargetTypes.Blank" IsPrimary=true />
@@ -35,7 +45,7 @@
 
 <Persona Size="50" FirstName="@_firstName" LastName="@_lastName" />
 <DefaultButton Text="Click Me" OnClick="SetNames" IsPrimary=true />
-<DefaultButton Text="Click Me" OnClick="SetNames" />
+<DefaultButton Text="Click Me" OnClick="SetNames" /> *@
 
 @* <DropDown ItemsSource="_memberSelectionTypes" @bind-SelectedItem="_memberSelectionType" />
 
@@ -146,7 +156,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 <CheckBox Label="Hello World End" BoxSide="BoxSide.End" />
 
 <ChipSet ItemsSource="strs" ChipType="ChipType.Input" Label="Test: " CreateNewItem="CreateNewItem" />
-*@
+
 <div>
     <Tabs Width="500px" Height="calc(100vh - 120px);" TabContentCanScroll="true" DefaultOpenTab="1">
         <Tab Header="Tab 1" Color="Blue">
@@ -210,10 +220,6 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
 </div>
 
 
-@*
-
-
-
 <Modal @bind-ShowWindow="_showModal" ShowHeader="true" CanLightDismiss="false">
     <Header>
         My Header
@@ -234,6 +240,14 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
         _lastName = "Aparicio";
         StateHasChanged();
     }
+
+    private bool _isOpen;
+
+    private void OpenCallout()
+    {
+        _isOpen = true;
+    }
+
     // public enum MemberSelectionType
     // {
     //     All,

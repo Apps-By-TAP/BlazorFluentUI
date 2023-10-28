@@ -1,6 +1,11 @@
 ﻿@using AppsByTAP.BlazorFluentUI.Components.BaseComponent
+@using AppsByTAP.BlazorFluentUI.Components.LightDismiss
 
-<div class="itemsPanel" 
-style="visibility: @(IsOpen ? "visible" : "hidden"); z-index: @(LayerCounter.GetLayer()); width: @Width; @(ItemsPanelHeight < 0 ? "height: fit-content;" : $"max-height: {ItemsPanelHeight}px;")">
+<div class="itemsPanel" id="@_id"
+style="visibility: @(IsOpen ? "visible" : "hidden"); z-index: @(LayerCounter.GetLayer()); width: @Width; @(ItemsPanelHeight < 0 ? "height: fit-content;" : $"max-height: {ItemsPanelHeight}px;") left: @(_left)px; display: @_display;">
     @ChildContent
 </div>
+@if(CanLightDismiss)
+{
+    <LightDismiss @bind-IsOpen=IsOpen />    
+}

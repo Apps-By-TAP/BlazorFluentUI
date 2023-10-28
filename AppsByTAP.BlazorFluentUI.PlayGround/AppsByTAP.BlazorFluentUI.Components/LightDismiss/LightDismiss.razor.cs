@@ -16,6 +16,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.LightDismiss
         protected void Close()
         {
             IsOpen = false;
+            IsOpenChanged.InvokeAsync(IsOpen);
             OnClose.InvokeAsync();
         }
     }
