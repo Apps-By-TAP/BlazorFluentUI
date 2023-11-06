@@ -75,7 +75,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
             {
                 if(value == _displayValue) { return; }
 
-                Regex rex = new Regex(@"[0-9\.]+");
+                Regex rex = new Regex(@"[-0-9\.]+");
                 Match match = rex.Match(value);
 
                 if(match.Success)

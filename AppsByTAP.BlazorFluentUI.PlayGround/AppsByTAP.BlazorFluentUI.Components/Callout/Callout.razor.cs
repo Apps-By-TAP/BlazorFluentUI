@@ -51,7 +51,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Callout
         [Parameter]
         public bool CanLightDismiss { get; set; } = true;
 
-        private int _left;
+        private string _left;
         private string _id = Guid.NewGuid().ToString();
         private string _display = "none";
 
@@ -67,7 +67,11 @@ namespace AppsByTAP.BlazorFluentUI.Components.Callout
                 _display = "default";
                 StateHasChanged();
                 IJSObjectReference mod = await Module;
-                _left = (int)await mod.InvokeAsync<double>("getNewLeftLocation", _id);
+
+                int left = (int)await mod.InvokeAsync<double>("getNewLeftLocation", _id);
+
+                _left = left.ToString() == "0" ? "default" : left.ToString() + "px";
+
                 StateHasChanged();
             }
         }

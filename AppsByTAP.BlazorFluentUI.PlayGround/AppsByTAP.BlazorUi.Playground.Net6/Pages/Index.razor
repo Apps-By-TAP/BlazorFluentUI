@@ -15,9 +15,9 @@
 @using AppsByTAP.BlazorFluentUI.Components.Chip
 *@
 @using AppsByTAP.BlazorFluentUI.Components.Tabs
+@using AppsByTAP.BlazorFluentUI.Components.SpinButton
 @*
 @using AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
-@using AppsByTAP.BlazorFluentUI.Components.SpinButton
 @using AppsByTAP.BlazorFluentUI.Components.TextField
 @using AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
 @using AppsByTAP.BlazorFluentUI.Components.TreeMenu *@
@@ -27,15 +27,16 @@
 
 @inject IThemeProvider ThemeProvider
 
+<SpinButton Type="SpinButtonType.Decimal" />
 
-<div style="position: absolute; right: 0px;">
+@* <div style="position: absolute; right: 0px;">
     <DefaultButton Text="Open Callout" OnClick="OpenCallout" />
     <Callout @bind-IsOpen=_isOpen Width="300px" ItemsPanelHeight="200">
         <ChildContent>
             hello there
         </ChildContent>
     </Callout>
-</div>
+</div> *@
 
 @* <PostButton Text="Post Btn" IsPrimary=true Style="background-color: green;" />
 <PostButton Text="Post Btn" IsPrimary=false />
