@@ -9,3 +9,7 @@
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none;
 }
+
+.btnContainer:hover {
+    cursor: pointer;
+}

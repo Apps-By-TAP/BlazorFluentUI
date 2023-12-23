@@ -1,6 +1,6 @@
 ﻿
 <CascadingValue Value="this">
-    <div class="TabContainer @Class" style="width: @Width;  @Style;">
+    <div class="TabContainer @Class" style="width: @Width; @Style;">
         <div class="TabHeader" role="group">
             @foreach (Tab tabPage in Pages)
             {
@@ -11,7 +11,7 @@
         </div>
         <div class="Indictor" style="width: @_percent%; left: @_left%; background-color: @(ActivePage?.Color ?? "black");"></div>
 
-        <div style="position: relative; overflow: hidden; overflow-y: @(TabContentCanScroll ? "auto" : "hidden"); height: @Height;">
+        <div style="position: relative; overflow: hidden; overflow-y: @(TabContentCanScroll ? "auto" : "hidden"); flex: 1;">
             <div class="TabContentContainer">
                 @ChildContent
             </div>

@@ -1,6 +1,6 @@
 ﻿@using AppsByTAP.BlazorFluentUI.Components.Icon
 
-<div @onclick="@Clicked" class="IconButtonContainer @Class @(Disabled ? "disabled" : "")" style="@Style">
+<div @onclick="@Clicked" class="IconButtonContainer @Class @(Disabled ? "disabled" : "")" style="@Style" id="@ID">
     <Icon IconType="@Icon" />
 </div>
 
@@ -15,6 +15,8 @@
     public string Style { get; set; }
     [Parameter]
     public bool Disabled { get; set; }
+    [Parameter]
+    public string ID { get; set; }
 
     private async void Clicked()
     {
@@ -41,6 +43,10 @@
 
         width: fit-content;
         height: fit-content;
+    }
+
+    .IconButtonContainer:hover{
+        cursor:pointer;
     }
 
     .disabled {

@@ -21,6 +21,10 @@
     padding: 7px 10px;
 }
 
+.btnContainer:hover{
+    cursor: pointer;
+}
+
 .primaryBtn {
     background-color: var(--semanticColors-PrimaryButtonBackground);
     color: var(--semanticTextColors-PrimaryButtonText);

@@ -11,6 +11,10 @@
     user-select: none;
 }
 
+.btnContainer:hover {
+    cursor: pointer;
+}
+
 .withoutSecondaryText {
     padding: 5px 21px;
 }

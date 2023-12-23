@@ -50,6 +50,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.Callout
         public bool Disabled { get; set; }
         [Parameter]
         public bool CanLightDismiss { get; set; } = true;
+        [Parameter]
+        public string TargetID { get; set; }
 
         private string _left;
         private string _id = Guid.NewGuid().ToString();
@@ -68,12 +70,21 @@ namespace AppsByTAP.BlazorFluentUI.Components.Callout
                 StateHasChanged();
                 IJSObjectReference mod = await Module;
 
-                int left = (int)await mod.InvokeAsync<double>("getNewLeftLocation", _id);
+                await mod.InvokeVoidAsync("registerResizeCallback", DotNetObjectReference.Create(this), _id, TargetID);
+
+                int left = (int)await mod.InvokeAsync<double>("getNewLeftLocation", _id, TargetID);
 
                 _left = left.ToString() == "0" ? "default" : left.ToString() + "px";
 
                 StateHasChanged();
             }
+        }
+
+        [JSInvokable]
+        public void LeftChanged(int left)
+        {
+            _left = left + "px";
+            StateHasChanged();
         }
     }
 }

@@ -27,16 +27,24 @@
 
 @inject IThemeProvider ThemeProvider
 
-<SpinButton Type="SpinButtonType.Decimal" />
+@* <SpinButton Type="SpinButtonType.Decimal" /> *@
 
-@* <div style="position: absolute; right: 0px;">
-    <DefaultButton Text="Open Callout" OnClick="OpenCallout" />
-    <Callout @bind-IsOpen=_isOpen Width="300px" ItemsPanelHeight="200">
-        <ChildContent>
-            hello there
-        </ChildContent>
-    </Callout>
-</div> *@
+<div style="display: flex; flex-direction:row;">
+    <div style="flex: 1;">
+
+    </div>
+    <div>
+        <DefaultButton Text="Open Callout" OnClick="OpenCallout" ID="asdf" />
+        <Callout @bind-IsOpen=_isOpen Width="300px" ItemsPanelHeight="200" TargetID="asdf">
+            <ChildContent>
+                hello there
+            </ChildContent>
+        </Callout>
+    </div>
+</div>
+
+<DefaultButton IsPrimary=true Text="Btn 1" />
+<IconButton Icon=AppsByTAP.BlazorFluentUI.Components.Icon.IconTypes.Bank />
 
 @* <PostButton Text="Post Btn" IsPrimary=true Style="background-color: green;" />
 <PostButton Text="Post Btn" IsPrimary=false />

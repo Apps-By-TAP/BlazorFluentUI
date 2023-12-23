@@ -5,7 +5,7 @@
 @inherits BaseButtonViewModel
 
 <div @onclick="OnClickInternal" class="btnContainer @(string.IsNullOrEmpty(SecondaryText) ? "withoutSecondaryText" : "withSecondaryText") @(IsPrimary? "primaryBtn" : "secondaryBtn") @ClassName @(Disabled ? "disabled" : "")" style="@Style"
-     @onclick:stopPropagation="OnClickStopPropagation">
+     @onclick:stopPropagation="OnClickStopPropagation" id="@ID">
     <div class="primaryText">
         <div style="display: @(Icon != IconTypes.None ? "block" : "none");"><Icon IconType="Icon" /></div>
         <div>@Text</div>

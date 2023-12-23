@@ -1,5 +1,6 @@
 ﻿.TabContainer {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
 }
 
 .TabHeader {
@@ -11,6 +12,16 @@
 .TabHeaderItem {
     flex: 1 1 0px;
     text-align: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.TabHeaderItem:hover {
+    cursor: pointer;
 }
 
 .Indictor {
@@ -19,6 +30,8 @@
     transition-property: background-color, left;
     transition-duration: 300ms;
     transition-timing-function: cubic-bezier(0, 0, 0, 1);
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .TabContentContainer{
