@@ -1,0 +1,30 @@
+﻿
+<div class="containerAA @Class" style="@Style">
+    @ChildContent
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Style { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+}
+
+<style>
+    .containerAA{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        position: fixed;
+        bottom: 0;
+        justify-content: center;
+        width: 100vw;
+        left: 0;
+        background-color: var(--semanticColors-ListBackground);
+    }
+</style>

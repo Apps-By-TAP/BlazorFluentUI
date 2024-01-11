@@ -1,0 +1,28 @@
+﻿.floatingActionButton {
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    position: fixed;
+    right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--semanticColors-ListBackground);
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+    .floatingActionButton:hover {
+        background-color: var(--semanticColors-ListItemBackgroundHovered);
+    }
+
+@@media screen and (max-width: 460px) {
+    .floatingActionButton {
+        width: 40px;
+        height: 40px;
+    }
+}

@@ -24,6 +24,8 @@
 @using AppsByTAP.BlazorFluentUI.Components.Persona
 @using System.Drawing
 @using System.ComponentModel.DataAnnotations;
+@using AppsByTAP.BlazorFluentUI.Components.BottomNavigationBar
+@using AppsByTAP.BlazorFluentUI.Components.FloatingActionButton
 
 @inject IThemeProvider ThemeProvider
 
@@ -45,6 +47,19 @@
 
 <DefaultButton IsPrimary=true Text="Btn 1" />
 <IconButton Icon=AppsByTAP.BlazorFluentUI.Components.Icon.IconTypes.Bank />
+
+<BottomNavigationBar>
+    <NavigationItem ImageUrl="https://imgs.search.brave.com/DlfjWwvjq1c0AitK4VRQRqLBLgPnTQpwzcDfL5gQSKw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZs/YXRpY29uLmNvbS8x/MjgvMTAyNjMvMTAy/NjMyMzkucG5n"
+                    Text="Home"
+                    Url="/"/>
+    <NavigationItem ImageUrl="https://imgs.search.brave.com/yXHJ7mwmIZijJsNGuZDgbT98b0d1JxWnC9pOCNq6JSo/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudGhlbm91bnBy/b2plY3QuY29tL3Bu/Zy8xMzM3NTQ3LTIw/MC5wbmc"
+                    Text="Settings"
+                    Url="/Settings"/>
+</BottomNavigationBar>
+
+<FloatingActionButton BottomNavigationIsVisible=true
+                      OnClick="FloatingActionButtonClick"
+                      ImageUrl="https://imgs.search.brave.com/jXtuoS1Ca1bUrwBJo9YJzqRGKNenA_rFGqhxzPU7xT4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuZHJ5aWNvbnMu/Y29tL3VwbG9hZHMv/aWNvbi9wcmV2aWV3/Lzk5MjEvc21hbGxf/MXhfYmU0Nzc2NTct/OTI3Ni00MjJiLWEy/YjAtMGM2N2Q1Mzll/MjNiLnBuZw" />
 
 @* <PostButton Text="Post Btn" IsPrimary=true Style="background-color: green;" />
 <PostButton Text="Post Btn" IsPrimary=false />
@@ -255,6 +270,10 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     private void OpenCallout()
     {
         _isOpen = true;
+    }
+    private void FloatingActionButtonClick()
+    {
+        Console.WriteLine("FloatingActionButtonClick");
     }
 
     // public enum MemberSelectionType

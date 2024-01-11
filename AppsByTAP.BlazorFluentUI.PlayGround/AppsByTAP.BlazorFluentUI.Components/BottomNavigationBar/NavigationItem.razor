@@ -1,0 +1,44 @@
+﻿
+
+<div class="navItem" @onclick=Navigate>
+    <img src="@ImageUrl" width="24" height="24" />
+    <div>
+        @Text
+    </div>
+</div>
+
+@code {
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    [Parameter]
+    public string ImageUrl { get; set; }
+    [Parameter]
+    public string Text { get; set; }
+    [Parameter]
+    public string Url { get; set; }
+
+    private void Navigate()
+    {
+        NavigationManager.NavigateTo(Url);
+    }
+}
+
+<style>
+.navItem {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        min-width: 80px;
+        max-width: 168px;
+        height: 56px;
+        padding-top: 8px;
+        padding-bottom: 12px;
+    }
+
+    .navItem:hover {
+        background-color: var(--semanticColors-ListItemBackgroundHovered);
+    }
+</style>
