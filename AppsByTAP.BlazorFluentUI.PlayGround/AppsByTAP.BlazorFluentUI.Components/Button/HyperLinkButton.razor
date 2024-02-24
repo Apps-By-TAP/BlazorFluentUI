@@ -1,5 +1,7 @@
 ﻿@inherits HyperLinkButtonViewModel
 
+@using AppsByTAP.BlazorFluentUI.Components.Spinner
+
 
 <div @onclick="OnClickInternal" class="btnContainer @(IsPrimary? "primaryBtn" : "secondaryBtn") @ClassName @(Disabled ? "disabled" : "")" style="@Style"
 @onclick:stopPropagation="OnClickStopPropagation" id="@ID">
@@ -7,6 +9,3 @@
         <a href="@Url" target="@_target">@Text</a>
     </div>
 </div>
-
-@code {
-}

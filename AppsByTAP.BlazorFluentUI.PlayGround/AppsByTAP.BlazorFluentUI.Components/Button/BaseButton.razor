@@ -1,6 +1,7 @@
 ﻿@namespace AppsByTAP.BlazorFluentUI.Components.Button
 
 @using AppsByTAP.BlazorFluentUI.Components.Icon
+@using AppsByTAP.BlazorFluentUI.Components.Spinner
 
 @inherits BaseButtonViewModel
 
@@ -8,7 +9,16 @@
      @onclick:stopPropagation="OnClickStopPropagation" id="@ID">
     <div class="primaryText">
         <div style="display: @(Icon != IconTypes.None ? "block" : "none");"><Icon IconType="Icon" /></div>
-        <div>@Text</div>
+        <div>
+            @if(IsBusy)
+            {
+                <TinySpinner Size="SpinnerSize.xSmall" IsLoading=true />
+            }
+            else
+            {
+                @Text
+            }
+        </div>
     </div>
     <div class="secondary">@SecondaryText</div>
 </div>
