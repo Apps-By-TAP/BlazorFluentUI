@@ -6,6 +6,27 @@
 <div @onclick="OnClickInternal" class="btnContainer @(IsPrimary? "primaryBtn" : "secondaryBtn") @ClassName @(Disabled ? "disabled" : "")" style="@Style"
 @onclick:stopPropagation="OnClickStopPropagation" id="@ID">
     <div class="primaryText">
-        <a href="@Url" target="@_target">@Text</a>
+        <a href="@Url" target="@_target" id="@_hyperID">@Text</a>
     </div>
 </div>
+
+
+<style>
+@@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading::after {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 5px;
+  border: 2px solid @IsBusyColor1;
+  border-top-color: @IsBusyColor2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  border-style: dotted;
+}
+</style>
