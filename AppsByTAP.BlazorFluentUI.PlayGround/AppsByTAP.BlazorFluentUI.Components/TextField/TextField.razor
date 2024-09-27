@@ -1,14 +1,25 @@
 ﻿<div>
-    <AppsByTAP.BlazorFluentUI.Components.Label.Label Text="@Label" />
+    <div style="display:flex; flex-direction: row;">
+        <AppsByTAP.BlazorFluentUI.Components.Label.Label Text="@Label" />
+
+        <div style="flex: 1;"></div>
+        
+        @if(CharacterLimit > 0)
+        {
+            <div>
+                @(CharacterLimit - Value.Length) characters remaining
+            </div>
+        }
+    </div>
     @if(!IsMultiLine)
     {
-        <input id="@ID" @bind="@Value" class="textArea @Class" type="@Type.ToString()"
+        <input id="@ID" @bind="@Value" @bind:event="oninput" class="textArea @Class" type="@Type.ToString()"
         style="@(!string.IsNullOrEmpty(MaxWidth) ? $"max-width: {MaxWidth};" : "") @(!string.IsNullOrEmpty(Width) ? $"width: {Width};": "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "") @Style" 
         placeholder="@PlaceHolder" @onblur=OnBlur />
     }
     else
     {
-        <textarea id="@ID" @bind="@Value" class="textArea @Class" placeholder="@PlaceHolder"
+        <textarea id="@ID" @bind="@Value" @bind:event="oninput" class="textArea @Class" placeholder="@PlaceHolder"
                   style="resize: @(MultiLineCanResize ? "both" : "none");@(!string.IsNullOrEmpty(MaxWidth) ? $"max-width: {MaxWidth};" : "") @(!string.IsNullOrEmpty(Width) ? $"width: {Width};": "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "") @Style" 
                   @onblur=OnBlur />
     }

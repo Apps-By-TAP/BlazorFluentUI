@@ -17,7 +17,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
         [Parameter]
         public string Label { get; set; }
 
-        private string _value;
+        private string _value = string.Empty;
         [Parameter]
         public string Value 
         {
@@ -54,6 +54,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
         public string Class { get; set; }
         [Parameter]
         public string Style { get; set; }
+        [Parameter]
+        public int CharacterLimit { get; set; } = 0;
 
         private Task<IJSObjectReference> _module;
         private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/Mask.js";
@@ -75,5 +77,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
 
         [Parameter]
         public EventCallback<FocusEventArgs> OnBlur { get; set; }
+
     }
 }
