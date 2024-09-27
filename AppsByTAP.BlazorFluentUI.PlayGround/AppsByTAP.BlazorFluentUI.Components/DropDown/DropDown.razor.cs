@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 {
     public class DropDownViewModel<T> : BaseComponentViewModel
-    {//TODO: document.getElementById("1").parentNode.getBoundingClientRect()
+    {
         private T _selectedItem;
         [Parameter]
         public T SelectedItem
@@ -52,7 +52,9 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
                 _itemsSource = value;
 
                 Items = value.Select(x => new DropDownItem<T>(x, (x is DropDownItem<T> ddi ? ddi.Type : DropDownItemType.Item), false)).ToList();
-
+                SelectedItems = null;
+                _selectedItem = default;
+                _selectedDisplayText = "Select an option";
             }
         }
 

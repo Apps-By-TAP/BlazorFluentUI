@@ -1,5 +1,6 @@
 ﻿@page "/"
 
+@using AppsByTAP.BlazorFluentUI.Components.Icon
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Models
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Dark
@@ -31,6 +32,23 @@
 
 @* <SpinButton Type="SpinButtonType.Decimal" /> *@
 
+<HyperLinkButton ShowIsBusy=true Text="Hyper" />
+
+<DefaultButton OnClick="Change" Text="Click Me" ShowIsBusy=true />
+
+<AppsByTAP.BlazorFluentUI.Components.DropDown.DropDown IsMultiSelect=true ItemsSource="temp3" />
+
+<Icon IconType="IconTypes.Calculator" />
+
+<Persona FirstName="Travis" LastName="Pettry" />
+
+<FloatingActionButton BottomNavigationIsVisible=true
+                      OnClick="FloatingActionButtonClick"
+                      Icon="BlazorFluentUI.Components.Icon.IconTypes.Bank"
+                      Style="background-color: white; color:black;"
+                      IconCompressor=".15"/>
+
+@* <div style="display: flex; flex-direction:row;">
 <AppsByTAP.BlazorFluentUI.Components.TextField.TextField IsMultiLine=true CharacterLimit="10" Width="100%" />
 
 <div style="display: flex; flex-direction:row;">
@@ -51,7 +69,7 @@
 <IconButton Icon=AppsByTAP.BlazorFluentUI.Components.Icon.IconTypes.Bank />
 
 <BottomNavigationBar>
-    <NavigationItem ImageUrl="https://imgs.search.brave.com/DlfjWwvjq1c0AitK4VRQRqLBLgPnTQpwzcDfL5gQSKw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZs/YXRpY29uLmNvbS8x/MjgvMTAyNjMvMTAy/NjMyMzkucG5n"
+    <NavigationItem ICon="BlazorFluentUI.Components.Icon.IconTypes.Calculator"
                     Text="Home"
                     Url="/"/>
     <NavigationItem ImageUrl="https://imgs.search.brave.com/yXHJ7mwmIZijJsNGuZDgbT98b0d1JxWnC9pOCNq6JSo/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudGhlbm91bnBy/b2plY3QuY29tL3Bu/Zy8xMzM3NTQ3LTIw/MC5wbmc"
@@ -61,7 +79,7 @@
 
 <FloatingActionButton BottomNavigationIsVisible=true
                       OnClick="FloatingActionButtonClick"
-                      ImageUrl="https://imgs.search.brave.com/jXtuoS1Ca1bUrwBJo9YJzqRGKNenA_rFGqhxzPU7xT4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuZHJ5aWNvbnMu/Y29tL3VwbG9hZHMv/aWNvbi9wcmV2aWV3/Lzk5MjEvc21hbGxf/MXhfYmU0Nzc2NTct/OTI3Ni00MjJiLWEy/YjAtMGM2N2Q1Mzll/MjNiLnBuZw" />
+                      Icon="BlazorFluentUI.Components.Icon.IconTypes.Bank" /> *@
 
 @* <PostButton Text="Post Btn" IsPrimary=true Style="background-color: green;" />
 <PostButton Text="Post Btn" IsPrimary=false />
@@ -278,6 +296,22 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
         Console.WriteLine("FloatingActionButtonClick");
     }
 
+    private List<string> temp1 = new List<string> {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    private List<string> temp2 = new List<string> {"1", "2", "3","4"};
+
+    private List<string> temp3 = new List<string>();
+
+    private async Task Change()
+    {
+        temp3 = new List<string>(temp2);
+        await Task.Delay(5_000);
+    }
+
+    protected override void OnInitialized()
+    {
+        temp3 = new List<string>(temp1);
+    }
+
     // public enum MemberSelectionType
     // {
     //     All,
@@ -364,9 +398,9 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     //     {
     //         return new List<BranchItem<string>>
     //         {
-                
+
     //         };
-    //     }
+        //     }
 
     // }
 
@@ -391,7 +425,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     //     else
     //     {
     //         ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new DarkThemePalette()));
-    //     }
+        //     }
 
     //     _isDark = !_isDark;
     // }
@@ -434,6 +468,6 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     // private void OnBlur(FocusEventArgs args)
     // {
     //     Console.Write(args);
-    // }
+        // }
 
 }

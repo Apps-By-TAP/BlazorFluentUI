@@ -1,0 +1,101 @@
+﻿@namespace AppsByTAP.BlazorFluentUI.Components.Spinner
+@inherits SpinnerViewModel
+
+<div class="wrapper @ClassName" style="display: @(IsLoading ? "flex" : "none"); flex: 1; @Style">
+    <div class="grid">
+        <span></span>
+
+        <div class="spinnerWrapper">
+            <div class="spinner @(_spinnerSizeClass)"></div>
+        </div>
+
+        <span></span>
+    </div>
+</div>
+
+<style>
+    
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.largeSpinner,
+.largeSpinner:after {
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+}
+
+.mediumSpinner,
+.mediumSpinner:after {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.smallSpinner,
+.smallSpinner:after {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.xsmallSpinner,
+.xsmallSpinner:after {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.spinner {
+    display: inline-block;
+    position: relative;
+    border-top: .18em solid var(--semanticTextColors-Link);
+    border-right: .18em solid var(--semanticColors-InputPlaceholderBackgroundChecked);
+    border-bottom: .18em solid var(--semanticColors-InputPlaceholderBackgroundChecked);
+    border-left: .18em solid var(--semanticColors-InputPlaceholderBackgroundChecked);
+    transform: translateZ(0);
+    animation-name: spin;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.53, .21, .29, .67);
+}
+
+@@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.label {
+    color: var(--semanticTextColors-Link);
+    margin: 10px;
+}
+
+.sideLabel {
+    display: flex;
+    align-items: center;
+}
+
+.spinnerWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middelLabel {
+    text-align: center;
+}
+
+</style>

@@ -1,7 +1,14 @@
-﻿
+﻿@using AppsByTAP.BlazorFluentUI.Components.Icon
 
 <div class="navItem" @onclick=Navigate>
-    <img src="@ImageUrl" width="24" height="24" />
+    @if(ICon != IconTypes.None)
+    {
+        <Icon IconType="@ICon" Style="width: 24px; height: 24px; text-align: center;" />
+    }
+    else
+    {
+        <img src="@ImageUrl" width="24" height="24" />
+    }
     <div>
         @Text
     </div>
@@ -17,6 +24,8 @@
     public string Text { get; set; }
     [Parameter]
     public string Url { get; set; }
+    [Parameter]
+    public IconTypes ICon { get; set; } = IconTypes.None;
 
     private void Navigate()
     {
