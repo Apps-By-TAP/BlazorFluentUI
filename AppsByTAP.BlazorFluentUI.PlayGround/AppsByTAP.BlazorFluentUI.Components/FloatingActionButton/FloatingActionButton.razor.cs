@@ -24,5 +24,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.FloatingActionButton
         public bool OnClickStopPropagation { get; set; } = true;
         [Parameter]
         public double IconCompressor { get; set; } = .1;
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
     }
 }

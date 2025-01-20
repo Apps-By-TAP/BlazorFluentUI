@@ -17,7 +17,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
         [Parameter]
         public string Label { get; set; }
 
-        private string _value;
+        private string _value = string.Empty;
         [Parameter]
         public string Value 
         {
@@ -55,6 +55,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
         [Parameter]
         public string Style { get; set; }
         [Parameter]
+        public int CharacterLimit { get; set; } = 0;
+        [Parameter]
         public double? Step { get; set; } = null;
 
         private Task<IJSObjectReference> _module;
@@ -77,5 +79,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
 
         [Parameter]
         public EventCallback<FocusEventArgs> OnBlur { get; set; }
+
     }
 }
