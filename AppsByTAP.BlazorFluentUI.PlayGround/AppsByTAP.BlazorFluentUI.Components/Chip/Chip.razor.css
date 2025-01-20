@@ -1,9 +1,9 @@
 ﻿
-.container, .thumbnail, .text, .removal {
+.thumbnail, .text, .removal {
     display: inline-block;
 }
 
-.container {
+.containerChip {
     border-radius: 16px;
     min-height: 32px;
     width: fit-content;
@@ -14,10 +14,10 @@
     border: 1px solid var(--semanticColors-ButtonBorder);
 }
 
-.container:hover {
-    background-color: var(--semanticColors-ButtonBackgroundHovered);
-    cursor: pointer;
-}
+    .containerChip:hover {
+        background-color: var(--semanticColors-ButtonBackgroundHovered);
+        cursor: pointer;
+    }
 
 .wrapper {
     display: flex;

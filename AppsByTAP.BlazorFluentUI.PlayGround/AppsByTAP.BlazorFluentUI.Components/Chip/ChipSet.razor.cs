@@ -21,10 +21,13 @@ namespace AppsByTAP.BlazorFluentUI.Components.Chip
                 if(_itemsSource == value) { return; }
 
                 _itemsSource = value;
+                ItemsSourceChanged.InvokeAsync(value);
 
                 GenerateChips();
             }
         }
+        [Parameter]
+        public EventCallback<List<T>> ItemsSourceChanged { get; set; }
 
         [Parameter]
         public T SelectedItem { get; set; }
@@ -36,6 +39,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.Chip
         public string Label { get; set; }
         [Parameter]
         public Func<string, T> CreateNewItem { get; set; }
+        [Parameter]
+        public string Watermark { get; set; } = "Comma Separated Values";
 
         protected List<ChipViewModel> _chips = new List<ChipViewModel>();
 

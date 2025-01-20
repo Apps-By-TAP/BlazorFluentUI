@@ -1,0 +1,14 @@
+﻿@using AppsByTAP.BlazorFluentUI.Components.Icon
+@using Microsoft.AspNetCore.Components.Routing
+@using AppsByTAP.BlazorFluentUI.Components.Spinner
+@namespace AppsByTAP.BlazorFluentUI.Components.Button
+@inherits BaseButton
+
+<NavLink href="@Href">
+    <BaseButton Text="@Text" IsPrimary="@IsPrimary" OnClick="OnClick" ClassName="@ClassName" Style="@Style" OnClickStopPropagation="@OnClickStopPropagation" Icon="@Icon" Disabled=Disabled ID="@ID" ShowIsBusy=@ShowIsBusy />
+</NavLink>
+
+@code{
+    [Parameter]
+    public string Href { get; set; }
+}

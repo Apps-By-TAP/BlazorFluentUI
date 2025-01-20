@@ -22,7 +22,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
             get => _selectedItem;
             set
             {
-                if (_selectedItem.Equals(value) && SelectedChoice is not null) { return; }
+                if (SelectedChoice is not null&& _selectedItem.Equals(value)) { return; }
 
                 _selectedItem = value;
                 SelectedItemChanged.InvokeAsync(value);

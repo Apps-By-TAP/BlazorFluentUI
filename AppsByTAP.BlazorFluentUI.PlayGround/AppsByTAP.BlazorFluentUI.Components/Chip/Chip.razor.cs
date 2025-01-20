@@ -9,8 +9,6 @@ namespace AppsByTAP.BlazorFluentUI.Components.Chip
     public class ChipViewModel : BaseComponentViewModel
     {
         [Parameter]
-        public string ID { get; set; }
-        [Parameter]
         public string Text { get; set; }
         [Parameter]
         public ChipType ChipType { get; set; }

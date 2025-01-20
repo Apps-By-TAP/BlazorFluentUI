@@ -1,6 +1,6 @@
 ﻿@inherits PostButtonViewModel
 
-<form action="@Url" method="POST" id="@FormID">
+<form action="@Url" method="POST" id="@FormID" class="@ClassName" style="@Style">
     @foreach(HiddenValue hv in HiddenValues)
     {
         <input type="hidden" name="@hv.Name" value="@hv.Value">

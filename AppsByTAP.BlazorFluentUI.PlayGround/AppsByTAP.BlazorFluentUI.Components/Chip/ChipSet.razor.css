@@ -19,10 +19,9 @@
     outline: none;
 }
 
-#customNotes {
+.customNotes {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     gap: 8px;
     min-height: 38px;
     margin: 10px;
@@ -31,5 +30,11 @@
 .customTagLabel {
     margin-right: 10px;
     align-self: flex-end;
+}
+
+.chipContainer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 

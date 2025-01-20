@@ -33,17 +33,22 @@ namespace AppsByTAP.BlazorFluentUI.Components.Modal
         [Parameter]
         public bool CanLightDismiss { get; set; } = true;
 
-
+        protected int _layer = 10;
         protected string _displayType;
 
-        protected async void Close(bool close)
+        protected override void OnAfterRender(bool firstRender)
         {
-            if(close)
+            if(firstRender) 
             {
-                ShowWindow = false;
-                await OnClose.InvokeAsync();
-                await ShowWindowChanged.InvokeAsync(false);
+                _layer = LayerCounter.GetLayer();
             }
+        }
+
+        protected async void Close()
+        {
+            ShowWindow = false;
+            await OnClose.InvokeAsync();
+            await ShowWindowChanged.InvokeAsync(false);
         }
     }
 }

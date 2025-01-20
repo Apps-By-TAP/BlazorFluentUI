@@ -54,6 +54,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
         public string Class { get; set; }
         [Parameter]
         public string Style { get; set; }
+        [Parameter]
+        public double? Step { get; set; } = null;
 
         private Task<IJSObjectReference> _module;
         private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/Mask.js";

@@ -4,7 +4,7 @@
     {
         <input id="@ID" @bind="@Value" class="textArea @Class" type="@Type.ToString()"
         style="@(!string.IsNullOrEmpty(MaxWidth) ? $"max-width: {MaxWidth};" : "") @(!string.IsNullOrEmpty(Width) ? $"width: {Width};": "") @(Height >= 0 ? $"height: {Height}px;" : "") @(!DisplayBorder ? "border: none;" : "") @Style" 
-        placeholder="@PlaceHolder" @onblur=OnBlur />
+        placeholder="@PlaceHolder" @onblur=OnBlur step="@Step" />
     }
     else
     {

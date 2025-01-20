@@ -65,9 +65,9 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         [Parameter]
         public bool IsMultiSelect { get; set; }
 
-        private IList<T> _selectedItems;
+        private IEnumerable<T> _selectedItems;
         [Parameter]
-        public IList<T> SelectedItems
+        public IEnumerable<T> SelectedItems
         {
             get => _selectedItems;
             set
@@ -83,7 +83,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 
                 _selectedItems = value;
 
-                if(SelectedItems.Count > 0)
+                if(SelectedItems.Count() > 0)
                 {
                     _selectedDisplayText = SelectedItems.Select(x => x.ToString()).Aggregate((x, y) => $"{x}, {y}");
 
@@ -101,7 +101,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         }
 
         [Parameter]
-        public EventCallback<IList<T>> SelectedItemsChanged { get; set; }
+        public EventCallback<IEnumerable<T>> SelectedItemsChanged { get; set; }
         [Parameter]
         public string Label { get; set; }
         [Parameter]
@@ -151,13 +151,15 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 
             if(tempItem is not null && args.IsChecked)
             {
-                IList<T> temp = SelectedItems;
+                IEnumerable<T> t = SelectedItems;
+                List<T> temp = new List<T>(t);
                 temp.Add(tempItem);
                 SelectedItems = new List<T>(temp);
             }
             else if(tempItem is not null)
             {
-                IList<T> temp = SelectedItems;
+                IEnumerable<T> t = SelectedItems;
+                List<T> temp = new List<T>(t);
                 temp.Remove(tempItem);
                 SelectedItems = new List<T>(temp);
             }

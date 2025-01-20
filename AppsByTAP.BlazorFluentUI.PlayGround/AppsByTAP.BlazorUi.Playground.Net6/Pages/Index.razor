@@ -13,8 +13,8 @@
 @using AppsByTAP.BlazorFluentUI.Components.Modal
 @using AppsByTAP.BlazorFluentUI.Components.CheckBox
 @using AppsByTAP.BlazorFluentUI.Components.Common
-@using AppsByTAP.BlazorFluentUI.Components.Chip
 *@
+@using AppsByTAP.BlazorFluentUI.Components.Chip
 @using AppsByTAP.BlazorFluentUI.Components.Tabs
 @using AppsByTAP.BlazorFluentUI.Components.SpinButton
 @*
@@ -32,9 +32,19 @@
 
 @* <SpinButton Type="SpinButtonType.Decimal" /> *@
 
-<HyperLinkButton ShowIsBusy=true Text="Hyper" IsBusyColor1="hotPink" />
+<AppsByTAP.BlazorFluentUI.Components.TextField.TextField Type="BlazorFluentUI.Components.TextField.TextFieldType.number" />
+<AppsByTAP.BlazorFluentUI.Components.TextField.TextField Type="BlazorFluentUI.Components.TextField.TextFieldType.number" Step=".01" />
+<AppsByTAP.BlazorFluentUI.Components.TextField.TextField Type="BlazorFluentUI.Components.TextField.TextFieldType.text" Step=".01" />
 
-<DefaultButton OnClick="Change" Text="Click Me" ShowIsBusy=true />
+<ChipSet ItemsSource="strs" ChipType="ChipType.Input" Label="Test" CreateNewItem="CreateNewItem" />
+
+<NavButton Text="Nav Btn" Href="/Settings" IsPrimary="true" />
+
+
+<HyperLinkButton ShowIsBusy=true Text="Hyper" IsBusyColor1="hotPink" />
+<HyperLinkButton ShowIsBusy=true Text="Hyper" IsBusyColor1="green" />
+
+<DefaultButton OnClick="Change" Text="Click Me" ShowIsBusy=true IsPrimary="true" />
 
 <AppsByTAP.BlazorFluentUI.Components.DropDown.DropDown IsMultiSelect=true ItemsSource="temp3" />
 
@@ -309,6 +319,12 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
         temp3 = new List<string>(temp1);
     }
 
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if(firstRender)
+            ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(new TestTheme()));
+    }
+
     // public enum MemberSelectionType
     // {
     //     All,
@@ -363,8 +379,8 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     //     new DropDownItem<string>("Item 8", DropDownItemType.Item)
     //                                 };
 
-    // List<string> strs = new List<string> { "Apple", "Banana", "Strawberry", "Blackberry", "Blueberry", "Raspberry", "Grapes", "Plum", "Pear" };
-    // List<string> selectedStrs = new List<string> { "Banana", "Strawberry" };
+     List<string> strs = new List<string> { "Apple", "Banana", "Strawberry", "Blackberry", "Blueberry", "Raspberry", "Grapes", "Plum", "Pear" };
+     List<string> selectedStrs = new List<string> { "Banana", "Strawberry" };
     // IList<string> selectedItemsStr = new List<string>() {"Strawberry"};
     // List<string> selectedItemsStr2 = new List<string>();
 
@@ -455,7 +471,7 @@ Selected Item: @((_selectedItem is not null ? _selectedItem : new DropDownItem<s
     //     Console.WriteLine("Edit the chip");
     // }
 
-    // public string CreateNewItem(string str) => str;
+     public string CreateNewItem(string str) => str;
 
     // private void SelectionChanged(char c)
     // {

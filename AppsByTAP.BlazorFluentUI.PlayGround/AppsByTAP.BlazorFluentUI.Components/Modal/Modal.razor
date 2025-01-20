@@ -1,18 +1,26 @@
 ﻿@namespace AppsByTAP.BlazorFluentUI.Components.Modal
 @inherits ModalViewModel
 
+@using AppsByTAP.BlazorFluentUI.Components.BaseComponent
 @using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.LightDismiss
 
 <div class="modal" style="display: @_displayType;">
-    <div class="modalClickToClose" @onclick="() => Close(CanLightDismiss)"></div>
+    @* <div class="modalClickToClose" @onclick="() => Close(CanLightDismiss)"></div> *@
+
+    @if (CanLightDismiss)
+    {
+        <LightDismiss @bind-IsOpen=ShowWindow OnClose="Close" Layer="@(_layer - 2)" />
+    }
+
     <div class="modalPositioner">
-        <div class="modal-content" style="width: @Width;">
+        <div class="modal-content" style="width: @Width; z-index: @_layer;">
 
             @if (ShowHeader)
             {
                 <div class="header">
                     <div style="flex: 1;">@Header</div>
-                    <DefaultButton @onclick="() => Close(true)" ClassName="close" Text="&times;" />
+                    <DefaultButton @onclick="Close" ClassName="close" Text="&times;" />
                 </div>
             }
 

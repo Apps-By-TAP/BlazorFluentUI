@@ -47,11 +47,28 @@ namespace AppsByTAP.BlazorFluentUI.Components.Button
         {
             if(firstRender && ShowIsBusy)
             {
-                await Task.Delay(100);
                 IJSObjectReference mod = await Module;
-                await mod.InvokeVoidAsync("registerEvent", _hyperID);
+                var css = $@"
+                .loading-{_hyperID}::after {{
+                    content: '';
+                    display: inline-block;
+                    width: 1em;
+                    height: 1em;
+                    margin-left: 5px;
+                    border: 2px solid {IsBusyColor1};
+                    border-top-color: {IsBusyColor2};
+                    border-radius: 50%;
+                    animation: spin 1s linear infinite;
+                    border-style: dotted;
+                }}
+            ";
+                await mod.InvokeVoidAsync("registerEvent", _hyperID, css);
+
+                await JSRuntime.InvokeVoidAsync("eval", $"var style = document.createElement('style'); style.innerHTML = `{css}`; document.head.appendChild(style);");
             }
         }
+
+        
     }
 
     public enum TargetTypes

@@ -27,6 +27,11 @@ namespace AppsByTAP.BlazorFluentUI.Components.Theme.Models
             _theme = CreateTheme(palette);
         }
 
+        public ThemeProvider(IPalette palette)
+        {
+            _theme = CreateTheme(palette);
+        }
+
         public Theme CreateTheme(IPalette palette)
         {
             bool isDark = palette is DarkThemePalette;
