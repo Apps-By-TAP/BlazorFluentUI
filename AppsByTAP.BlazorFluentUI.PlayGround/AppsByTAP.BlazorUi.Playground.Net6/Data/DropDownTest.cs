@@ -4,5 +4,7 @@
     {
         public string Header { get; set; }
         public string SubText { get; set; }
+
+        public override string ToString() => Header;
     }
 }

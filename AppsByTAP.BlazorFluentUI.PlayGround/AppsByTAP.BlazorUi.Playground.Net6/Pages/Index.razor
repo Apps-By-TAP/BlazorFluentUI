@@ -6,7 +6,7 @@
 
 @inject IThemeProvider ThemeProvider
 
-<DropDown TItem="DropDownTest" ItemsSource="_items">
+<DropDown TItem="DropDownTest" ItemsSource="_items" SelectedItem=_selectedItem>
     <ItemTemplate>
         <div>
             <h1>@context.Header</h1>
@@ -24,4 +24,7 @@
         new DropDownTest{ Header = "Hello3", SubText = "World3"},
         new DropDownTest{ Header = "Hello4", SubText = "World4"},
     };
+
+    private DropDownTest _selectedItem;
+
 }

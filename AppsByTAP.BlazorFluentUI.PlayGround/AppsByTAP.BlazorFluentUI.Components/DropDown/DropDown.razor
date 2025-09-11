@@ -27,13 +27,13 @@
                     {
                         @if (ItemTemplate is not null)
                         {
-                            <div class="item">
+                            <div class="item" @onclick="() => SelectItem(item)">
                                 @ItemTemplate(item.Item)
                             </div>
                         }
                         else
                         {
-                            <div class="item">@item.Item</div>
+                            <div class="item" @onclick="() => SelectItem(item)">@item.Item</div>
                         }
                     }
                 }
@@ -41,13 +41,13 @@
                 {
                     @if (ItemTemplate is not null)
                     {
-                        <div class="header">
+                        <div class="header" @onclick="() => SelectItem(item)">
                             @ItemTemplate(item.Item)
                         </div>
                     }
                     else
                     {
-                        <div class="header">@item.Item</div>
+                        <div class="header" @onclick="() => SelectItem(item)">@item.Item</div>
                     }
                 }
             }
