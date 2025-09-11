@@ -126,6 +126,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
 
         protected bool _displayDropDown = false;
         protected string _selectedDisplayText { get; set; } = "Select an option";
+        [Parameter]
+        public RenderFragment<T> ItemTemplate { get; set; } = null;
 
         protected override Task OnInitializedAsync()
         {
