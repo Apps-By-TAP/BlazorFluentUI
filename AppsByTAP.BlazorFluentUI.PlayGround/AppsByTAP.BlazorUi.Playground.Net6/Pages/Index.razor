@@ -3,8 +3,11 @@
 @using AppsByTAP.BlazorFluentUI.Components.DropDown
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Models
 @using AppsByTAP.BlazorUi.Playground.Net6.Data
+@using AppsByTAP.BlazorFluentUI.Components.TextField
 
 @inject IThemeProvider ThemeProvider
+
+<TextField Type="TextFieldType.number" @bind-Value=_binding />
 
 <DropDown TItem="DropDownTest" ItemsSource="_items" SelectedItem=_selectedItem>
     <ItemTemplate>
@@ -15,8 +18,11 @@
     </ItemTemplate>
 </DropDown>
 
+@_binding
+
 @code
 {
+    private string _binding;
     private List<DropDownTest> _items = new List<DropDownTest>
     {
         new DropDownTest{ Header = "Hello", SubText = "World"},
@@ -26,5 +32,14 @@
     };
 
     private DropDownTest _selectedItem;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if(firstRender)
+        {
+            _binding = "1";
+        }
+        StateHasChanged();
+    }
 
 }

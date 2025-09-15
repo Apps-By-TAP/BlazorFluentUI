@@ -19,17 +19,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
 
         private string _value = string.Empty;
         [Parameter]
-        public string Value 
-        {
-            get => _value;
-            set
-            {
-                if(_value == value) { return; }
-
-                _value = value;
-                ValueChanged.InvokeAsync(Value);
-            }
-        }
+        public string Value { get; set; } = string.Empty;
         [Parameter]
         public EventCallback<string> ValueChanged { get; set; }
         [Parameter]
@@ -77,8 +67,26 @@ namespace AppsByTAP.BlazorFluentUI.Components.TextField
             }
         }
 
+        protected override void OnParametersSet()
+        {
+            var incoming = Value ?? string.Empty;
+            if (!string.Equals(_value, incoming, StringComparison.Ordinal))
+                _value = incoming;
+        }
+
         [Parameter]
         public EventCallback<FocusEventArgs> OnBlur { get; set; }
+
+        private async Task OnInput(ChangeEventArgs e)
+        {
+            var newVal = e?.Value?.ToString() ?? string.Empty;
+            if (string.Equals(_value, newVal, StringComparison.Ordinal))
+                return;
+
+            _value = newVal;                      // update local immediately for snappy UI
+            await ValueChanged.InvokeAsync(newVal); // parent re-render happens automatically
+                                                    // no StateHasChanged()
+        }
 
     }
 }
