@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
 {
@@ -17,36 +18,37 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
 
         private int _wholeValue;
         [Parameter]
-        public int WholeValue 
-        {
-            get => _wholeValue;
-            set
-            {
-                if(_wholeValue == value) { return; }
+        public int WholeValue { get; set; }
+        //{
+        //    get => _wholeValue;
+        //    set
+        //    {
+        //        if(_wholeValue == value) { return; }
 
-                _wholeValue = value;
-                WholeValueChanged.InvokeAsync(value);
-                DisplayValue = $"{_wholeValue} {Suffix}";
-            }
+        //        _wholeValue = value;
+        //        WholeValueChanged.InvokeAsync(value);
+        //        DisplayValue = $"{_wholeValue} {Suffix}";
+        //    }
         
-        }
+        //}
+
         [Parameter]
         public EventCallback<int> WholeValueChanged { get; set; }
 
         private double _decimalValue;
         [Parameter]
-        public double DecimalValue 
-        {
-            get => _decimalValue;
-            set
-            {
-                if(_decimalValue == value) { return; }
+        public double DecimalValue { get; set; }
+        //{
+        //    get => _decimalValue;
+        //    set
+        //    {
+        //        if(_decimalValue == value) { return; }
 
-                _decimalValue = value;
-                DecimalValueChanged.InvokeAsync(value);
-                DisplayValue = $"{_decimalValue} {Suffix}";
-            }
-        }
+        //        _decimalValue = value;
+        //        DecimalValueChanged.InvokeAsync(value);
+        //        DisplayValue = $"{_decimalValue} {Suffix}";
+        //    }
+        //}
 
         [Parameter]
         public EventCallback<double> DecimalValueChanged { get; set; }
@@ -81,16 +83,25 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
                 if(match.Success)
                 {
                     string decodedVal = match.Groups[0].Value;
-                    _displayValue = decodedVal + " " + Suffix;
+
+                    if(Suffix is not null)
+                        _displayValue = decodedVal + " " + Suffix;
 
                     if(Type == SpinButtonType.Whole)
                     {
+                        if(decodedVal.Contains("."))
+                        {
+                            decodedVal = Math.Floor(Math.Round(double.Parse(decodedVal), 1)).ToString();
+                        }
+
                         WholeValue = int.Parse(decodedVal);
+                        WholeValueChanged.InvokeAsync(WholeValue);
                     }
                     else
                     {
                         DecimalValue = Math.Round(double.Parse(decodedVal), RoundingPlaces);
                         decodedVal = _decimalValue.ToString();
+                        DecimalValueChanged.InvokeAsync(DecimalValue);  
                     }
 
                     _displayValue = decodedVal + " " + Suffix;
@@ -105,7 +116,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
                 IncrementAmount = Type == SpinButtonType.Whole ? 1d : .1;
             }
 
-            DisplayValue = Type == SpinButtonType.Whole ? WholeValue.ToString() : DecimalValue.ToString();
+            _displayValue = Type == SpinButtonType.Whole ? WholeValue.ToString() : DecimalValue.ToString();
         }
 
         private void OnMouseWheel(WheelEventArgs args)
@@ -127,7 +138,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
                 if(WholeValue + IncrementAmount <= MaxValue)
                 {
                     WholeValue += (int)Math.Round(IncrementAmount);
-                    await OnIncrement.InvokeAsync(WholeValue);
+                    //await OnIncrement.InvokeAsync(WholeValue);
+                    DisplayValue = WholeValue.ToString();
                 }
             }
             else
@@ -135,7 +147,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
                 if(DecimalValue + IncrementAmount <= MaxValue)
                 {
                     DecimalValue += IncrementAmount;
-                    await OnIncrement.InvokeAsync(DecimalValue);
+                    //await OnIncrement.InvokeAsync(DecimalValue);
+                    DisplayValue = DecimalValue.ToString();
                 }
             }
         }
@@ -147,7 +160,8 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
                 if(WholeValue - IncrementAmount >= MinValue)
                 {
                     WholeValue -= (int)Math.Round(IncrementAmount);
-                    await OnDecrement.InvokeAsync(WholeValue);
+                   // await OnDecrement.InvokeAsync(WholeValue);
+                    DisplayValue = WholeValue.ToString();
                 }
             }
             else
@@ -155,9 +169,11 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
                 if(DecimalValue - IncrementAmount >= MinValue)
                 {
                     DecimalValue -= IncrementAmount;
-                    await OnDecrement.InvokeAsync(DecimalValue);
+                   // await OnDecrement.InvokeAsync(DecimalValue);
+                    DisplayValue = DecimalValue.ToString();
                 }
             }
         }
+
     }
 }

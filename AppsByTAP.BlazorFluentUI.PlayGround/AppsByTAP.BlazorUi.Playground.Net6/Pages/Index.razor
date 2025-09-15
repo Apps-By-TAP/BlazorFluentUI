@@ -4,10 +4,11 @@
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Models
 @using AppsByTAP.BlazorUi.Playground.Net6.Data
 @using AppsByTAP.BlazorFluentUI.Components.TextField
+@using AppsByTAP.BlazorFluentUI.Components.SpinButton
 
 @inject IThemeProvider ThemeProvider
 
-<TextField Type="TextFieldType.number" @bind-Value=_binding />
+<SpinButton @bind-WholeValue=_bindingI IncrementAmount="1" />
 
 <DropDown TItem="DropDownTest" ItemsSource="_items" SelectedItem=_selectedItem>
     <ItemTemplate>
@@ -19,10 +20,13 @@
 </DropDown>
 
 @_binding
+<br />
+@_bindingI
 
 @code
 {
     private string _binding;
+    private int _bindingI = 1;
     private List<DropDownTest> _items = new List<DropDownTest>
     {
         new DropDownTest{ Header = "Hello", SubText = "World"},
@@ -38,6 +42,7 @@
         if(firstRender)
         {
             _binding = "1";
+            _bindingI = 2;
         }
         StateHasChanged();
     }
