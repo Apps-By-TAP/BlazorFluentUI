@@ -5,12 +5,16 @@
 @using AppsByTAP.BlazorUi.Playground.Net6.Data
 @using AppsByTAP.BlazorFluentUI.Components.TextField
 @using AppsByTAP.BlazorFluentUI.Components.SpinButton
+@using AppsByTAP.BlazorFluentUI.Components.Button
 
 @inject IThemeProvider ThemeProvider
 
-<SpinButton @bind-WholeValue=_bindingI IncrementAmount="1" />
+<SplitButton Width="200px" TItem="string" ItemsSource="_options" @bind-SelectedItem="@_selectedOption" OnClick="Click" />
+@_selectedOption
 
-<DropDown TItem="DropDownTest" ItemsSource="_items" SelectedItem=_selectedItem>
+<DefaultButton Text="Option 1" IsPrimary="true"  />
+
+<DropDown TItem="DropDownTest" ItemsSource="_items" @bind-SelectedItem=_selectedItem>
     <ItemTemplate>
         <div>
             <h1>@context.Header</h1>
@@ -18,6 +22,11 @@
         </div>
     </ItemTemplate>
 </DropDown>
+<br />
+@if(_selectedItem is not null)
+{
+    @_selectedItem.Header
+}
 
 @_binding
 <br />
@@ -25,6 +34,12 @@
 
 @code
 {
+    private List<string> _options = new List<string>
+    {
+        "a","b","c"
+
+    };
+    private string _selectedOption = "";
     private string _binding;
     private int _bindingI = 1;
     private List<DropDownTest> _items = new List<DropDownTest>
@@ -45,6 +60,11 @@
             _bindingI = 2;
         }
         StateHasChanged();
+    }
+
+    private void Click()
+    {
+        _selectedOption = "d";
     }
 
 }
