@@ -19,6 +19,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.Button
         public EventCallback<T> SelectedItemChanged { get; set; }
         [Parameter]
         public List<T> ItemsSource { get; set; }
+        [Parameter]
+        public RenderFragment<T> SelectedItemTemplate { get; set; }
+        [Parameter]
+        public RenderFragment<T> DropDownTemplate { get; set; }
 
         protected readonly string _id = Guid.NewGuid().ToString();
         protected bool _isOpen;

@@ -1,0 +1,65 @@
+﻿.splitButtonContainer {
+    display: inline-flex;
+    flex-direction: row;
+    border: 1px solid var(--semanticColors-ButtonBorder);
+    border-radius: 2px;
+    font-size: 14px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    background-color: var(--semanticColors-PrimaryButtonBackground);
+    color: var(--semanticTextColors-PrimaryButtonText);
+}
+
+.mainBtn:active:not(.disabled), .arrowBtn:active:not(.disabled) {
+    background-color: var(--semanticColors-PrimaryButtonBackgroundPressed);
+}
+
+.mainBtn:hover:not(.disabled), .arrowBtn:hover:not(.disabled) {
+    background-color: var(--semanticColors-PrimaryButtonBackgroundHovered);
+}
+
+.disabled {
+    background-color: var(--semanticColors-ListItemBackgroundCheckedHovered);
+    border: none;
+    color: var(--semanticTextColors-DisabledText);
+}
+
+.mainBtn {
+    padding: 5px 21px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrowBtn {
+    transform: rotate(90deg);
+    border-bottom: 1px solid var(--palette-NeutralPrimary);
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listContainter {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    padding: 5px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+    .item:hover {
+        background-color: var(--semanticColors-ListItemBackgroundHovered);
+    }

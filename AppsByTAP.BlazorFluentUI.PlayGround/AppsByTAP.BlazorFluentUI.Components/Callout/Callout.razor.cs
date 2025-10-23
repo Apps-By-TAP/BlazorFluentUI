@@ -61,9 +61,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.Callout
         private const string ImportPath = "./_content/AppsByTAP.BlazorFluentUI.Components/js/Callout.js";
         private Task<IJSObjectReference> Module => _module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", ImportPath).AsTask();
 
+        private bool _secondRender;
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-
             if (firstRender)
             {
                 _display = "default";
@@ -74,7 +75,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Callout
 
                 int left = (int)await mod.InvokeAsync<double>("getNewLeftLocation", _id, TargetID);
 
-                _left = left.ToString() == "0" ? "default" : left.ToString() + "px";
+                _left = left.ToString()+ "px";
 
                 StateHasChanged();
             }
