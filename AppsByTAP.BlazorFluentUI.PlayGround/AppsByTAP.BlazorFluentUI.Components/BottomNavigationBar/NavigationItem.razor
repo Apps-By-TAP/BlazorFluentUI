@@ -1,13 +1,13 @@
 ﻿@using AppsByTAP.BlazorFluentUI.Components.Icon
 
-<div class="navItem" @onclick=Navigate>
+<div class="navItem @(IsActive ? "navItem-active" : "")" @onclick=Navigate>
     @if(ICon != IconTypes.None)
     {
         <Icon IconType="@ICon" Style="width: 24px; height: 24px; text-align: center;" />
     }
     else
     {
-        <img src="@ImageUrl" width="24" height="24" />
+        <img src="@(IsActive && ActiveImageUrl is not null ? ActiveImageUrl : ImageUrl)" width="24" height="24" />
     }
     <div>
         @Text
@@ -26,6 +26,10 @@
     public string Url { get; set; }
     [Parameter]
     public IconTypes ICon { get; set; } = IconTypes.None;
+    [Parameter]
+    public bool IsActive { get; set; }
+    [Parameter]
+    public string ActiveImageUrl { get; set; }
 
     private void Navigate()
     {
@@ -49,5 +53,11 @@
 
     .navItem:hover {
         background-color: var(--semanticColors-ListItemBackgroundHovered);
+    }
+
+    .navItem-active {
+        border-top: 3px solid var(--palette-ThemePrimary, #0078d4);
+        color: var(--palette-ThemePrimary, #0078d4);
+        padding-top: 5px;
     }
 </style>
