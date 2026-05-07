@@ -23,7 +23,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Button
         public bool Disabled { get; set; }
         [Parameter]
         public bool ShowIsBusy { get; set; }
-        protected bool IsBusy { get; set; }
+        public bool IsBusy { get; set; }
 
         protected async void OnClickInternal(MouseEventArgs args)
         {
