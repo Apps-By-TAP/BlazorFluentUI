@@ -99,12 +99,15 @@ namespace AppsByTAP.BlazorFluentUI.Components.SpinButton
                     }
                     else
                     {
-                        DecimalValue = Math.Round(double.Parse(decodedVal), RoundingPlaces);
-                        decodedVal = _decimalValue.ToString();
-                        DecimalValueChanged.InvokeAsync(DecimalValue);  
+                        if (double.TryParse(decodedVal, out double parsed))
+                        {
+                            DecimalValue = Math.Round(parsed, RoundingPlaces);
+                            decodedVal = DecimalValue.ToString();
+                            DecimalValueChanged.InvokeAsync(DecimalValue);
+                        }
                     }
 
-                    _displayValue = decodedVal + " " + Suffix;
+                    _displayValue = Suffix is not null ? decodedVal + " " + Suffix : decodedVal;
                 }
             }
         }
