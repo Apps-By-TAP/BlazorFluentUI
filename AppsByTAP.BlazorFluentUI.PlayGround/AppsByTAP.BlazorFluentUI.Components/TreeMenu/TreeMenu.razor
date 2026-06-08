@@ -7,7 +7,7 @@
     <CascadingValue Value="this">
         @foreach(T item in Items)
         {
-            <BranchComponent T="T" BranchRoot="@(new Branch<T>(item, true, new List<BranchItem<T>>(), null))" />
+            <BranchComponent T="T" BranchRoot="@(new Branch<T>(item, true, new List<BranchItem<T>>(), null))" BranchDisplay="BranchDisplay" />
         }
     </CascadingValue>
 </div>
@@ -35,6 +35,9 @@
     }
     [Parameter]
     public EventCallback<T> SelectedItemChanged { get; set; }
+
+    [Parameter]
+    public RenderFragment<Branch<T>> BranchDisplay { get; set; }
 
     public event Action<Branch<T>> SelectionChanged_ChildUpdate;
 

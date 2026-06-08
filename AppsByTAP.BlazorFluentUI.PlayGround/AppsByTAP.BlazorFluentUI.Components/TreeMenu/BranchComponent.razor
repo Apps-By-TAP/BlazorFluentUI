@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using AppsByTAP.BlazorFluentUI.Components.Spinner
 
 @namespace AppsByTAP.BlazorFluentUI.Components.TreeMenu
 @typeparam T
+@implements IDisposable
 
 <div>
     <div class="level @(_isSelected ? "selected" : "")">
@@ -9,20 +11,26 @@
             <AppsByTAP.BlazorFluentUI.Components.Icon.Icon IconType="Icon.IconTypes.ChevronUp" ClassName=@_class Style="display: inline-block" />
         </div>
         <div @onclick=Select style="flex: 1; margin-left: 5px;">
-            @BranchRoot.RootItem
+            @if (BranchDisplay is not null)
+            {
+                @BranchDisplay(BranchRoot)
+            }
+            else
+            {
+                @BranchRoot.RootItem
+            }
         </div>
     </div>
-    <div style="display: @(isExpanded ? "visible" : "none"); padding-left: 20px;">
-        <Virtualize TItem="BranchItem<T>" ItemsProvider="LoadTree" Context="BranchItem">
+    <div style="display: @(isExpanded ? "block" : "none"); padding-left: 20px;">
+        @if (_isLoading && !_hasLoadedOnce)
+        {
+            <div style="padding: 5px 0;">
+                <TinySpinner Size="SpinnerSize.xSmall" IsLoading="true" />
+            </div>
+        }
+        <Virtualize @ref="_virtualizeRef" TItem="BranchItem<T>" ItemsProvider="LoadTree" Context="BranchItem">
             <ItemContent>
-                @if (BranchItem.IsExpandable)
-                {
-                    <BranchComponent BranchRoot="@(new Branch<T>(BranchItem.RootItem, BranchItem.IsExpandable, new List<BranchItem<T>>(), BranchRoot))" T="T" />
-                }
-                else
-                {
-                    <div>@BranchItem.RootItem</div>
-                }
+                <BranchComponent BranchRoot="@(new Branch<T>(BranchItem.RootItem, BranchItem.IsExpandable, new List<BranchItem<T>>(), BranchRoot))" BranchDisplay="BranchDisplay" T="T" />
             </ItemContent>
         </Virtualize>
     </div>
@@ -35,12 +43,22 @@
     private bool _showArrow = true;
 
     private bool _hideArrow = false;
+    private bool _isLoading = false;
+    private bool _hasLoadedOnce = false;
+    private int _retryCount = 0;
+    private const int MaxRetries = 3;
+    private System.Threading.CancellationTokenSource _retryCts;
+    private Virtualize<BranchItem<T>> _virtualizeRef;
+    private List<BranchItem<T>> _cachedItems = null;
 
     private string _class = "arrow";
     private bool _isSelected;
 
     [Parameter]
     public Branch<T> BranchRoot { get; set; }
+    
+    [Parameter]
+    public RenderFragment<Branch<T>> BranchDisplay { get; set; }
 
 
     [CascadingParameter]
@@ -58,25 +76,78 @@
 
     private async ValueTask<ItemsProviderResult<BranchItem<T>>> LoadTree(ItemsProviderRequest request)
     {
+        // If we have cached items, return them immediately
+        if (_cachedItems != null)
+        {
+            var requestedItems = _cachedItems.Skip(request.StartIndex).Take(request.Count);
+            return new ItemsProviderResult<BranchItem<T>>(requestedItems, _cachedItems.Count);
+        }
+
+        // Only set loading state and do retries for the initial request
+        if (request.StartIndex == 0)
+        {
+            _isLoading = true;
+            await InvokeAsync(() => StateHasChanged());
+        }
+
         IEnumerable<BranchItem<T>> items = Parent.GetItems?.Invoke(request, BranchRoot.RootItem) ?? Enumerable.Empty<BranchItem<T>>();
+        var itemsList = items.ToList();
+        int count = itemsList.Count;
 
-        int count = items.Count();
+        // Only retry on the initial request (StartIndex == 0) to avoid duplicate retries
+        if (request.StartIndex == 0)
+        {
+            // If we get 0 items on first load and haven't exceeded retry limit,
+            // retry after a delay to allow async cache to populate
+            if (count == 0 && !_hasLoadedOnce && _retryCount < MaxRetries)
+            {
+                _retryCount++;
+                _retryCts?.Cancel();
+                _retryCts = new System.Threading.CancellationTokenSource();
+                
+                // Retry after a short delay
+                _ = Task.Delay(300 * _retryCount, _retryCts.Token).ContinueWith(async _ => 
+                {
+                    if (!_retryCts.Token.IsCancellationRequested && _virtualizeRef != null)
+                    {
+                        // Clear cached items to force reload
+                        _cachedItems = null;
+                        // Trigger Virtualize to refresh by calling RefreshDataAsync
+                        await _virtualizeRef.RefreshDataAsync();
+                        await InvokeAsync(() => StateHasChanged());
+                    }
+                }, TaskScheduler.Default);
+            }
+            else if (count > 0)
+            {
+                _hasLoadedOnce = true;
+                _hideArrow = false;
+                _retryCount = 0; // Reset retry count on success
+                _cachedItems = itemsList; // Cache the items
+            }
+            else if (_retryCount >= MaxRetries)
+            {
+                // Tried enough times, folder is truly empty
+                _hasLoadedOnce = true;
+                _hideArrow = true;
+                _cachedItems = new List<BranchItem<T>>(); // Cache empty list
+            }
 
-        _hideArrow = count == 0;
+            _isLoading = false;
+            await InvokeAsync(() => StateHasChanged());
+        }
 
-        await InvokeAsync(() => StateHasChanged());
-
-        return new ItemsProviderResult<BranchItem<T>>(items, count);
+        return new ItemsProviderResult<BranchItem<T>>(itemsList, count);
     }
 
     private void OnClick()
     {
-        if (BranchRoot.IsExpandable && !_hideArrow)
+        // Allow toggling if expandable and either arrow is visible or we're currently expanded
+        if (BranchRoot.IsExpandable && (!_hideArrow || isExpanded))
         {
             isExpanded = !isExpanded;
+            _class = isExpanded ? "arrow expanded" : "arrow";
         }
-
-        _class = isExpanded ? "arrow expanded" : "arrow";
     }
 
     private void Select()
@@ -88,6 +159,16 @@
     {
         _isSelected = selectedValue.Equals(BranchRoot);
         await InvokeAsync(() => StateHasChanged());
+    }
+
+    public void Dispose()
+    {
+        _retryCts?.Cancel();
+        _retryCts?.Dispose();
+        if (Parent != null)
+        {
+            Parent.SelectionChanged_ChildUpdate -= Parent_SelectionChanged_ChildUpdate;
+        }
     }
 
 }
