@@ -1,0 +1,167 @@
+@page "/components/lightdismiss"
+@using AppsByTAP.BlazorFluentUI.Components.LightDismiss
+@using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.Modal
+
+<PageTitle>LightDismiss</PageTitle>
+
+<h1>LightDismiss Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic LightDismiss</h3>
+            <p>Backdrop overlay that closes when clicked.</p>
+            <DefaultButton Text="Open Overlay" OnClick="@(() => _isOpen = true)" />
+            
+            @if (_isOpen)
+            {
+                <LightDismiss IsOpen="@_isOpen" OnClose="@(() => _isOpen = false)" />
+                <div class="overlay-content">
+                    <p>This is an overlay content.</p>
+                    <p>Click anywhere outside to dismiss.</p>
+                    <DefaultButton Text="Close Manually" OnClick="@(() => _isOpen = false)" />
+                </div>
+            }
+        </div>
+
+        <div class="demo-card">
+            <h3>Custom Layer</h3>
+            <p>LightDismiss with custom z-index layering.</p>
+            <DefaultButton Text="Open High Layer" OnClick="@(() => _isOpenHigh = true)" />
+            
+            @if (_isOpenHigh)
+            {
+                <LightDismiss IsOpen="@_isOpenHigh" OnClose="@(() => _isOpenHigh = false)" Layer="1000" />
+                <div class="overlay-content">
+                    <p>This overlay is on a higher z-index layer.</p>
+                    <DefaultButton Text="Close" OnClick="@(() => _isOpenHigh = false)" />
+                </div>
+            }
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Control LightDismiss state programmatically.</p>
+            <DefaultButton Text="Open" OnClick="@(() => _isOpenInteractive = true)" />
+            <DefaultButton Text="Close" OnClick="@(() => _isOpenInteractive = false)" />
+            
+            @if (_isOpenInteractive)
+            {
+                <LightDismiss IsOpen="@_isOpenInteractive" OnClose="@(() => _isOpenInteractive = false)" />
+                <div class="overlay-content">
+                    <p>This overlay can be closed by clicking outside or using the button.</p>
+                    <DefaultButton Text="Close" OnClick="@(() => _isOpenInteractive = false)" />
+                </div>
+            }
+        </div>
+
+        <div class="demo-card">
+            <h3>With Modal</h3>
+            <p>LightDismiss used in combination with Modal.</p>
+            <DefaultButton Text="Open Modal" OnClick="@(() => _showModal = true)" />
+            
+            <Modal @bind-ShowWindow="@_showModal" Width="500px">
+                <Header>
+                    <h3>Modal with LightDismiss</h3>
+                </Header>
+                <Content>
+                    <p>This modal uses LightDismiss internally for the backdrop.</p>
+                    <p>Click outside or press Escape to close.</p>
+                    <DefaultButton Text="Close" IsPrimary="true" OnClick="@(() => _showModal = false)" />
+                </Content>
+            </Modal>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The LightDismiss component provides a backdrop overlay used internally by Modal and BlankDropDown. It creates a dimmed backdrop that covers the page content, with the ability to dismiss the overlay by clicking outside the content area.</p>
+    <p>LightDismiss is useful for custom overlay scenarios where you need a dismissible backdrop without using a full modal dialog.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Custom overlay panels</li>
+        <li>Side navigation drawers</li>
+        <li>Popup menus and context menus</li>
+        <li>Information overlays</li>
+        <li>Backdrop for custom dialogs</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>IsOpen</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Visibility state (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>OnClose</code></td>
+                <td>EventCallback</td>
+                <td>—</td>
+                <td>Fires when the backdrop is clicked</td>
+            </tr>
+            <tr>
+                <td><code>Layer</code></td>
+                <td>int</td>
+                <td>—</td>
+                <td>CSS z-index for layering</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private bool _isOpen = false;
+    private bool _isOpenHigh = false;
+    private bool _isOpenInteractive = false;
+    private bool _showModal = false;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.LightDismiss
+
+@* Basic LightDismiss *@
+@if (isOpen)
+{
+    <LightDismiss IsOpen=""@isOpen"" OnClose=""@(() => isOpen = false)"" />
+    <div class=""overlay-content"">
+        <p>Overlay content here.</p>
+    </div>
+}";
+}

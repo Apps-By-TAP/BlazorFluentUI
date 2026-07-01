@@ -1,0 +1,407 @@
+@page "/"
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>Home - BlazorFluentUI</PageTitle>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>BlazorFluentUI</h1>
+        <p class="hero-subtitle">A comprehensive Fluent UI component library for Blazor applications</p>
+        <div class="hero-actions">
+            <a href="/components/button" class="hero-primary-btn">Explore Components</a>
+        </div>
+    </div>
+</section>
+
+<!-- Component Grid -->
+<section class="component-overview">
+    <h2>Component Library</h2>
+    <p class="overview-description">
+        BlazorFluentUI provides a complete set of Microsoft Fluent UI components for Blazor applications.
+        Explore each component below to see interactive demos and documentation.
+    </p>
+
+    <div class="component-grid">
+        <!-- Inputs -->
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/textfield">TextField</a></h3>
+            <p>Input field for text entry with validation, masks, and character limits.</p>
+            <a href="/components/textfield" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
+                </svg>
+            </div>
+            <h3><a href="/components/dropdown">DropDown</a></h3>
+            <p>Select from a list of options with single or multi-selection support.</p>
+            <a href="/components/dropdowndemo" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a2 2 0 012 2v1h1a2 2 0 110 4h-1v1a2 2 0 110 4h-1v1a2 2 0 110 4h-1V2a2 2 0 012-2zm-6 8a2 2 0 11-4 0 2 2 0 014 0z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/spinbutton">SpinButton</a></h3>
+            <p>Numeric input with increment/decrement buttons for precise value selection.</p>
+            <a href="/components/spinbutton" class="card-link">View Demo →</a>
+        </div>
+
+        <!-- Selection -->
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/checkbox">CheckBox</a></h3>
+            <p>Toggle selection with checkbox controls in various layouts.</p>
+            <a href="/components/checkbox" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/checkboxgroup">CheckboxGroup</a></h3>
+            <p>Group checkboxes together for related selections.</p>
+            <a href="/components/checkboxgroup" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7 2a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7zm3 14a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/toggle">Toggle</a></h3>
+            <p>On/off switch for settings and preferences.</p>
+            <a href="/components/toggledemo" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
+                </svg>
+            </div>
+            <h3><a href="/components/choicegroup">ChoiceGroup</a></h3>
+            <p>Radio button group for mutually exclusive selections.</p>
+            <a href="/components/choicegroup" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
+                </svg>
+            </div>
+            <h3><a href="/components/chipset">ChipSet</a></h3>
+            <p>Chips for selecting options, filters, or entering data.</p>
+            <a href="/components/chipset" class="card-link">View Demo →</a>
+        </div>
+
+        <!-- Buttons -->
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
+                </svg>
+            </div>
+            <h3><a href="/components/button">Button</a></h3>
+            <p>Primary action buttons with various styles and states.</p>
+            <a href="/components/button" class="card-link">View Demo →</a>
+        </div>
+
+        <!-- Layout -->
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/tabs">Tabs</a></h3>
+            <p>Tabbed content navigation for organizing related content.</p>
+            <a href="/components/tabs" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/expander">Expander</a></h3>
+            <p>Collapsible panels that show/hide content on demand.</p>
+            <a href="/components/expander" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zm7-10a2 2 0 012 2v1h1a2 2 0 110 4h-1v1a2 2 0 110 4h-1v1a2 2 0 110 4h-1V2a2 2 0 012-2z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/treemenu">TreeMenu</a></h3>
+            <p>Hierarchical menu for displaying nested content structures.</p>
+            <a href="/components/treemenu" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 1H4v8h12V6z" />
+                </svg>
+            </div>
+            <h3><a href="/components/bottomnavigationbar">BottomNavigationBar</a></h3>
+            <p>Mobile-style navigation bar for primary app sections.</p>
+            <a href="/components/bottomnavigationbar" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/fittext">FitText</a></h3>
+            <p>Text that automatically scales to fit its container width.</p>
+            <a href="/components/fittext" class="card-link">View Demo →</a>
+        </div>
+
+        <!-- Overlays -->
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/modal">Modal</a></h3>
+            <p>Dialog overlay for important actions and confirmations.</p>
+            <a href="/components/modal" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/callout">Callout</a></h3>
+            <p>Popup tooltip with rich content for additional information.</p>
+            <a href="/components/callout" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/lightdismiss">LightDismiss</a></h3>
+            <p>Backdrop overlay with dismissible click-outside behavior.</p>
+            <a href="/components/lightdismiss" class="card-link">View Demo →</a>
+        </div>
+
+        <!-- Display -->
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/spinner">Spinner</a></h3>
+            <p>Loading indicator for async operations and content loading.</p>
+            <a href="/components/spinner" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/icon">Icon</a></h3>
+            <p>Office Fabric icon set for visual communication in the interface.</p>
+            <a href="/components/icon" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/persona">Persona</a></h3>
+            <p>User avatar with name, title, and auto-generated initials.</p>
+            <a href="/components/persona" class="card-link">View Demo →</a>
+        </div>
+
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/label">Label</a></h3>
+            <p>Form labels and section headers following Fluent Design guidelines.</p>
+            <a href="/components/label" class="card-link">View Demo →</a>
+        </div>
+
+        <!-- Special -->
+        <div class="component-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zm7-10a2 2 0 012 2v1h1a2 2 0 110 4h-1v1a2 2 0 110 4h-1v1a2 2 0 110 4h-1V2a2 2 0 012-2zm-6 8a2 2 0 11-4 0 2 2 0 014 0z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <h3><a href="/components/blanckdropdown">BlankDropDown</a></h3>
+            <p>Lower-level dropdown with full control over display and content.</p>
+            <a href="/components/blanckdropdown" class="card-link">View Demo →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="home-footer">
+    <p>BlazorFluentUI - Microsoft Fluent UI Components for Blazor</p>
+</footer>
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, var(--semanticColors-PrimaryButtonBackground), var(--semanticColors-PrimaryButtonBackgroundHovered));
+        color: var(--semanticTextColors-PrimaryButtonText);
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 16px;
+        font-weight: 600;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        margin-bottom: 32px;
+    }
+
+    .hero-primary-btn {
+        display: inline-block;
+        padding: 12px 32px;
+        background: var(--semanticColors-BodyBackground);
+        color: var(--semanticColors-PrimaryButtonBackground);
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: background 0.2s;
+    }
+
+    .hero-primary-btn:hover {
+        background: var(--semanticColors-BodyBackgroundHovered);
+    }
+
+    .component-overview {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 48px 20px;
+    }
+
+    .component-overview h2 {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+
+    .overview-description {
+        color: var(--semanticTextColors-SecondaryText);
+        margin-bottom: 32px;
+        font-size: 1.1rem;
+    }
+
+    .component-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+    }
+
+    .component-card {
+        background: var(--semanticColors-BodyBackground);
+        border: 1px solid var(--semanticColors-BodyDivider);
+        border-radius: 8px;
+        padding: 24px;
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .component-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .card-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--semanticColors-BodyBackgroundHovered);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+    }
+
+    .card-icon svg {
+        width: 24px;
+        height: 24px;
+        color: var(--semanticColors-MenuIcon);
+    }
+
+    .component-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+    }
+
+    .component-card h3 a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .component-card h3 a:hover {
+        color: var(--semanticColors-MenuIcon);
+    }
+
+    .component-card p {
+        color: var(--semanticTextColors-SecondaryText);
+        margin-bottom: 16px;
+        font-size: 0.95rem;
+    }
+
+    .card-link {
+        color: var(--semanticColors-MenuIcon);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .card-link:hover {
+        text-decoration: underline;
+    }
+
+    .home-footer {
+        text-align: center;
+        padding: 32px 20px;
+        border-top: 1px solid var(--semanticColors-BodyDivider);
+        color: var(--semanticTextColors-SecondaryText);
+    }
+</style>

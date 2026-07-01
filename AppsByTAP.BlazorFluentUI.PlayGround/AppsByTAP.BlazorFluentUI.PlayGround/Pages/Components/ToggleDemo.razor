@@ -1,0 +1,176 @@
+@page "/components/toggledemo"
+@using AppsByTAP.BlazorFluentUI.Components.Toggle
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>Toggle</PageTitle>
+
+<h1>Toggle Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Toggle</h3>
+            <p>Simple toggle switch.</p>
+            <Toggle @bind-IsChecked="@_basicToggle" />
+            <p class="demo-info">State: @_basicToggle</p>
+        </div>
+
+            <div class="demo-card">
+            <h3>Toggle with Label</h3>
+            <p>Toggle with descriptive label.</p>
+                <Toggle Label="Enable notifications" @bind-IsChecked="@_notificationsEnabled" />
+            <p class="demo-info">State: @_notificationsEnabled</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Inline Label</h3>
+            <p>Toggle with label on the same line.</p>
+            <Toggle Label="Dark mode" @bind-IsChecked="@_darkMode" LabelIsInline="true" />
+            <p class="demo-info">State: @_darkMode</p>
+        </div>
+
+            <div class="demo-card">
+            <h3>Settings Panel</h3>
+            <p>Multiple toggles for settings.</p>
+            <div class="settings-panel">
+                    <Toggle Label="Wi-Fi" @bind-IsChecked="@_wifiEnabled" LabelIsInline="true" />
+                    <Toggle Label="Bluetooth" @bind-IsChecked="@_bluetoothEnabled" LabelIsInline="true" />
+                    <Toggle Label="Location" @bind-IsChecked="@_locationEnabled" LabelIsInline="true" />
+                    <Toggle Label="Airplane Mode" @bind-IsChecked="@_airplaneMode" LabelIsInline="true" />
+            </div>
+            <p class="demo-info">
+                Wi-Fi: @_wifiEnabled | Bluetooth: @_bluetoothEnabled | Location: @_locationEnabled | Airplane: @_airplaneMode
+            </p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Theme Toggle</h3>
+            <p>Use toggle to switch between light and dark themes.</p>
+            <Toggle Label="Dark Theme" @bind-IsChecked="@_isDarkTheme" LabelIsInline="true" />
+            <p class="demo-info">Theme: @(_isDarkTheme ? "Dark" : "Light")</p>
+        </div>
+
+            <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Control toggle state programmatically.</p>
+            <Toggle Label="Interactive Toggle" @bind-IsChecked="@_interactiveState" LabelIsInline="true" />
+            <div class="demo-controls">
+                <DefaultButton Text="Set True" OnClick="@(() => _interactiveState = true)" />
+                <DefaultButton Text="Set False" OnClick="@(() => _interactiveState = false)" />
+                <DefaultButton Text="Toggle" OnClick="@(() => _interactiveState = !_interactiveState)" />
+            </div>
+            <p class="demo-info">State: @_interactiveState</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Feature Toggles</h3>
+            <p>Enable/disable app features.</p>
+            <div class="settings-panel">
+                 <Toggle Label="Show Animations" @bind-IsChecked="@_showAnimations" LabelIsInline="true" />
+                 <Toggle Label="Auto-save" @bind-IsChecked="@_autoSave" LabelIsInline="true" />
+                 <Toggle Label="Show Tooltips" @bind-IsChecked="@_showTooltips" LabelIsInline="true" />
+                 <Toggle Label="Compact Mode" @bind-IsChecked="@_compactMode" LabelIsInline="true" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Toggle component provides a Fluent UI styled binary switch for on/off controls. It's commonly used for settings and feature toggles where users need a quick, intuitive on/off interaction.</p>
+    <p>Toggles are more space-efficient than checkboxes and provide a clear visual indication of the current state.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Feature enable/disable controls</li>
+        <li>Settings toggles (Wi-Fi, Bluetooth, etc.)</li>
+        <li>Theme switching (light/dark mode)</li>
+        <li>Notification preferences</li>
+        <li>Auto-save or auto-refresh options</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Toggle label text</td>
+            </tr>
+            <tr>
+                <td><code>IsChecked</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Checked state (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>LabelIsInline</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Renders the label on the same line as the toggle</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private bool _basicToggle = false;
+    private bool _notificationsEnabled = true;
+    private bool _darkMode = false;
+    private bool _wifiEnabled = true;
+    private bool _bluetoothEnabled = false;
+    private bool _locationEnabled = false;
+    private bool _airplaneMode = false;
+    private bool _isDarkTheme = false;
+    private bool _interactiveState = false;
+    private bool _showAnimations = true;
+    private bool _autoSave = true;
+    private bool _showTooltips = true;
+    private bool _compactMode = false;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Toggle
+
+@* Basic Toggle *@
+<Toggle @bind-IsChecked=""@isChecked"" />
+
+@* Toggle with Label *@
+<Toggle Label=""Enable notifications"" @bind-IsChecked=""@notificationsEnabled"" />
+
+@* Inline Label *@
+<Toggle Label=""Dark mode"" @bind-IsChecked=""@isDarkMode"" LabelIsInline=""true"" />";
+}

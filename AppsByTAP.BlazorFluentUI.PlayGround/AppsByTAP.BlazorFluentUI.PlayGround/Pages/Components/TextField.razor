@@ -1,0 +1,289 @@
+@page "/components/textfield"
+@using AppsByTAP.BlazorFluentUI.Components.TextField
+@using AppsByTAP.BlazorFluentUI.Components.Toggle
+@using AppsByTAP.BlazorFluentUI.Components.DropDown
+@using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.SpinButton
+
+<PageTitle>TextField</PageTitle>
+
+<h1>TextField Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Text Input</h3>
+            <p>Standard single-line text input.</p>
+            <TextField Label="Full Name" @bind-Value="@_fullName" PlaceHolder="Enter your name" />
+            <p class="demo-info">Value: @_fullName</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Email Input</h3>
+            <p>Optimized for email addresses.</p>
+            <TextField Label="Email Address" @bind-Value="@_email" Type="TextFieldType.email" PlaceHolder="user@example.com" />
+            <p class="demo-info">Value: @_email</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Password Input</h3>
+            <p>Secure text input with masked characters.</p>
+            <TextField Label="Password" @bind-Value="@_password" Type="TextFieldType.password" PlaceHolder="Enter password" />
+            <p class="demo-info">Value length: @_password?.Length ?? 0</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Multi-line Text Area</h3>
+            <p>Larger text input for longer content.</p>
+            <TextField Label="Bio" @bind-Value="@_bio" IsMultiLine="true" PlaceHolder="Tell us about yourself" CharacterLimit="200" Width="100%" />
+            <p class="demo-info">Characters: @_bio?.Length ?? 0 / 200</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Number Input</h3>
+            <p>Numeric input with step control.</p>
+            <TextField Label="Quantity" @bind-Value="@_quantityText" Type="TextFieldType.number" PlaceHolder="Enter quantity" Step="1" />
+            <p class="demo-info">Value: @_quantityText</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Phone Mask</h3>
+            <p>Input with phone number mask.</p>
+            <TextField Label="Phone" @bind-Value="@_phone" ID="phoneInput" Mask="(000) 000-0000" PlaceHolder="(555) 123-4567" />
+            <p class="demo-info">Value: @_phone</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Read-Only Input</h3>
+            <p>Text field with display border off.</p>
+            <TextField Label="Read Only" Value="This cannot be edited" DisplayBorder="false" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Custom Width</h3>
+            <p>Text field with custom width styling.</p>
+            <TextField Label="Narrow Input" @bind-Value="@_narrowInput" Width="200px" />
+            <TextField Label="Wide Input" @bind-Value="@_wideInput" Width="100%" />
+            <p class="demo-info">Narrow: @_narrowInput | Wide: @_wideInput</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Toggle text field options.</p>
+            <TextField Label="Interactive Field" @bind-Value="@_interactiveValue" 
+                      PlaceHolder="Type here..."
+                      IsMultiLine="@_isMultiLine"
+                      CharacterLimit="@_characterLimit"
+                      DisplayBorder="@_displayBorder"
+                      Width="@_widthValue" />
+            <div class="demo-controls">
+                <div>
+                    <Toggle LabelIsInline="true" @bind-IsChecked="@_isMultiLine" />
+                </div>
+                <div>
+                    <Toggle LabelIsInline="true" @bind-IsChecked="@_displayBorder" />
+                </div>
+                <div>
+                    <label>Character Limit: </label>
+                    <SpinButton @bind-WholeValue="@_characterLimit" Type="SpinButtonType.Whole" MinValue="0" />
+                </div>
+                <div>
+                    <label>Width: </label>
+                    <DropDown TItem="string"
+                              ItemsSource="@_widthOptions"
+                              @bind-SelectedItem="@_widthValue" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The TextField component provides a Fluent UI styled text input that supports various input types, masks, and validation patterns. It automatically handles labels, placeholders, and character counting.</p>
+    <p>TextField is built on top of HTML input elements but adds Fluent UI styling, validation integration, and additional features like input masks and character limits.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <h3>Text Input</h3>
+    <ul>
+        <li>User names, titles, and short descriptions</li>
+        <li>Search fields and filters</li>
+        <li>Form fields for data entry</li>
+    </ul>
+
+    <h3>Email Input</h3>
+    <ul>
+        <li>Registration forms</li>
+        <li>Contact information</li>
+        <li>Login forms</li>
+    </ul>
+
+    <h3>Password Input</h3>
+    <ul>
+        <li>Authentication forms</li>
+        <li>Security-sensitive data entry</li>
+        <li>Account settings</li>
+    </ul>
+
+    <h3>Multi-line Text Area</h3>
+    <ul>
+        <li>Long-form content (biographies, descriptions)</li>
+        <li>Comments and feedback</li>
+        <li>Messages and notes</li>
+    </ul>
+
+    <h3>Masked Input</h3>
+    <ul>
+        <li>Phone numbers: (000) 000-0000</li>
+        <li>Date formats: MM/DD/YYYY</li>
+        <li>ZIP codes: 00000-0000</li>
+        <li>Custom formatted data</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Label text displayed above the input</td>
+            </tr>
+            <tr>
+                <td><code>Value</code></td>
+                <td>string</td>
+                <td>""</td>
+                <td>Current value (supports two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>PlaceHolder</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Placeholder text shown when empty</td>
+            </tr>
+            <tr>
+                <td><code>IsMultiLine</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Renders a textarea instead of input</td>
+            </tr>
+            <tr>
+                <td><code>CharacterLimit</code></td>
+                <td>int</td>
+                <td>0</td>
+                <td>Maximum character count with remaining indicator</td>
+            </tr>
+            <tr>
+                <td><code>Type</code></td>
+                <td>TextFieldType</td>
+                <td>Text</td>
+                <td>Input type: Text, Email, Password, Number, etc.</td>
+            </tr>
+            <tr>
+                <td><code>Mask</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Regex-based input mask (requires ID)</td>
+            </tr>
+            <tr>
+                <td><code>Disabled</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Disables the input</td>
+            </tr>
+            <tr>
+                <td><code>Width</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>CSS width of the input</td>
+            </tr>
+            <tr>
+                <td><code>DisplayBorder</code></td>
+                <td>bool</td>
+                <td>true</td>
+                <td>Show or hide the input border</td>
+            </tr>
+            <tr>
+                <td><code>ID</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>HTML element ID (required for masks)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private bool _isMultiLine = false;
+    private bool _displayBorder = true;
+    private int _characterLimit = 200;
+    private string _widthValue = "100%";
+    private string _fullName = "";
+    private string _email = "";
+    private string _password = "";
+    private string _bio = "";
+    private string _quantityText = "";
+    private string _phone = "";
+    private string _narrowInput = "";
+    private string _wideInput = "";
+    private string _interactiveValue = "";
+
+    private List<string> _widthOptions = new()
+    {
+        "200px", "300px", "500px", "100%"
+    };
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.TextField
+
+@* Basic Text Field *@
+<TextField Label=""Full Name"" @bind-Value=""name"" PlaceHolder=""Enter your name"" />
+
+@* Email Input *@
+<TextField Label=""Email"" @bind-Value=""email"" Type=""TextFieldType.Email"" />
+
+@* Password Input *@
+<TextField Label=""Password"" @bind-Value=""password"" Type=""TextFieldType.Password"" />
+
+@* Multi-line Text Area *@
+<TextField Label=""Bio"" @bind-Value=""bio"" IsMultiLine=""true"" CharacterLimit=""500"" />
+
+@* Phone Mask *@
+<TextField Label=""Phone"" @bind-Value=""phone"" ID=""phoneInput"" Mask=""(000) 000-0000"" />
+
+@* Disabled Input *@
+<TextField Label=""Read Only"" Value=""Cannot edit"" Disabled=""true"" />";
+}

@@ -1,28 +1,142 @@
 ﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">AppsByTAP.BlazorFluentUI.PlayGround</a>
+    <a class="navbar-brand" href="">BlazorFluentUI Playground</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
+    <nav class="sidebar-nav">
+        <ul class="nav flex-column">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </li>
+
+            <li class="nav-section">Inputs</li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/textfield">
+                    <span class="oi oi-pencil" aria-hidden="true"></span> TextField
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/dropdown">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> DropDown
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/blankdropdown">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> BlankDropDown
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/spinbutton">
+                    <span class="oi oi-plus" aria-hidden="true"></span> SpinButton
+                </NavLink>
+            </li>
+
+            <li class="nav-section">Selection</li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/checkbox">
+                    <span class="oi oi-check" aria-hidden="true"></span> CheckBox
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/checkboxgroup">
+                    <span class="oi oi-list-group" aria-hidden="true"></span> CheckboxGroup
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/toggledemo">
+                    <span class="oi oi-toggle" aria-hidden="true"></span> Toggle
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/choicegroup">
+                    <span class="oi oi-clipboard" aria-hidden="true"></span> ChoiceGroup
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/chipset">
+                    <span class="oi oi-tag" aria-hidden="true"></span> ChipSet
+                </NavLink>
+            </li>
+
+            <li class="nav-section">Buttons</li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/button">
+                    <span class="oi oi-pencil" aria-hidden="true"></span> Button
+                </NavLink>
+            </li>
+
+            <li class="nav-section">Layout</li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/tabs">
+                    <span class="oi oi-tag" aria-hidden="true"></span> Tabs
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/expander">
+                    <span class="oi oi-chevron-bottom" aria-hidden="true"></span> Expander
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/treemenu">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> TreeMenu
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/bottomnavigationbar">
+                    <span class="oi oi-people" aria-hidden="true"></span> BottomNavigationBar
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/fittext">
+                    <span class="oi oi-pencil" aria-hidden="true"></span> FitText
+                </NavLink>
+            </li>
+
+            <li class="nav-section">Overlays</li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/modal">
+                    <span class="oi oi-screen-full" aria-hidden="true"></span> Modal
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/callout">
+                    <span class="oi oi-comment-discussion" aria-hidden="true"></span> Callout
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/lightdismiss">
+                    <span class="oi oi-screen-full" aria-hidden="true"></span> LightDismiss
+                </NavLink>
+            </li>
+
+            <li class="nav-section">Display</li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/spinner">
+                    <span class="oi oi-loop" aria-hidden="true"></span> Spinner
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/icon">
+                    <span class="oi oi-people" aria-hidden="true"></span> Icon
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/persona">
+                    <span class="oi oi-person" aria-hidden="true"></span> Persona
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/components/label">
+                    <span class="oi oi-pencil" aria-hidden="true"></span> Label
+                </NavLink>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 @code {

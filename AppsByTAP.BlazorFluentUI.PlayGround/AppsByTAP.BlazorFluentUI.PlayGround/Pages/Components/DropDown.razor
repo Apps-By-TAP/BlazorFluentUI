@@ -1,0 +1,315 @@
+
+@using AppsByTAP.BlazorFluentUI.Components.DropDown
+@using AppsByTAP.BlazorFluentUI.Components.Toggle
+@using AppsByTAP.BlazorFluentUI.Components.Icon
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>DropDown</PageTitle>
+
+<h1>DropDown Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Single Select</h3>
+            <p>Select a single item from the dropdown.</p>
+            <DropDown TItem="string"
+                      Label="Favorite Color"
+                      ItemsSource="@DemoData.Colors"
+                      @bind-SelectedItem="@_selectedColor" />
+            <p class="demo-info">Selected: @_selectedColor</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Multi Select</h3>
+            <p>Enable multiple selections with checkboxes.</p>
+            <DropDown TItem="string"
+                      Label="Pizza Toppings"
+                      ItemsSource="@DemoData.Toppings"
+                      IsMultiSelect="true"
+                      @bind-SelectedItems="@_selectedToppings" />
+            <p class="demo-info">Selected: @string.Join(", ", _selectedToppings)</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Grouped Items</h3>
+            <p>Items organized in groups with headers.</p>
+            <DropDown TItem="DropDownItem<string>"
+                  Label="Choose Fruit or Color"
+                  ItemsSource="@DemoData.DropdownGroups"
+                  @bind-SelectedItem="@_selectedGroupItem" />
+            <p class="demo-info">Selected: @_selectedGroupItem?.Item</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Disabled Dropdown</h3>
+            <p>Dropdown in disabled state.</p>
+            <DropDown TItem="string"
+                      Label="Disabled"
+                      ItemsSource="@DemoData.Colors"
+                      Disabled="true" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Custom Width</h3>
+            <p>Dropdowns with different widths.</p>
+            <DropDown TItem="string"
+                      Label="Narrow"
+                      ItemsSource="@DemoData.Colors"
+                      @bind-SelectedItem="@_narrowSelected"
+                      Width="150px" />
+            <DropDown TItem="string"
+                      Label="Wide"
+                      ItemsSource="@DemoData.Colors"
+                      @bind-SelectedItem="@_wideSelected"
+                      Width="100%" />
+            <p class="demo-info">Narrow: @_narrowSelected | Wide: @_wideSelected</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Toggle dropdown options.</p>
+            <DropDown TItem="string"
+                      Label="Interactive Dropdown"
+                      ItemsSource="@DemoData.Fruits"
+                      @bind-SelectedItem="@_interactiveSelected"
+                      IsMultiSelect="@_isMultiSelect"
+                      Disabled="@_isDisabled"
+                      Width="@_widthValue" />
+            <p class="demo-info">Selected: @_interactiveSelected</p>
+            <div class="demo-controls">
+                <div>
+                    <Toggle Label="Multi-select" @bind-Value="@_isMultiSelect" />
+                </div>
+                <div>
+                    <Toggle Label="Disabled" IsChecked="@_isDisabled" IsCheckedChanged="@(value => _isDisabled = value)" />
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Custom Item Template</h3>
+            <p>Dropdown with custom item rendering.</p>
+            <DropDown TItem="WeatherForecast"
+                      Label="Weather Forecast"
+                      ItemsSource="@_forecasts"
+                      @bind-SelectedItem="@_selectedForecast">
+                <ItemTemplate>
+                    @{
+                        var forecast = context as WeatherForecast;
+                        <div class="custom-dropdown-item">
+                            <span class="forecast-icon">
+                                @GetWeatherIcon(forecast?.TemperatureC)
+                            </span>
+                            <span>@forecast?.Date.ToString("MMM dd, yyyy") - @forecast?.TemperatureF°F</span>
+                        </div>
+                    }
+                </ItemTemplate>
+            </DropDown>
+            <p class="demo-info">Selected: @_selectedForecast?.Date</p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The DropDown component provides a Fluent UI styled dropdown selector that supports single-select, multi-select, and grouped items. It's a versatile selection component that can work with any data type.</p>
+    <p>DropDown is generic, meaning you can use it with strings, integers, custom objects, or any other type. It supports item templates for custom rendering and grouped data with headers.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <h3>Single Select</h3>
+    <ul>
+        <li>Category selection</li>
+        <li>Filter selection</li>
+        <li>Option picking (color, size, etc.)</li>
+    </ul>
+
+    <h3>Multi Select</h3>
+    <ul>
+        <li>Tag selection</li>
+        <li>Multiple filter criteria</li>
+        <li>Picking multiple items (toppings, features)</li>
+    </ul>
+
+    <h3>Grouped Items</h3>
+    <ul>
+        <li>Categorized selections</li>
+        <li>Organized option lists</li>
+        <li>Navigation menus</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Label text displayed above the dropdown</td>
+            </tr>
+            <tr>
+                <td><code>ItemsSource</code></td>
+                <td>List&lt;T&gt;</td>
+                <td>—</td>
+                <td>Collection of items to display</td>
+            </tr>
+            <tr>
+                <td><code>SelectedItem</code></td>
+                <td>T</td>
+                <td>—</td>
+                <td>Currently selected item (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>SelectedItems</code></td>
+                <td>IEnumerable&lt;T&gt;</td>
+                <td>—</td>
+                <td>Selected items in multi-select mode</td>
+            </tr>
+            <tr>
+                <td><code>IsMultiSelect</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Enables multi-select with checkboxes</td>
+            </tr>
+            <tr>
+                <td><code>Disabled</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Disables the dropdown</td>
+            </tr>
+            <tr>
+                <td><code>Width</code></td>
+                <td>string</td>
+                <td>300px</td>
+                <td>CSS width</td>
+            </tr>
+            <tr>
+                <td><code>ItemTemplate</code></td>
+                <td>RenderFragment&lt;T&gt;</td>
+                <td>—</td>
+                <td>Custom template for rendering each item</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>DropDownItem&lt;T&gt; Properties</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Item</code></td>
+                <td>T</td>
+                <td>The data item</td>
+            </tr>
+            <tr>
+                <td><code>Type</code></td>
+                <td>DropDownItemType</td>
+                <td>Item or Header (headers are non-selectable)</td>
+            </tr>
+            <tr>
+                <td><code>IsSelected</code></td>
+                <td>bool</td>
+                <td>Whether the item is selected</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private string _selectedColor = "";
+    private IEnumerable<string> _selectedToppings = new List<string>();
+    private DropDownItem<string>? _selectedGroupItem;
+    private string _narrowSelected = "";
+    private string _wideSelected = "";
+    private string _interactiveSelected = "";
+    private bool _isMultiSelect = false;
+    private bool _isDisabled = false;
+    private string _widthValue = "300px";
+    private WeatherForecast? _selectedForecast;
+
+    private List<WeatherForecast> _forecasts = new();
+
+    protected override void OnInitialized()
+    {
+        _forecasts = new()
+        {
+            new WeatherForecast { Date = DateOnly.FromDateTime(DateTime.Now), TemperatureC = 72, Summary = "Sunny" },
+            new WeatherForecast { Date = DateOnly.FromDateTime(DateTime.Now.AddDays(1)), TemperatureC = 65, Summary = "Cloudy" },
+            new WeatherForecast { Date = DateOnly.FromDateTime(DateTime.Now.AddDays(2)), TemperatureC = 58, Summary = "Rainy" },
+            new WeatherForecast { Date = DateOnly.FromDateTime(DateTime.Now.AddDays(3)), TemperatureC = 45, Summary = "Cold" },
+        };
+    }
+
+    private string GetWeatherIcon(int? temp)
+    {
+        if (temp == null) return "🌡️";
+        return temp switch
+        {
+            > 80 => "☀️",
+            > 60 => "🌤️",
+            > 40 => "🌥️",
+            _ => "❄️"
+        };
+    }
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.DropDown
+
+@* Single Select *@
+<DropDown TItem=""string""
+          Label=""Color""
+          ItemsSource=""@colors""
+          @bind-SelectedItem=""@selectedColor"" />
+
+@* Multi Select *@
+<DropDown TItem=""string""
+          Label=""Toppings""
+          ItemsSource=""@toppings""
+          IsMultiSelect=""true""
+          @bind-SelectedItems=""@selectedToppings"" />
+
+@* Grouped Items *@
+<DropDown TItem=""string""
+          Label=""Categories""
+          ItemsSource=""@groupedItems""
+          @bind-SelectedItem=""@selectedItem"" />";
+}

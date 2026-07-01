@@ -1,9 +1,6 @@
 ﻿<div class="toggleContainer" @onclick="Clicked">
-    <div class="label" style="display: @(LabelIsInline ? "none" : "block");"> 
-        @Label
-    </div>
-    <div class="innerContainer">
-        <div class="label" style="display: @(LabelIsInline ? "blcok" : "none");">
+    <div class="innerContainer" style="display: flex; flex-direction: @(LabelIsInline ? "row" : "column")">
+        <div class="label">
             @Label
         </div>
         <div class="toggle @(IsChecked ? "checked" : "")" >

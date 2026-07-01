@@ -1,0 +1,130 @@
+@page "/components/label"
+@using AppsByTAP.BlazorFluentUI.Components.Label
+@using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.TextField
+
+<PageTitle>Label</PageTitle>
+
+<h1>Label Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Label</h3>
+            <p>Simple text label.</p>
+            <Label Text="First Name" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Form Labels</h3>
+            <p>Labels used with form inputs.</p>
+            <Label Text="Email Address" />
+            <TextField PlaceHolder="Enter your email" />
+            <Label Text="Password" />
+            <TextField Type="TextFieldType.password" PlaceHolder="Enter your password" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Section Headers</h3>
+            <p>Labels used as section headers.</p>
+            <Label Text="Personal Information" />
+            <p>Content for personal information section...</p>
+            <Label Text="Contact Details" />
+            <p>Content for contact details section...</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Control label text dynamically.</p>
+            <Label Text="@_labelText" />
+            <div class="demo-controls">
+                <TextField Label="Label Text" @bind-Value="@_labelText" Width="300px" />
+                <DefaultButton Text="Reset" OnClick="@(() => _labelText = "Default Label")" />
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Required Field Indicator</h3>
+            <p>Labels with required field indicators.</p>
+            <Label Text="Name *" />
+            <TextField PlaceHolder="Enter your name" />
+            <Label Text="Email *" />
+            <TextField PlaceHolder="Enter your email" />
+            <p class="demo-info">* indicates required field</p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Label component provides a Fluent UI styled text label for form inputs, section headers, and descriptive text. It follows Fluent Design System guidelines for typography and spacing.</p>
+    <p>Labels are essential for creating accessible and user-friendly forms by providing clear descriptions of input fields.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Form input labels</li>
+        <li>Section headers</li>
+        <li>Field descriptions</li>
+        <li>Required field indicators</li>
+        <li>Descriptive text for controls</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Text</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Label text</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private string _labelText = "Default Label";
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Label
+
+@* Basic Label *@
+<Label Text=""First Name"" />
+
+@* Label with Form Input *@
+<Label Text=""Email Address"" />
+<TextField PlaceHolder=""Enter your email"" />";
+}

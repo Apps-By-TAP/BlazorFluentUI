@@ -1,0 +1,198 @@
+@page "/components/treemenu"
+@using AppsByTAP.BlazorFluentUI.Components.TreeMenu
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+
+<PageTitle>TreeMenu - Usage Guide</PageTitle>
+
+<h1>TreeMenu Component</h1>
+<p class="component-intro">The TreeMenu component is a generic virtualized tree that requires <code>Items</code> and <code>GetItems</code> parameters. See the usage guide below.</p>
+
+<!-- 1. Usage Guide -->
+<section class="component-section">
+    <h2>Usage Guide</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic TreeMenu Usage</h3>
+            <p>The TreeMenu component is a generic virtualized tree that requires <code>Items</code> and <code>GetItems</code> parameters. It does not support nested child content directly.</p>
+            
+            <h4>Required Parameters</h4>
+            <ul>
+                <li><code>Items</code> - List of root-level items</li>
+                <li><code>GetItems</code> - Function to load child items for a given parent</li>
+                <li><code>BranchDisplay</code> - RenderFragment to customize branch rendering</li>
+            </ul>
+
+            <h4>Code Example</h4>
+            <pre class="code-block"><code>
+@@code {
+    private readonly List&lt;string&gt; _items = new() 
+    {
+        "Documents", "Pictures", "Music"
+    };
+
+    private IEnumerable&lt;BranchItem&lt;string&gt;&gt; LoadChildren(
+        string parent, ItemsProviderRequest request)
+    {
+        if (string.IsNullOrEmpty(parent))
+            return _items.Select(x =&gt; new BranchItem&lt;string&gt;(x));
+        return Enumerable.Empty&lt;BranchItem&lt;string&gt;&gt;();
+    }
+}
+
+&lt;TreeMenu TItem="string"
+          Items="@@_items"
+          GetItems="LoadChildren"
+          @@bind-SelectedItem="selected"&gt;
+    &lt;BranchDisplay Context="branch"&gt;
+        &lt;span&gt;@@branch.RootItem&lt;/span&gt;
+    &lt;/BranchDisplay&gt;
+&lt;/TreeMenu&gt;</code></pre>
+        </div>
+
+        <div class="demo-card">
+            <h3>File Explorer Pattern</h3>
+            <p>Example of a nested file explorer using hierarchical data.</p>
+            
+            <h4>Code Example</h4>
+            <pre class="code-block"><code>
+@@code {
+    private readonly Dictionary&lt;string, List&lt;string&gt;&gt; _treeData = new()
+    {
+        { "Documents", new() { "Work", "Personal", "Archive" } },
+        { "Pictures", new() { "Vacation", "Family" } },
+        { "Music", new() { "Rock", "Pop", "Jazz" } }
+    };
+
+    private IEnumerable&lt;BranchItem&lt;string&gt;&gt; LoadFileTree(
+        string parent, ItemsProviderRequest request)
+    {
+        if (string.IsNullOrEmpty(parent))
+            return _treeData.Keys
+                .ToList()
+                .Select(x =&gt; new BranchItem&lt;string&gt;(x));
+        
+        _treeData.TryGetValue(parent, out var children);
+        return children?
+            .Select(x =&gt; new BranchItem&lt;string&gt;(x))
+            ?? Enumerable.Empty&lt;BranchItem&lt;string&gt;&gt;();
+    }
+}</code></pre>
+        </div>
+
+        <div class="demo-card">
+            <h3>Key Points</h3>
+            <ul>
+                <li><code>TreeMenu</code> is generic: use <code>TItem</code> to specify the item type</li>
+                <li><code>Items</code> provides the root-level items to display</li>
+                <li><code>GetItems</code> is called with the parent item to load children</li>
+                <li><code>BranchDisplay</code> lets you customize how each branch is rendered</li>
+                <li>Child nodes are loaded on-demand via virtualization</li>
+                <li>The component supports <code>@@bind-SelectedItem</code> for two-way binding</li>
+                <li>Items must be provided via the <code>Items</code> parameter, not as child content</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The TreeMenu component provides a virtualized hierarchical menu for displaying nested content. It is designed for performance with large datasets using virtualization.</p>
+    <p>The component requires an <code>Items</code> list and a <code>GetItems</code> function to load child items on demand. It does not support direct nested child content like BranchComponent elements.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>File explorers and directory browsers (with virtualization for large trees)</li>
+        <li>Project structure displays</li>
+        <li>Organizational charts</li>
+        <li>Category hierarchies</li>
+        <li>Navigation menus with nested sections</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>TItem</code></td>
+                <td>type parameter</td>
+                <td>The type of items in the tree</td>
+            </tr>
+            <tr>
+                <td><code>Items</code></td>
+                <td>List&lt;T&gt;</td>
+                <td>Root-level items to display</td>
+            </tr>
+            <tr>
+                <td><code>GetItems</code></td>
+                <td>Func&lt;ItemsProviderRequest, T, IEnumerable&lt;BranchItem&lt;T&gt;&gt;&gt;</td>
+                <td>Function to load child items for a given parent</td>
+            </tr>
+            <tr>
+                <td><code>SelectedItem</code></td>
+                <td>T</td>
+                <td>Currently selected item (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>BranchDisplay</code></td>
+                <td>RenderFragment&lt;Branch&lt;T&gt;&gt;</td>
+                <td>Custom rendering template for each branch</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+
+    private string SourceCode => 
+        "@using AppsByTAP.BlazorFluentUI.Components.TreeMenu\n" +
+        "@using Microsoft.AspNetCore.Components.Web.Virtualization\n\n" +
+        "@* TreeMenu is a virtualized generic component *@\n" +
+        "@* It requires Items and GetItems parameters, not child content *@\n\n" +
+        "@code {\n" +
+        "    private readonly List&lt;string&gt; _items = new() { \"Documents\", \"Pictures\", \"Music\" };\n\n" +
+        "    private IEnumerable&lt;BranchItem&lt;string&gt;&gt; LoadChildren(string parent, ItemsProviderRequest request)\n" +
+        "    {\n" +
+        "        if (string.IsNullOrEmpty(parent))\n" +
+        "            return _items.Select(x => new BranchItem&lt;string&gt;(x));\n" +
+        "        return Enumerable.Empty&lt;BranchItem&lt;string&gt;&gt;();\n" +
+        "    }\n" +
+        "}\n\n" +
+        "&lt;TreeMenu TItem=\"string\"\n" +
+        "          Items=\"@_items\"\n" +
+        "          GetItems=\"LoadChildren\"\n" +
+        "          @bind-SelectedItem=\"@selectedItem\"&gt;\n" +
+        "    &lt;BranchDisplay Context=\"branch\"&gt;\n" +
+        "        &lt;span&gt;@branch.RootItem&lt;/span&gt;\n" +
+        "    &lt;/BranchDisplay&gt;\n" +
+        "&lt;/TreeMenu&gt;";
+}

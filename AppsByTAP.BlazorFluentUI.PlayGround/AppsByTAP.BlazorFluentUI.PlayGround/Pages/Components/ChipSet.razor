@@ -1,0 +1,183 @@
+@page "/components/chipset"
+@using AppsByTAP.BlazorFluentUI.Components.Chip
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>ChipSet</PageTitle>
+
+<h1>ChipSet Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Input Chip</h3>
+            <p>Chip input for adding tags or items.</p>
+            <ChipSet ItemsSource="@_tags" ChipType="ChipType.Input" Label="Tags: " CreateNewItem="CreateNewTag" />
+            <p class="demo-info">Tags: @string.Join(", ", _tags)</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Filter Chips</h3>
+            <p>Display chips in filter mode.</p>
+            <ChipSet ItemsSource="@_skills" ChipType="ChipType.Filter" Label="Skills: " />
+            <p class="demo-info">
+                @foreach (var skill in _skills)
+                {
+                    <span class="chip-display">@skill</span>
+                }
+            </p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Category Selection</h3>
+            <p>Use chips for category selection.</p>
+            <ChipSet ItemsSource="@_categories" ChipType="ChipType.Filter" Label="Categories: " />
+        </div>
+
+        <div class="demo-card">
+            <h3>Action Chips</h3>
+            <p>Chips used as action controls.</p>
+            <div class="chip-filter-group">
+                <ChipSet ItemsSource="@_dateFilters" ChipType="ChipType.Filter" Label="Date: " />
+                <ChipSet ItemsSource="@_sortOptions" ChipType="ChipType.Action" Label="Sort: " />
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Add or remove chips programmatically.</p>
+            <ChipSet ItemsSource="@_dynamicTags" ChipType="ChipType.Filter" Label="Tags: " />
+            <div class="demo-controls">
+                <DefaultButton Text="+ Add Tag" OnClick="AddTag" />
+                <DefaultButton Text="- Remove Last" OnClick="RemoveLastTag" />
+                <DefaultButton Text="Clear All" OnClick="ClearTags" />
+            </div>
+            <p class="demo-info">Tags: @string.Join(", ", _dynamicTags)</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>User Tags</h3>
+            <p>Example of user or mention tags.</p>
+            <ChipSet ItemsSource="@_userTags" ChipType="ChipType.Filter" Label="Mentions: " />
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The ChipSet component provides a Fluent UI styled chip input for tag-like selections. Chips are compact elements that represent inputs, attributes, or actions, commonly used for filtering, tagging, and selection.</p>
+    <p>ChipSet supports different chip types including Input (for adding new items), Compact (for display), and standard chips.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Tag input and management</li>
+        <li>Filter controls (e.g., filtering search results)</li>
+        <li>User mentions or assignments</li>
+        <li>Category selection</li>
+        <li>Quick action buttons</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ItemsSource</code></td>
+                <td>List&lt;string&gt;</td>
+                <td>—</td>
+                <td>Collection of chip items</td>
+            </tr>
+            <tr>
+                <td><code>ChipType</code></td>
+                <td>ChipType</td>
+                <td>Default</td>
+                <td>Visual type: Input, Compact, or default</td>
+            </tr>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Label text displayed before chips</td>
+            </tr>
+            <tr>
+                <td><code>CreateNewItem</code></td>
+                <td>EventCallback</td>
+                <td>—</td>
+                <td>Callback when creating a new chip item</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private List<string> _tags = new() { "Blazor", "Fluent UI", ".NET" };
+    private List<string> _skills = new() { "C#", "JavaScript", "CSS", "HTML" };
+    private List<string> _categories = new() { "Technology", "Design", "Business" };
+    private List<string> _dateFilters = new() { "Today", "This Week", "This Month" };
+    private List<string> _sortOptions = new() { "Relevant", "Newest", "Popular" };
+    private List<string> _dynamicTags = new() { "Important", "Urgent" };
+    private List<string> _userTags = new() { "@john", "@jane", "@admin" };
+
+    public string CreateNewTag(string text) => text;
+
+    private void AddTag()
+    {
+        _dynamicTags.Add($"Tag {_dynamicTags.Count + 1}");
+    }
+
+    private void RemoveLastTag()
+    {
+        if (_dynamicTags.Count > 0)
+            _dynamicTags.RemoveAt(_dynamicTags.Count - 1);
+    }
+
+    private void ClearTags()
+    {
+        _dynamicTags.Clear();
+    }
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Chip
+
+@* Input Chip *@
+<ChipSet ItemsSource=""@tags"" 
+         ChipType=""ChipType.Input"" 
+         Label=""Tags: "" 
+         CreateNewItem=""CreateNewTag"" />
+
+@* Filter Chips *@
+<ChipSet ItemsSource=""@skills"" 
+         ChipType=""ChipType.Filter"" 
+         Label=""Skills: "" />";
+}

@@ -1,0 +1,178 @@
+@page "/components/spinbutton"
+@using AppsByTAP.BlazorFluentUI.Components.SpinButton
+@using AppsByTAP.BlazorFluentUI.Components.Common
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>SpinButton</PageTitle>
+
+<h1>SpinButton Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Integer SpinButton</h3>
+            <p>Numeric input with increment/decrement buttons for integers.</p>
+            <SpinButton Label="Quantity" Type="SpinButtonType.Whole" @bind-WholeValue="@_quantity" />
+            <p class="demo-info">Value: @_quantity</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Decimal SpinButton</h3>
+            <p>Numeric input with increment/decrement buttons for decimal values.</p>
+            <SpinButton Label="Opacity" Type="SpinButtonType.Decimal" Suffix="%" RoundingPlaces="2" @bind-DecimalValue="@_opacity" />
+            <p class="demo-info">Value: @_opacity%</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>With Suffix</h3>
+            <p>SpinButton with unit suffix.</p>
+            <SpinButton Label="Width" Type="SpinButtonType.Whole" Suffix="px" @bind-WholeValue="@_width" />
+            <SpinButton Label="Zoom" Type="SpinButtonType.Whole" Suffix="%" @bind-WholeValue="@_zoom" />
+            <p class="demo-info">Width: @_width | Zoom: @_zoom%</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Label Position</h3>
+            <p>SpinButton with different label positions.</p>
+            <SpinButton Label="Left Label" LabelPosition="LabelPosition.Left" @bind-WholeValue="@_leftLabel" />
+            <SpinButton Label="Top Label" LabelPosition="LabelPosition.Above" @bind-WholeValue="@_topLabel" />
+            <p class="demo-info">Left: @_leftLabel | Top: @_topLabel</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Control SpinButton values programmatically.</p>
+            <SpinButton Label="Interactive Value" Type="SpinButtonType.Whole" @bind-WholeValue="@_interactiveValue" />
+            <div class="demo-controls">
+                <DefaultButton Text="+10" OnClick="@(() => _interactiveValue += 10)" />
+                <DefaultButton Text="-10" OnClick="@(() => _interactiveValue -= 10)" />
+                <DefaultButton Text="Reset" OnClick="@(() => _interactiveValue = 0)" />
+            </div>
+            <p class="demo-info">Value: @_interactiveValue</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Size Selector</h3>
+            <p>SpinButton for selecting sizes.</p>
+            <SpinButton Label="Font Size" Type="SpinButtonType.Whole" Suffix="px" RoundingPlaces="0" @bind-WholeValue="@_fontSize" />
+            <p class="demo-info" style="font-size: @_fontSize px;">Sample text (@_fontSize px)</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Percentage Control</h3>
+            <p>SpinButton for percentage values.</p>
+            <SpinButton Label="Volume" Type="SpinButtonType.Decimal" Suffix="%" RoundingPlaces="0" @bind-DecimalValue="@_volume" />
+            <div class="demo-controls">
+                <DefaultButton Text="Mute" OnClick="@(() => _volume = 0)" />
+                <DefaultButton Text="50%" OnClick="@(() => _volume = 50)" />
+                <DefaultButton Text="100%" OnClick="@(() => _volume = 100)" />
+            </div>
+            <p class="demo-info">Volume: @_volume%</p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The SpinButton component provides a Fluent UI styled numeric input with increment and decrement buttons. It's ideal for selecting numeric values where users need precise control through both keyboard and mouse interactions.</p>
+    <p>SpinButton supports both integer and decimal values, with customizable suffixes and rounding precision.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Quantity selection</li>
+        <li>Size and dimension controls</li>
+        <li>Percentage values (volume, zoom, brightness)</li>
+        <li>Price or currency inputs</li>
+        <li>Rating scales</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Label text</td>
+            </tr>
+            <tr>
+                <td><code>Type</code></td>
+                <td>SpinButtonType</td>
+                <td>Integer</td>
+                <td>Integer or Decimal</td>
+            </tr>
+            <tr>
+                <td><code>Suffix</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Unit suffix displayed after the value</td>
+            </tr>
+            <tr>
+                <td><code>RoundingPlaces</code></td>
+                <td>int</td>
+                <td>—</td>
+                <td>Number of decimal places for rounding</td>
+            </tr>
+            <tr>
+                <td><code>LabelPosition</code></td>
+                <td>LabelPosition</td>
+                <td>Top</td>
+                <td>Position of the label</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private int _quantity = 1;
+    private double _opacity = 100;
+    private int _width = 100;
+    private int _zoom = 100;
+    private int _leftLabel = 0;
+    private int _topLabel = 0;
+    private int _interactiveValue = 50;
+    private int _fontSize = 16;
+    private double _volume = 75;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.SpinButton
+
+@* Integer SpinButton *@
+<SpinButton Label=""Quantity"" Type=""SpinButtonType.Integer"" />
+
+@* Decimal SpinButton with Suffix *@
+<SpinButton Label=""Opacity"" Type=""SpinButtonType.Decimal"" Suffix=""%"" RoundingPlaces=""2"" />";
+}

@@ -1,0 +1,177 @@
+@page "/components/persona"
+@using AppsByTAP.BlazorFluentUI.Components.Persona
+@using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.TextField
+@using AppsByTAP.BlazorFluentUI.Components.SpinButton
+
+<PageTitle>Persona</PageTitle>
+
+<h1>Persona Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Persona</h3>
+            <p>Simple persona with name and avatar.</p>
+            <Persona FirstName="Jane" LastName="Doe" Size="48" />
+            <Persona FirstName="John" LastName="Smith" Size="48" />
+            <Persona FirstName="Alice" LastName="Johnson" Size="48" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Persona with Title</h3>
+            <p>Persona with name, title, and avatar.</p>
+            <Persona FirstName="Jane" LastName="Doe" Title="Software Engineer" Size="48" />
+            <Persona FirstName="John" LastName="Smith" Title="Product Manager" Size="48" />
+            <Persona FirstName="Alice" LastName="Johnson" Title="Designer" Size="48" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Various Sizes</h3>
+            <p>Personas in different sizes.</p>
+            <Persona FirstName="Jane" LastName="Doe" Title="Small" Size="32" />
+            <Persona FirstName="John" LastName="Smith" Title="Medium" Size="48" />
+            <Persona FirstName="Alice" LastName="Johnson" Title="Large" Size="64" />
+            <Persona FirstName="Bob" LastName="Wilson" Title="XLarge" Size="80" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Custom Background Color</h3>
+            <p>Personas with custom avatar colors.</p>
+            <Persona FirstName="Jane" LastName="Doe" Title="Engineering" Size="48" BackgroundColor="#0078d4" />
+            <Persona FirstName="John" LastName="Smith" Title="Design" Size="48" BackgroundColor="#107c10" />
+            <Persona FirstName="Alice" LastName="Johnson" Title="Marketing" Size="48" BackgroundColor="#ff8c00" />
+            <Persona FirstName="Bob" LastName="Wilson" Title="Sales" Size="48" BackgroundColor="#8764b8" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Team Member List</h3>
+            <p>Persona components used in a team directory.</p>
+            <div class="persona-list">
+                <Persona FirstName="Jane" LastName="Doe" Title="Lead Engineer" Size="48" />
+                <Persona FirstName="John" LastName="Smith" Title="Product Owner" Size="48" />
+                <Persona FirstName="Alice" LastName="Johnson" Title="UX Designer" Size="48" />
+                <Persona FirstName="Bob" LastName="Wilson" Title="QA Engineer" Size="48" />
+                <Persona FirstName="Carol" LastName="Davis" Title="DevOps Engineer" Size="48" />
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Control persona properties dynamically.</p>
+            <Persona FirstName="@_firstName" LastName="@_lastName" Title="@_title" Size="@_size" />
+            <div class="demo-controls">
+                <TextField Label="First Name" @bind-Value="@_firstName" />
+                <TextField Label="Last Name" @bind-Value="@_lastName" />
+                <TextField Label="Title" @bind-Value="@_title" />
+                <SpinButton Label="Size" Type="SpinButtonType.Whole" @bind-Value="@_size" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Persona component provides a Fluent UI styled user avatar with name, title, and initials. It's commonly used in user profiles, team directories, and any interface that needs to display user information in a compact, recognizable format.</p>
+    <p>The avatar automatically generates initials from the first and last names if custom initials are not provided.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>User profiles and avatars</li>
+        <li>Team member directories</li>
+        <li>Comment authors</li>
+        <li>Assignee displays</li>
+        <li>Contact lists</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>FirstName</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>User's first name</td>
+            </tr>
+            <tr>
+                <td><code>LastName</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>User's last name</td>
+            </tr>
+            <tr>
+                <td><code>Title</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>User's title or role</td>
+            </tr>
+            <tr>
+                <td><code>Size</code></td>
+                <td>int</td>
+                <td>—</td>
+                <td>Avatar size in pixels</td>
+            </tr>
+            <tr>
+                <td><code>BackgroundColor</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Background color of the avatar circle</td>
+            </tr>
+            <tr>
+                <td><code>Initials</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Custom initials (auto-generated if not set)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private string _firstName = "Jane";
+    private string _lastName = "Doe";
+    private string _title = "Software Engineer";
+    private int _size = 48;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Persona
+
+@* Basic Persona *@
+<Persona FirstName=""Jane"" LastName=""Doe"" Title=""Software Engineer"" Size=""48"" />
+
+@* Custom Background Color *@
+<Persona FirstName=""John"" LastName=""Smith"" Title=""Designer"" Size=""48"" BackgroundColor=""#0078d4"" />";
+}

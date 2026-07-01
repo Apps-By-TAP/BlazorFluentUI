@@ -1,18 +1,37 @@
-﻿.toggle {
+﻿.toggleContainer {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.toggle {
+    position: relative;
     border: 1px solid var(--palette-Black);
-    border-radius: 10px;
+    border-radius: 12px;
     width: 40px;
     height: 20px;
     background-color: transparent;
     padding: 3px;
     display: flex;
-    justify-content: left;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.toggle:hover {
+    background-color: var(--semanticColors-ButtonBackgroundHovered);
 }
 
 .checked {
     background-color: var(--semanticColors-InputIcon);
     border: 1px solid var(--semanticColors-InputIcon);
-    justify-content: right;
+}
+
+.checked:hover {
+    background-color: var(--semanticColors-InputIcon);
 }
 
 .ball {
@@ -20,19 +39,27 @@
     height: 12px;
     border-radius: 50%;
     background-color: var(--palette-Black);
+    box-shadow: 0 1px 3px var(--palette-BlackTranslucent40);
+    transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform: translateX(0);
+    flex-shrink: 0;
 }
 
 .checkedBall {
     background-color: var(--palette-White);
+    transform: translateX(20px);
 }
 
 .innerContainer {
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
 
 .label {
     font-weight: 600;
-    padding-right: 5px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--semanticTextColors-BodyText, hotpink);
+    user-select: none;
+    margin: 0;
 }

@@ -1,0 +1,321 @@
+@page "/components/button"
+@using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.Toggle
+@using AppsByTAP.BlazorFluentUI.Components.Icon
+@using AppsByTAP.BlazorFluentUI.Components.DropDown
+
+<PageTitle>Button</PageTitle>
+
+<h1>Button Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Default Button</h3>
+            <p>Standard button with text and optional icon.</p>
+            <DefaultButton Text="Default Button" OnClick="@(() => _defaultClickCount++)" Icon="IconTypes.Cancel" />
+            <p class="demo-info">Click count: @_defaultClickCount</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Primary Button</h3>
+            <p>Emphasized button using the theme's primary color.</p>
+            <DefaultButton Text="Primary Button" IsPrimary="true" OnClick="@(() => _primaryClickCount++)" Icon="IconTypes.CheckMark" />
+            <p class="demo-info">Click count: @_primaryClickCount</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Disabled Button</h3>
+            <p>Button in disabled state, not clickable.</p>
+            <DefaultButton Text="Disabled" Disabled="true" />
+        </div>
+
+        <div class="demo-card">
+            <h3>IconButton</h3>
+            <p>Icon-only button without text.</p>
+            <IconButton Icon="IconTypes.Delete" OnClick="() => _deleteCount++" />
+            <IconButton Icon="IconTypes.Settings" OnClick="() => _settingsCount++" />
+            <IconButton Icon="IconTypes.Search" OnClick="() => _searchCount++" />
+            <p class="demo-info">Total icon clicks: @_deleteCount + @_settingsCount + @_searchCount</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>CompoundButton</h3>
+            <p>Button with primary and secondary text lines.</p>
+            <CompoundButton Text="Send Email" SecondaryText="Sends a confirmation email" OnClick="() => _compoundCount++" />
+            <CompoundButton Text="Share" SecondaryText="Share this content" IsPrimary="true" OnClick="() => _compoundCount++" />
+            <p class="demo-info">Click count: @_compoundCount</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>SplitButton</h3>
+            <p>Button with a separate dropdown action.</p>
+            <SplitButton TItem="string" 
+                        Text="Actions" 
+                        ItemsSource="@_splitButtonOptions"
+                        @bind-SelectedItem="@_selectedSplitItem"
+                        OnClick="() => _splitCount++" />
+            <p class="demo-info">Click count: @_splitCount | Selected: @_selectedSplitItem</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>HyperLinkButton</h3>
+            <p>Renders as a hyperlink-style button.</p>
+            <HyperLinkButton Text="Learn More" OnClick="() => _hyperlinkCount++" />
+            <HyperLinkButton Text="View Details" IsPrimary="true" OnClick="() => _hyperlinkCount++" />
+            <p class="demo-info">Click count: @_hyperlinkCount</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Toggle button states interactively.</p>
+            <DefaultButton Text="Toggle State" 
+                          IsPrimary="@_isPrimary" 
+                          Disabled="@_isDisabled"
+                          Icon="@_selectedIcon"
+                          ShowIsBusy="@_showIsBusy"
+                          OnClick="() => _stateCount++" />
+            <div class="demo-controls">
+                <div>
+                    <Toggle Label="Primary" IsChecked="@_isPrimary" IsCheckedChanged="@(value => _isPrimary = value)" />
+                </div>
+                <div>
+                    <Toggle Label="Disabled" IsChecked="@_isDisabled" IsCheckedChanged="@(value => _isDisabled = value)" />
+                </div>
+                <div>
+                    <Toggle Label="Show Busy" IsChecked="@_showIsBusy" IsCheckedChanged="@(value => _showIsBusy = value)" />
+                </div>
+                <div>
+                    <label>Icon: </label>
+                    <DropDown TItem="IconTypes"
+                              ItemsSource="@_availableIcons"
+                              @bind-SelectedItem="@_selectedIcon" />
+                </div>
+            </div>
+            <p class="demo-info">Click count: @_stateCount</p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Button component family provides multiple variants for user interactions in BlazorFluentUI. All buttons share a common base and follow Microsoft's Fluent Design System guidelines.</p>
+    <p>Buttons are the primary way users interact with applications - performing actions, submitting forms, and navigating between pages.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <h3>Default Button</h3>
+    <ul>
+        <li>Standard actions like "Save", "Cancel", or "Submit"</li>
+        <li>Primary actions that need clear visual emphasis</li>
+        <li>Form submissions and data entry</li>
+    </ul>
+
+    <h3>Primary Button</h3>
+    <ul>
+        <li>Most important action on a page (e.g., "Create", "Save Changes")</li>
+        <li>Call-to-action buttons that should stand out</li>
+        <li>Actions that lead to the next step in a workflow</li>
+    </ul>
+
+    <h3>Compound Button</h3>
+    <ul>
+        <li>Actions that need both a title and description</li>
+        <li>Email clients with action and preview text</li>
+        <li>Complex actions with additional context</li>
+    </ul>
+
+    <h3>IconButton</h3>
+    <ul>
+        <li>Quick actions where space is limited</li>
+        <li>Toolbar buttons and action icons</li>
+        <li>Decorative or supplementary actions</li>
+    </ul>
+
+    <h3>Split Button</h3>
+    <ul>
+        <li>Actions with related secondary options</li>
+        <li>Save with options (Save, Save As, Save All)</li>
+        <li>Primary action with dropdown of alternatives</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <h3>BaseButton Parameters (all variants)</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Text</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Button label text</td>
+            </tr>
+            <tr>
+                <td><code>Icon</code></td>
+                <td>IconTypes</td>
+                <td>None</td>
+                <td>Icon displayed alongside the text</td>
+            </tr>
+            <tr>
+                <td><code>IsPrimary</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Renders the button with the primary theme color</td>
+            </tr>
+            <tr>
+                <td><code>Disabled</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Disables the button</td>
+            </tr>
+            <tr>
+                <td><code>ShowIsBusy</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Shows a loading spinner during click handling</td>
+            </tr>
+            <tr>
+                <td><code>OnClick</code></td>
+                <td>EventCallback</td>
+                <td>—</td>
+                <td>Click handler</td>
+            </tr>
+            <tr>
+                <td><code>OnClickStopPropagation</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Stops click event propagation</td>
+            </tr>
+            <tr>
+                <td><code>ClassName</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Additional CSS class</td>
+            </tr>
+            <tr>
+                <td><code>Style</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Inline CSS style</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>CompoundButton Additional Parameters</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>SecondaryText</code></td>
+                <td>string</td>
+                <td>Secondary descriptive text displayed below the primary text</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private int _defaultClickCount;
+    private int _primaryClickCount;
+    private int _deleteCount;
+    private int _settingsCount;
+    private int _searchCount;
+    private int _compoundCount;
+    private int _splitCount;
+    private int _hyperlinkCount;
+    private int _stateCount;
+    private bool _showCode;
+
+    private List<string> _splitButtonOptions = new() { "Edit", "Delete", "Share" };
+    private string _selectedSplitItem = "";
+
+    private bool _isPrimary = true;
+    private bool _isDisabled = false;
+    private bool _showIsBusy = false;
+    private IconTypes _selectedIcon = IconTypes.Cancel;
+
+    private List<IconTypes> _availableIcons = new()
+    {
+        IconTypes.Cancel, IconTypes.Delete, IconTypes.CheckMark, IconTypes.Settings,
+        IconTypes.Search, IconTypes.ChevronDown,
+        IconTypes.ChevronUp, IconTypes.Mail, IconTypes.Calendar
+    };
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.Icon
+
+@* Default Button *@
+<DefaultButton Text=""Save"" OnClick=""Save"" Icon=""IconTypes.CheckMark"" />
+
+@* Primary Button *@
+<DefaultButton Text=""Create"" IsPrimary=""true"" OnClick=""Create"" />
+
+@* Button with Disabled State *@
+<DefaultButton Text=""Submit"" Disabled=""@_isFormValid"" />
+
+@* CompoundButton *@
+<CompoundButton Text=""Send Email"" 
+                SecondaryText=""Sends a confirmation email"" 
+                OnClick=""Send"" />
+
+@* IconButton *@
+<IconButton Icon=""IconTypes.Delete"" OnClick=""Delete"" />
+
+@* SplitButton *@
+<SplitButton Text=""Actions"" OnClick=""DoAction"">
+    <DropdownItems>
+        <DropdownItem Text=""Edit"" />
+        <DropdownItem Text=""Delete"" />
+        <DropdownItem Text=""Share"" />
+    </DropdownItems>
+</SplitButton>";
+
+    protected override void OnInitialized()
+    {
+        _selectedIcon = IconTypes.Cancel;
+        _availableIcons = new()
+        {
+            IconTypes.Cancel, IconTypes.Delete, IconTypes.CheckMark, IconTypes.Settings,
+            IconTypes.Search, IconTypes.CheckMark, IconTypes.ChevronDown,
+            IconTypes.ChevronUp, IconTypes.Mail, IconTypes.Search,
+            IconTypes.Mail, IconTypes.Mail, IconTypes.Calendar
+        };
+    }
+}

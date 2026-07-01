@@ -1,0 +1,196 @@
+@page "/components/spinner"
+@using AppsByTAP.BlazorFluentUI.Components.Spinner
+@using AppsByTAP.BlazorFluentUI.Components.Toggle
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>Spinner</PageTitle>
+
+<h1>Spinner Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Large Spinner</h3>
+            <p>Large spinner for prominent loading states.</p>
+            <Spinner Label="Loading..." Size="SpinnerSize.Large" IsLoading="@_isLoading" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Medium Spinner</h3>
+            <p>Medium spinner for standard loading indicators.</p>
+            <Spinner Label="Processing" Size="SpinnerSize.Medium" IsLoading="@_isLoading" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Small Spinner</h3>
+            <p>Small spinner for subtle loading indicators.</p>
+            <Spinner Label="Saving" Size="SpinnerSize.Small" IsLoading="@_isLoading" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Extra Small Spinner</h3>
+            <p>Extra small spinner for minimal loading indicators.</p>
+            <Spinner Label="..." Size="SpinnerSize.xSmall" IsLoading="@_isLoading" />
+        </div>
+
+        <div class="demo-card">
+            <h3>Label Positions</h3>
+            <p>Spinner with different label positions.</p>
+            <div class="spinner-row">
+                <Spinner Label="Top" Position="SpinnerLabelPosition.Top" Size="SpinnerSize.Medium" IsLoading="@_isLoading" />
+                <Spinner Label="Bottom" Position="SpinnerLabelPosition.Bottom" Size="SpinnerSize.Medium" IsLoading="@_isLoading" />
+                <Spinner Label="Left" Position="SpinnerLabelPosition.Left" Size="SpinnerSize.Medium" IsLoading="@_isLoading" />
+                <Spinner Label="Right" Position="SpinnerLabelPosition.Right" Size="SpinnerSize.Medium" IsLoading="@_isLoading" />
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Toggle spinner state and see loading effects.</p>
+            <DefaultButton Text="Start Loading" OnClick="@(() => _isLoading = true)" />
+            <DefaultButton Text="Stop Loading" OnClick="@(() => _isLoading = false)" />
+            <div class="demo-controls">
+                <Toggle Label="Is Loading" @bind-IsChecked="@_isLoading" />
+            </div>
+            <div class="demo-loading-area">
+                @if (_isLoading)
+                {
+                    <Spinner Label="Loading data..." Size="SpinnerSize.Large" IsLoading="@_isLoading" />
+                }
+                else
+                {
+                    <p>Data loaded successfully!</p>
+                }
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Simulated Load</h3>
+            <p>Simulate a loading process with auto-complete.</p>
+            <DefaultButton Text="Simulate Load" IsPrimary="true" OnClick="SimulateLoad" />
+            <div class="demo-loading-area">
+                @if (_isSimulating)
+                {
+                    <Spinner Label="Simulating..." Size="SpinnerSize.Large" IsLoading="true" />
+                    <p>Progress: @_loadProgress%</p>
+                }
+                else
+                {
+                    <p>Ready to simulate loading.</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Spinner component provides a Fluent UI styled loading indicator that informs users when content is being loaded or processed. It comes in multiple sizes and can display a label with various position options.</p>
+    <p>Spinners are essential for providing visual feedback during async operations, improving the perceived performance of applications.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Data loading indicators</li>
+        <li>Form submission feedback</li>
+        <li>Page transition indicators</li>
+        <li>Async operation progress</li>
+        <li>Content refresh indicators</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>IsLoading</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Controls visibility of the spinner</td>
+            </tr>
+            <tr>
+                <td><code>Size</code></td>
+                <td>SpinnerSize</td>
+                <td>—</td>
+                <td>Size: xSmall, Small, Medium, or Large</td>
+            </tr>
+            <tr>
+                <td><code>Position</code></td>
+                <td>SpinnerLabelPosition</td>
+                <td>—</td>
+                <td>Label position: Top, Bottom, Left, or Right</td>
+            </tr>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Loading text displayed near the spinner</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private bool _isLoading = true;
+    private bool _isSimulating = false;
+    private int _loadProgress = 0;
+
+    private async Task SimulateLoad()
+    {
+        _isSimulating = true;
+        _loadProgress = 0;
+        
+        while (_loadProgress < 100)
+        {
+            await Task.Delay(50);
+            _loadProgress += 5;
+        }
+        
+        _loadProgress = 100;
+        await Task.Delay(500);
+        _isSimulating = false;
+    }
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Spinner
+
+@* Basic Spinner *@
+<Spinner IsLoading=""true"" Size=""SpinnerSize.Large"" Label=""Loading..."" />
+
+@* Spinner with Label Position *@
+<Spinner IsLoading=""true"" 
+         Size=""SpinnerSize.Medium"" 
+         Label=""Processing"" 
+         Position=""SpinnerLabelPosition.Bottom"" />";
+}

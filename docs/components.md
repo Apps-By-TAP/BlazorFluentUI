@@ -188,7 +188,7 @@ Groups multiple checkboxes in a horizontal or vertical layout. Can optionally re
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `Direction` | `GroupDirection` | `Vertical` | `Horizontal` or `Vertical` layout |
+ | `GroupDirection` | `GroupDirection` | `Vertical` | `Horizontal` or `Vertical` layout |
 | `UseToggleSwitches` | `bool` | `false` | Renders toggles instead of checkboxes |
 | `ChildContent` | `RenderFragment` | — | Checkbox or toggle components |
 
@@ -198,7 +198,7 @@ Groups multiple checkboxes in a horizontal or vertical layout. Can optionally re
 @using AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
 @using AppsByTAP.BlazorFluentUI.Components.CheckBox
 
-<CheckboxGroup Direction="GroupDirection.Horizontal">
+<CheckboxGroup GroupDirection="GroupDirection.Horizontal">
     <CheckBox Label="Option A" @bind-IsChecked="optA" />
     <CheckBox Label="Option B" @bind-IsChecked="optB" />
     <CheckBox Label="Option C" @bind-IsChecked="optC" />

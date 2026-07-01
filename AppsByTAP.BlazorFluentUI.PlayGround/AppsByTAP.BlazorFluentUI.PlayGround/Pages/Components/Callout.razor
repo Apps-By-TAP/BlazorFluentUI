@@ -1,0 +1,150 @@
+@page "/components/callout"
+@using AppsByTAP.BlazorFluentUI.Components.Callout
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>Callout</PageTitle>
+
+<h1>Callout Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Callout</h3>
+            <p>Simple callout for contextual information.</p>
+            <DefaultButton Text="Show Callout" OnClick="@(() => _showCallout = true)" />
+            
+            <Callout @bind-IsOpen="@_showCallout">
+                <p>Additional information appears here when the callout is open.</p>
+                <p>This is useful for tooltips, help text, or contextual actions.</p>
+            </Callout>
+        </div>
+
+        <div class="demo-card">
+            <h3>Callout with Actions</h3>
+            <p>Callout containing action buttons.</p>
+            <DefaultButton Text="View Options" OnClick="@(() => _showCalloutWithActions = true)" />
+            
+            <Callout @bind-IsOpen="@_showCalloutWithActions">
+                <h4>Quick Actions</h4>
+                <p>Choose an action to perform:</p>
+                <div class="modal-actions">
+                    <DefaultButton Text="Edit" IsPrimary="true" OnClick="@(() => _showCalloutWithActions = false)" />
+                    <DefaultButton Text="Share" OnClick="@(() => _showCalloutWithActions = false)" />
+                    <DefaultButton Text="Close" OnClick="@(() => _showCalloutWithActions = false)" />
+                </div>
+            </Callout>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Control callout state programmatically.</p>
+            <DefaultButton Text="Open Callout" OnClick="@(() => _showInteractive = true)" />
+            <DefaultButton Text="Close Callout" OnClick="@(() => _showInteractive = false)" />
+            
+            <Callout @bind-IsOpen="@_showInteractive">
+                <h4>Interactive Callout</h4>
+                <p>This callout can be controlled programmatically using the IsOpen property.</p>
+            </Callout>
+        </div>
+
+        <div class="demo-card">
+            <h3>Help Callout</h3>
+            <p>Callout used for help or information.</p>
+            <DefaultButton Text="Need Help?" OnClick="@(() => _showHelpCallout = true)" />
+            
+            <Callout @bind-IsOpen="@_showHelpCallout">
+                <h4>Help &amp; Support</h4>
+                <p>This callout can be used to display help text, tips, or important information to users.</p>
+                <ul>
+                    <li>Check the documentation</li>
+                    <li>Contact support</li>
+                    <li>View tutorials</li>
+                </ul>
+            </Callout>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Callout component provides a Fluent UI styled overlay panel for contextual information or actions. It appears as a floating panel that can contain text, buttons, or any other content.</p>
+    <p>Callouts are similar to tooltips but can contain more complex content and are positioned relative to their trigger element.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Contextual help and tips</li>
+        <li>Quick action menus</li>
+        <li>Information panels</li>
+        <li>Tool tips with rich content</li>
+        <li>Confirmation messages</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>IsOpen</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Controls visibility (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>ChildContent</code></td>
+                <td>RenderFragment</td>
+                <td>—</td>
+                <td>Callout content</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private bool _showCallout = false;
+    private bool _showCalloutWithActions = false;
+    private bool _showInteractive = false;
+    private bool _showHelpCallout = false;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Callout
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+@* Basic Callout *@
+<DefaultButton Text=""Show Info"" OnClick=""@(() => showCallout = true)"" />
+
+<Callout @bind-IsOpen=""showCallout"">
+    <p>Additional information here.</p>
+</Callout>";
+}

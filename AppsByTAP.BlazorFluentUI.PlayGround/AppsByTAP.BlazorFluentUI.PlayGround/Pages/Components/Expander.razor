@@ -1,0 +1,213 @@
+@page "/components/expander"
+@using AppsByTAP.BlazorFluentUI.Components.Expander
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>Expander</PageTitle>
+
+<h1>Expander Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Expander</h3>
+            <p>Collapsible section with header and content.</p>
+            <Expander @bind-IsOpen="@_isExpanded1">
+                <Header>
+                    <h4>Expandable Section</h4>
+                </Header>
+                <ChildContent>
+                    <p>This content is hidden when the expander is collapsed.</p>
+                    <p>Click the header to expand or collapse.</p>
+                </ChildContent>
+            </Expander>
+            <p class="demo-info">State: @_isExpanded1 ? "Expanded" : "Collapsed"</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Pre-expanded Expander</h3>
+            <p>Expander that starts in expanded state.</p>
+            <Expander IsOpen="true">
+                <Header>
+                    <h4>Already Expanded</h4>
+                </Header>
+                <ChildContent>
+                    <p>This expander starts in the expanded state.</p>
+                    <p>You can still collapse it by clicking the header.</p>
+                </ChildContent>
+            </Expander>
+        </div>
+
+        <div class="demo-card">
+            <h3>Multiple Expanders</h3>
+            <p>Multiple expanders in an accordion-style layout.</p>
+            <Expander @bind-IsOpen="@_isExpanded2a">
+                <Header><h4>Section A</h4></Header>
+                <ChildContent>
+                    <p>Content for section A goes here.</p>
+                </ChildContent>
+            </Expander>
+            <Expander @bind-IsOpen="@_isExpanded2b">
+                <Header><h4>Section B</h4></Header>
+                <ChildContent>
+                    <p>Content for section B goes here.</p>
+                </ChildContent>
+            </Expander>
+            <Expander @bind-IsOpen="@_isExpanded2c">
+                <Header><h4>Section C</h4></Header>
+                <ChildContent>
+                    <p>Content for section C goes here.</p>
+                </ChildContent>
+            </Expander>
+        </div>
+
+        <div class="demo-card">
+            <h3>Settings Panel</h3>
+            <p>Expander used for settings categories.</p>
+            <Expander IsOpen="true">
+                <Header><h4>Display Settings</h4></Header>
+                <ChildContent>
+                    <p>Adjust display-related settings here.</p>
+                    <DefaultButton Text="Apply" IsPrimary="true" />
+                </ChildContent>
+            </Expander>
+            <Expander>
+                <Header><h4>Security Settings</h4></Header>
+                <ChildContent>
+                    <p>Configure security and privacy options.</p>
+                    <DefaultButton Text="Save" IsPrimary="true" />
+                </ChildContent>
+            </Expander>
+            <Expander>
+                <Header><h4>Account Settings</h4></Header>
+                <ChildContent>
+                    <p>Manage your account information.</p>
+                    <DefaultButton Text="Update" IsPrimary="true" />
+                </ChildContent>
+            </Expander>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Control expander state programmatically.</p>
+            <Expander @bind-IsOpen="@_interactiveExpanded">
+                <Header>
+                    <h4>Interactive Expander</h4>
+                </Header>
+                <ChildContent>
+                    <p>This expander can be controlled programmatically.</p>
+                </ChildContent>
+            </Expander>
+            <div class="demo-controls">
+                <DefaultButton Text="Expand" OnClick="@(() => _interactiveExpanded = true)" />
+                <DefaultButton Text="Collapse" OnClick="@(() => _interactiveExpanded = false)" />
+                <DefaultButton Text="Toggle" OnClick="@(() => _interactiveExpanded = !_interactiveExpanded)" />
+            </div>
+            <p class="demo-info">State: @_interactiveExpanded ? "Expanded" : "Collapsed"</p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Expander component provides a Fluent UI styled collapsible section with a header and chevron indicator. It allows users to show or hide content sections, helping to organize information and reduce visual clutter.</p>
+    <p>Expanders are commonly used in settings panels, FAQs, and any interface that needs to organize content into collapsible sections.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Settings panels with categorized options</li>
+        <li>FAQ sections</li>
+        <li>Accordion-style content organization</li>
+        <li>Advanced options that are hidden by default</li>
+        <li>Form sections that can be collapsed</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>IsOpen</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Expanded or collapsed state (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>Header</code></td>
+                <td>RenderFragment</td>
+                <td>—</td>
+                <td>Header content with chevron indicator</td>
+            </tr>
+            <tr>
+                <td><code>ChildContent</code></td>
+                <td>RenderFragment</td>
+                <td>—</td>
+                <td>Collapsible body content</td>
+            </tr>
+            <tr>
+                <td><code>ChevronIsDown</code></td>
+                <td>bool</td>
+                <td>—</td>
+                <td>Controls chevron direction</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private bool _isExpanded1 = false;
+    private bool _isExpanded2a = false;
+    private bool _isExpanded2b = false;
+    private bool _isExpanded2c = false;
+    private bool _interactiveExpanded = false;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Expander
+
+@* Basic Expander *@
+<Expander @bind-IsOpen=""isExpanded"">
+    <Header>Advanced Settings</Header>
+    <ChildContent>
+        <p>Advanced configuration options go here.</p>
+    </ChildContent>
+</Expander>
+
+@* Pre-expanded Expander *@
+<Expander IsOpen=""true"">
+    <Header>Always Open</Header>
+    <ChildContent>
+        <p>This content is always visible.</p>
+    </ChildContent>
+</Expander>";
+}

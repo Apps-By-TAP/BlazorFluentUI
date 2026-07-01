@@ -1,0 +1,242 @@
+@page "/components/choicegroup"
+@using AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>ChoiceGroup</PageTitle>
+
+<h1>ChoiceGroup Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic ChoiceGroup</h3>
+            <p>Single selection among multiple choices.</p>
+            <ChoiceGroup T="string" SelectedItem="@_selectedOption" SelectedItemChanged="OnOptionChanged">
+                <Choice Value="@_option1">Option 1</Choice>
+                <Choice Value="@_option2">Option 2</Choice>
+                <Choice Value="@_option3">Option 3</Choice>
+            </ChoiceGroup>
+            <p class="demo-info">Selected: @_selectedOption</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Color Choices</h3>
+            <p>Type-safe selection using generic parameter.</p>
+            <ChoiceGroup T="string" SelectedItem="@_selectedColor" SelectedItemChanged="OnColorChanged">
+                <Choice Value="@_red">Red</Choice>
+                <Choice Value="@_green">Green</Choice>
+                <Choice Value="@_blue">Blue</Choice>
+                <Choice Value="@_yellow">Yellow</Choice>
+            </ChoiceGroup>
+            <p class="demo-info">Selected Color: @_selectedColor</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Size Choices</h3>
+            <p>ChoiceGroup with numeric values.</p>
+            <ChoiceGroup T="int" SelectedItem="@_selectedSize" SelectedItemChanged="OnSizeChanged">
+                <Choice Value="@_size1">Small</Choice>
+                <Choice Value="@_size2">Medium</Choice>
+                <Choice Value="@_size3">Large</Choice>
+                <Choice Value="@_size4">X-Large</Choice>
+            </ChoiceGroup>
+            <p class="demo-info">Selected Size: @_selectedSize</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Priority Levels</h3>
+            <p>Visual example of radio button selection.</p>
+            <ChoiceGroup T="string" SelectedItem="@_selectedPriority" SelectedItemChanged="OnPriorityChanged">
+                <Choice Value="@_high">High Priority</Choice>
+                <Choice Value="@_medium">Medium Priority</Choice>
+                <Choice Value="@_low">Low Priority</Choice>
+            </ChoiceGroup>
+            <p class="demo-info">Priority: @_selectedPriority</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Programmatically select a choice.</p>
+            <ChoiceGroup T="char" SelectedItem="@_selectedChar" SelectedItemChanged="OnCharChanged">
+                <Choice Value="@_charA">Option A</Choice>
+                <Choice Value="@_charB">Option B</Choice>
+                <Choice Value="@_charC">Option C</Choice>
+            </ChoiceGroup>
+            <div class="demo-controls">
+                <DefaultButton Text="Select A" OnClick="@(() => _selectedChar = 'A')" />
+                <DefaultButton Text="Select B" OnClick="@(() => _selectedChar = 'B')" />
+                <DefaultButton Text="Select C" OnClick="@(() => _selectedChar = 'C')" />
+            </div>
+            <p class="demo-info">Selected: @_selectedChar</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Gender Selection</h3>
+            <p>Example of single-selection form field.</p>
+            <ChoiceGroup T="string" SelectedItem="@_selectedGender" SelectedItemChanged="OnGenderChanged">
+                <Choice Value="@("Male")">Male</Choice>
+                <Choice Value="@("Female")">Female</Choice>
+                <Choice Value="@("Non-binary")">Non-binary</Choice>
+                <Choice Value="@("Prefer not to say")">Prefer not to say</Choice>
+            </ChoiceGroup>
+            <p class="demo-info">Selected: @_selectedGender</p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The ChoiceGroup component provides a Fluent UI styled radio button group for single-selection scenarios. It allows users to choose exactly one option from a set of predefined choices.</p>
+    <p>ChoiceGroup is generic, supporting string, integer, character, and custom types for type-safe selection.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Radio button selections (yes/no, agree/disagree)</li>
+        <li>Priority levels (high, medium, low)</li>
+        <li>Size or category selection</li>
+        <li>Plan or tier selection</li>
+        <li>Form fields requiring single selection</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <h3>ChoiceGroup Parameters</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ChildContent</code></td>
+                <td>RenderFragment</td>
+                <td>Contains Choice child components</td>
+            </tr>
+            <tr>
+                <td><code>T</code></td>
+                <td>type parameter</td>
+                <td>Type of the selected value</td>
+            </tr>
+            <tr>
+                <td><code>SelectedItem</code></td>
+                <td>T</td>
+                <td>Currently selected value (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>SelectedItemChanged</code></td>
+                <td>EventCallback</td>
+                <td>Callback when selection changes</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Choice Parameters</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>Display label text</td>
+            </tr>
+            <tr>
+                <td><code>IsSelected</code></td>
+                <td>bool</td>
+                <td>Whether this choice is selected</td>
+            </tr>
+            <tr>
+                <td><code>Value</code></td>
+                <td>T</td>
+                <td>The value associated with this choice (generic)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private string _selectedOption = "Option 1";
+    private string _selectedColor = "Red";
+    private int _selectedSize = 2;
+    private string _selectedPriority = "Medium";
+    private char _selectedChar = 'A';
+    private string _selectedGender = "";
+
+    private string _option1 = "Option 1";
+    private string _option2 = "Option 2";
+    private string _option3 = "Option 3";
+
+    private string _red = "Red";
+    private string _green = "Green";
+    private string _blue = "Blue";
+    private string _yellow = "Yellow";
+
+    private int _size1 = 1;
+    private int _size2 = 2;
+    private int _size3 = 3;
+    private int _size4 = 4;
+
+    private string _high = "High";
+    private string _medium = "Medium";
+    private string _low = "Low";
+
+    private string _charA = "A";
+    private string _charB = "B";
+    private string _charC = "C";
+
+    private void OnOptionChanged(string option) => _selectedOption = option;
+    private void OnColorChanged(string color) => _selectedColor = color;
+    private void OnSizeChanged(int size) => _selectedSize = size;
+    private void OnPriorityChanged(string priority) => _selectedPriority = priority;
+    private void OnCharChanged(char c) => _selectedChar = c;
+    private void OnGenderChanged(string gender) => _selectedGender = gender;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.ChoiceGroup
+
+@* Basic ChoiceGroup *@
+<ChoiceGroup SelectedItem=""@selectedOption"" SelectedItemChanged=""OnOptionChanged"">
+    <Choice Label=""Option 1"" />
+    <Choice Label=""Option 2"" />
+    <Choice Label=""Option 3"" />
+</ChoiceGroup>
+
+@* Generic ChoiceGroup *@
+<ChoiceGroup T=""string"" SelectedItem=""@selectedColor"" SelectedItemChanged=""OnColorChanged"">
+    <Choice Value=""Red"">Red</Choice>
+    <Choice Value=""Green"">Green</Choice>
+    <Choice Value=""Blue"">Blue</Choice>
+</ChoiceGroup>";
+}

@@ -1,4 +1,5 @@
 ﻿using AppsByTAP.BlazorFluentUI.Components.BaseComponent;
+using AppsByTAP.BlazorFluentUI.Components.CheckBox;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
@@ -23,6 +24,10 @@ namespace AppsByTAP.BlazorFluentUI.Components.Expander
                 ChevronIsDown = value;
             }
         }
+
+
+        [Parameter]
+        public EventCallback<bool> IsOpenChanged { get; set; }
         protected bool ChevronIsDown { get; set; } = false;
 
         protected async Task Clicked()
@@ -30,6 +35,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Expander
             IsOpen = !IsOpen;
 
             await Task.Delay(200);
+            await IsOpenChanged.InvokeAsync(IsOpen);
         }
     }
 }

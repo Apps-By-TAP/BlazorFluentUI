@@ -1,0 +1,269 @@
+@page "/components/tabs"
+@using AppsByTAP.BlazorFluentUI.Components.Tabs
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>Tabs</PageTitle>
+
+<h1>Tabs Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Tabs</h3>
+            <p>Simple tabbed content navigation.</p>
+            <Tabs Width="100%" Height="200px">
+                <Tab Name="Tab 1">
+                    <p>Content for Tab 1 goes here.</p>
+                </Tab>
+                <Tab Name="Tab 2">
+                    <p>Content for Tab 2 goes here.</p>
+                </Tab>
+                <Tab Name="Tab 3">
+                    <p>Content for Tab 3 goes here.</p>
+                </Tab>
+            </Tabs>
+        </div>
+
+        <div class="demo-card">
+            <h3>Styled Tabs</h3>
+            <p>Tabs with different color accents.</p>
+            <Tabs Width="100%" Height="200px">
+                <Tab Name="General" Color="Blue">
+                    <p>General settings and configuration options.</p>
+                </Tab>
+                <Tab Name="Security" Color="Orange">
+                    <p>Security settings and privacy controls.</p>
+                </Tab>
+                <Tab Name="About" Color="Yellow">
+                    <p>Application information and version details.</p>
+                </Tab>
+            </Tabs>
+        </div>
+
+        <div class="demo-card">
+            <h3>Scrollable Content</h3>
+            <p>Tabs with scrollable content areas.</p>
+            <Tabs Width="100%" Height="200px" TabContentCanScroll="true">
+                <Tab Header="Tab 1" Color="Blue">
+                    <div>
+                        <p>This tab has scrollable content that extends beyond the visible area.</p>
+                        <p>Add more content here to test scrolling behavior.</p>
+                    </div>
+                </Tab>
+                <Tab Header="Tab 2" Color="Orange">
+                    <div>
+                        <p>This is another tab with scrollable content.</p>
+                        <p>Each tab can have its own scrollable area.</p>
+                    </div>
+                </Tab>
+            </Tabs>
+        </div>
+
+        <div class="demo-card">
+            <h3>Fixed Size Tabs</h3>
+            <p>Tabs with fixed dimensions.</p>
+            <Tabs Width="500px" Height="250px">
+                <Tab Header="Dashboard">
+                    <div class="tab-content">
+                        <h4>Dashboard Overview</h4>
+                        <p>Welcome to your dashboard. Here you can find an overview of your activities and statistics.</p>
+                    </div>
+                </Tab>
+                <Tab Header="Analytics">
+                    <div class="tab-content">
+                        <h4>Analytics</h4>
+                        <p>View detailed analytics and reports about your performance and engagement metrics.</p>
+                    </div>
+                </Tab>
+                <Tab Header="Reports">
+                    <div class="tab-content">
+                        <h4>Reports</h4>
+                        <p>Generate and download reports in various formats including PDF and CSV.</p>
+                    </div>
+                </Tab>
+            </Tabs>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Control tabs programmatically.</p>
+            <Tabs Width="100%" Height="200px" ActivePage="@_activeTab">
+                <Tab Name="Home">
+                    <p>Home content</p>
+                </Tab>
+                <Tab Name="Profile">
+                    <p>Profile content</p>
+                </Tab>
+                <Tab Name="Settings">
+                    <p>Settings content</p>
+                </Tab>
+            </Tabs>
+            <div class="demo-controls">
+                <DefaultButton Text="Go to Home" OnClick="@(() => _activeTab = "Home")" />
+                <DefaultButton Text="Go to Profile" OnClick="@(() => _activeTab = "Profile")" />
+                <DefaultButton Text="Go to Settings" OnClick="@(() => _activeTab = "Settings")" />
+            </div>
+            <p class="demo-info">Active: @_activeTab</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Settings Tabs</h3>
+            <p>Real-world example with settings categories.</p>
+            <Tabs Width="100%" Height="250px">
+                <Tab Name="Account" Color="Blue">
+                    <div class="tab-content">
+                        <h4>Account Settings</h4>
+                        <p>Manage your account information, password, and security preferences.</p>
+                        <DefaultButton Text="Edit Profile" IsPrimary="true" />
+                    </div>
+                </Tab>
+                <Tab Name="Notifications" Color="Orange">
+                    <div class="tab-content">
+                        <h4>Notification Settings</h4>
+                        <p>Configure how and when you receive notifications.</p>
+                        <DefaultButton Text="Save Changes" IsPrimary="true" />
+                    </div>
+                </Tab>
+                <Tab Name="Privacy" Color="Yellow">
+                    <div class="tab-content">
+                        <h4>Privacy Settings</h4>
+                        <p>Control your privacy preferences and data sharing options.</p>
+                        <DefaultButton Text="Update Settings" IsPrimary="true" />
+                    </div>
+                </Tab>
+            </Tabs>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Tabs component provides a Fluent UI styled tabbed interface for organizing content into multiple panels. Users can switch between tabs to view different content sections without leaving the page.</p>
+    <p>Tabs are ideal for organizing related content into logical categories, reducing page clutter, and providing intuitive navigation between sections.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Settings panels with categorized options</li>
+        <li>Multi-step forms</li>
+        <li>Content organization (Dashboard, Analytics, Reports)</li>
+        <li>Profile pages with multiple sections</li>
+        <li>Data views (List, Grid, Calendar)</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <h3>Tabs Parameters</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Width</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>CSS width of the tab container</td>
+            </tr>
+            <tr>
+                <td><code>Height</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>CSS height of the tab container</td>
+            </tr>
+            <tr>
+                <td><code>TabContentCanScroll</code></td>
+                <td>bool</td>
+                <td>—</td>
+                <td>Enables scrolling in the tab content area</td>
+            </tr>
+            <tr>
+                <td><code>ActivePage</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Name of the currently active tab</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Tab Parameters</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Name</code></td>
+                <td>string</td>
+                <td>Tab label (or use Header)</td>
+            </tr>
+            <tr>
+                <td><code>Header</code></td>
+                <td>string</td>
+                <td>Alternative to Name for tab label</td>
+            </tr>
+            <tr>
+                <td><code>Color</code></td>
+                <td>string</td>
+                <td>Color accent for the tab</td>
+            </tr>
+            <tr>
+                <td><code>ChildContent</code></td>
+                <td>RenderFragment</td>
+                <td>Tab panel content</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private string _activeTab = "Home";
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Tabs
+
+@* Basic Tabs *@
+<Tabs Width=""600px"" Height=""400px"">
+    <Tab Name=""General"">
+        <p>General settings content.</p>
+    </Tab>
+    <Tab Name=""Security"">
+        <p>Security settings content.</p>
+    </Tab>
+    <Tab Name=""About"">
+        <p>Application information.</p>
+    </Tab>
+</Tabs>";
+}

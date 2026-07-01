@@ -1,0 +1,265 @@
+@page "/components/checkbox"
+@using AppsByTAP.BlazorFluentUI.Components.CheckBox
+@using AppsByTAP.BlazorFluentUI.Components.Toggle
+@using AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
+@using AppsByTAP.BlazorFluentUI.Components.Button
+@using AppsByTAP.BlazorFluentUI.Components.Common
+
+<PageTitle>CheckBox</PageTitle>
+
+<h1>CheckBox Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Checkbox</h3>
+            <p>Standard checkbox with label on the left.</p>
+            <CheckBox Label="I agree to the terms and conditions" @bind-IsChecked="@_isAgreed" />
+            <p class="demo-info">Checked: @_isAgreed</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Label on Right</h3>
+            <p>Checkbox with label positioned to the right of the box.</p>
+            <CheckBox Label="Remember me" @bind-IsChecked="@_rememberMe" BoxSide="BoxSide.End" />
+            <p class="demo-info">Checked: @_rememberMe</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Checkbox Group - Vertical</h3>
+            <p>Multiple checkboxes in a vertical layout.</p>
+            <CheckboxGroup T="string" 
+                          ItemsSource="@_groupOptions"
+                          GroupDirection="GroupDirection.Vertical"
+                          @bind-SelectedItems="@_selectedGroupOptions" />
+            <p class="demo-info">
+                Selected: @string.Join(", ", _selectedGroupOptions)
+            </p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Checkbox Group - Horizontal</h3>
+            <p>Multiple checkboxes in a horizontal layout.</p>
+            <CheckboxGroup T="string" 
+                          ItemsSource="@_colorOptions"
+                          GroupDirection="GroupDirection.Horizontal"
+                          @bind-SelectedItems="@_selectedColors" />
+            <p class="demo-info">
+                Selected: @string.Join(", ", _selectedColors)
+            </p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Toggle Switches</h3>
+            <p>Checkbox group rendered as toggle switches.</p>
+            <CheckboxGroup T="string"
+                          ItemsSource="@_toggleOptions"
+                          UseToggleSwitches="true"
+                          @bind-SelectedItems="@_selectedToggles" />
+            <p class="demo-info">
+                Selected: @string.Join(", ", _selectedToggles)
+            </p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Toggle checkbox options dynamically.</p>
+            <CheckBox Label="Interactive Checkbox" @bind-IsChecked="@_interactiveChecked" />
+            <div class="demo-controls">
+                <Toggle Label="Checked" @bind-IsChecked="@_interactiveChecked" />
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Dynamic Checkbox List</h3>
+            <p>Programmatically control multiple checkboxes using ItemsSource.</p>
+            <div class="checkbox-list">
+                <p>Select all fruits:</p>
+                <div class="demo-controls">
+                    <DefaultButton Text="Select All" OnClick="SelectAllFruits" />
+                    <DefaultButton Text="Deselect All" OnClick="DeselectAllFruits" />
+                </div>
+                <CheckboxGroup T="string" 
+                              ItemsSource="@DemoData.Fruits"
+                              GroupDirection="GroupDirection.Vertical"
+                              @bind-SelectedItems="@_selectedFruits" />
+                <p class="demo-info">Selected: @string.Join(", ", _selectedFruits)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The CheckBox component provides a Fluent UI styled checkbox for binary (on/off) selections. It supports configurable label positioning and can be used individually or grouped together.</p>
+    <p>CheckBoxGroup allows you to create multiple checkbox or toggle switch layouts with either vertical or horizontal arrangement.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <h3>Single Checkbox</h3>
+    <ul>
+        <li>Terms and conditions acceptance</li>
+        <li>Yes/No decisions</li>
+        <li>Enable/disable features</li>
+    </ul>
+
+    <h3>Checkbox Groups</h3>
+    <ul>
+        <li>Multi-selection from a list</li>
+        <li>Filter selection (multiple criteria)</li>
+        <li>Preference settings</li>
+    </ul>
+
+    <h3>Toggle Switches</h3>
+    <ul>
+        <li>Quick settings (Wi-Fi, Bluetooth)</li>
+        <li>Feature toggles</li>
+        <li>On/off controls</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <h3>CheckBox Parameters</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Checkbox label text</td>
+            </tr>
+            <tr>
+                <td><code>IsChecked</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Checked state (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>LabelSide</code></td>
+                <td>BoxSide</td>
+                <td>Start</td>
+                <td>Label position: Start (left) or End (right)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>CheckboxGroup Parameters</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Direction</code></td>
+                <td>GroupDirection</td>
+                <td>Vertical</td>
+                <td>Layout direction: Horizontal or Vertical</td>
+            </tr>
+            <tr>
+                <td><code>UseToggleSwitches</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Renders toggles instead of checkboxes</td>
+            </tr>
+            <tr>
+                <td><code>ChildContent</code></td>
+                <td>RenderFragment</td>
+                <td>—</td>
+                <td>Checkbox or toggle components</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private bool _isAgreed = false;
+    private bool _rememberMe = false;
+    private bool _interactiveChecked = false;
+
+    private List<string> _groupOptions = new() { "Option A", "Option B", "Option C" };
+    private List<string> _selectedGroupOptions = new();
+
+    private List<string> _colorOptions = new() { "Red", "Green", "Blue" };
+    private List<string> _selectedColors = new();
+
+    private List<string> _toggleOptions = new() { "Wi-Fi", "Bluetooth", "Airplane Mode" };
+    private List<string> _selectedToggles = new();
+
+    private List<string> _selectedFruits = new();
+
+    private Dictionary<string, bool> _fruitSelections = new()
+    {
+        { "Apple", false }, { "Banana", false }, { "Strawberry", false },
+        { "Blackberry", false }, { "Blueberry", false }
+    };
+
+    private void SelectAllFruits()
+    {
+        foreach (var key in _fruitSelections.Keys)
+            _fruitSelections[key] = true;
+    }
+
+    private void DeselectAllFruits()
+    {
+        foreach (var key in _fruitSelections.Keys)
+            _fruitSelections[key] = false;
+    }
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.CheckBox
+@using AppsByTAP.BlazorFluentUI.Components.CheckboxGroup
+
+@* Basic Checkbox *@
+<CheckBox Label=""I agree"" @bind-IsChecked=""@agreed"" />
+
+@* Label on Right *@
+<CheckBox Label=""Remember me"" LabelSide=""BoxSide.End"" @bind-IsChecked=""@rememberMe"" />
+
+@* Checkbox Group - Horizontal *@
+<CheckboxGroup Direction=""GroupDirection.Horizontal"">
+    <CheckBox Label=""Option A"" @bind-IsChecked=""@optA"" />
+    <CheckBox Label=""Option B"" @bind-IsChecked=""@optB"" />
+</CheckboxGroup>
+
+@* Toggle Switches *@
+<CheckboxGroup UseToggleSwitches=""true"">
+    <CheckBox Label=""Wi-Fi"" @bind-IsChecked=""@wifiOn"" />
+    <CheckBox Label=""Bluetooth"" @bind-IsChecked=""@bluetoothOn"" />
+</CheckboxGroup>";
+}

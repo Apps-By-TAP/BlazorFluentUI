@@ -1,0 +1,244 @@
+@page "/components/modal"
+@using AppsByTAP.BlazorFluentUI.Components.Modal
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>Modal</PageTitle>
+
+<h1>Modal Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Modal</h3>
+            <p>Simple modal with header and content.</p>
+            <DefaultButton Text="Open Modal" OnClick="@(() => _showBasicModal = true)" />
+            
+            <Modal @bind-ShowWindow="@_showBasicModal" Width="500px">
+                <Header>
+                    <h3>Basic Modal</h3>
+                </Header>
+                <Content>
+                    <p>This is a simple modal dialog with header and content.</p>
+                    <p>Click outside or press Escape to close.</p>
+                    <div class="modal-actions">
+                        <DefaultButton Text="OK" IsPrimary="true" OnClick="@(() => _showBasicModal = false)" />
+                        <DefaultButton Text="Cancel" OnClick="@(() => _showBasicModal = false)" />
+                    </div>
+                </Content>
+            </Modal>
+        </div>
+
+        <div class="demo-card">
+            <h3>Confirmation Dialog</h3>
+            <p>Modal for confirming destructive actions.</p>
+            <DefaultButton Text="Delete Item" IsPrimary="false" OnClick="@(() => _showDeleteModal = true)" />
+            
+            <Modal @bind-ShowWindow="@_showDeleteModal" Width="400px">
+                <Header>
+                    <h3>Confirm Deletion</h3>
+                </Header>
+                <Content>
+                    <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+                    <div class="modal-actions">
+                        <DefaultButton Text="Delete" IsPrimary="true" OnClick="@(() => _showDeleteModal = false)" />
+                        <DefaultButton Text="Cancel" OnClick="@(() => _showDeleteModal = false)" />
+                    </div>
+                </Content>
+            </Modal>
+        </div>
+
+        <div class="demo-card">
+            <h3>Without Header</h3>
+            <p>Modal without header bar and close button.</p>
+            <DefaultButton Text="Open Modal Without Header" OnClick="@(() => _showNoHeaderModal = true)" />
+            
+            <Modal @bind-ShowWindow="@_showNoHeaderModal" Width="400px" ShowHeader="false">
+                <Content>
+                    <p>This modal has no header or close button.</p>
+                    <p>It can only be closed by setting ShowWindow to false or using CanLightDismiss.</p>
+                    <div class="modal-actions">
+                        <DefaultButton Text="Close" IsPrimary="true" OnClick="@(() => _showNoHeaderModal = false)" />
+                    </div>
+                </Content>
+            </Modal>
+        </div>
+
+        <div class="demo-card">
+            <h3>Custom Content Modal</h3>
+            <p>Modal with rich custom content.</p>
+            <DefaultButton Text="View Details" IsPrimary="true" OnClick="@(() => _showDetailsModal = true)" />
+            
+            <Modal @bind-ShowWindow="@_showDetailsModal" Width="600px">
+                <Header>
+                    <h3>Project Details</h3>
+                </Header>
+                <Content>
+                    <div class="modal-details">
+                        <h4>Project Overview</h4>
+                        <p>This is a comprehensive modal with rich content including headings, paragraphs, and action buttons.</p>
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>Fluent UI styling</li>
+                            <li>Light dismiss support</li>
+                            <li>Custom width</li>
+                            <li>Rich content support</li>
+                        </ul>
+                    </div>
+                    <div class="modal-actions">
+                        <DefaultButton Text="Accept" IsPrimary="true" OnClick="@(() => _showDetailsModal = false)" />
+                        <DefaultButton Text="Decline" OnClick="@(() => _showDetailsModal = false)" />
+                    </div>
+                </Content>
+            </Modal>
+        </div>
+
+        <div class="demo-card">
+            <h3>Light Dismiss</h3>
+            <p>Control whether the modal can be dismissed by clicking outside.</p>
+            <DefaultButton Text="Open (Light Dismiss)" OnClick="@(() => _showLightDismiss = true)" />
+            <DefaultButton Text="Open (No Light Dismiss)" OnClick="@(() => _showNoDismiss = true)" />
+            
+            <Modal @bind-ShowWindow="@_showLightDismiss" Width="400px" CanLightDismiss="true">
+                <Header>
+                    <h3>Light Dismiss Enabled</h3>
+                </Header>
+                <Content>
+                    <p>This modal can be closed by clicking outside or pressing Escape.</p>
+                    <DefaultButton Text="Close" OnClick="@(() => _showLightDismiss = false)" />
+                </Content>
+            </Modal>
+
+            <Modal @bind-ShowWindow="@_showNoDismiss" Width="400px" CanLightDismiss="false">
+                <Header>
+                    <h3>Light Dismiss Disabled</h3>
+                </Header>
+                <Content>
+                    <p>This modal requires you to click the close button or an action button to dismiss.</p>
+                    <DefaultButton Text="Close" OnClick="@(() => _showNoDismiss = false)" />
+                </Content>
+            </Modal>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Modal component provides a Fluent UI styled dialog window that overlays the main content. It's used for important interactions that require user attention without navigating away from the current page.</p>
+    <p>Modals support headers, custom content, light dismiss, and various configuration options to fit different use cases.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Confirmation dialogs (delete, save, submit)</li>
+        <li>Form overlays for creating/editing data</li>
+        <li>Important announcements or alerts</li>
+        <li>Image or media viewers</li>
+        <li>Settings panels</li>
+        <li>Wizard-style multi-step processes</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ShowWindow</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Controls visibility (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>Header</code></td>
+                <td>RenderFragment</td>
+                <td>—</td>
+                <td>Header content</td>
+            </tr>
+            <tr>
+                <td><code>Content</code></td>
+                <td>RenderFragment</td>
+                <td>—</td>
+                <td>Content rendered in the modal body</td>
+            </tr>
+            <tr>
+                <td><code>Width</code></td>
+                <td>string</td>
+                <td>fit-content</td>
+                <td>CSS width of the modal</td>
+            </tr>
+            <tr>
+                <td><code>ShowHeader</code></td>
+                <td>bool</td>
+                <td>true</td>
+                <td>Shows or hides the header bar and close button</td>
+            </tr>
+            <tr>
+                <td><code>CanLightDismiss</code></td>
+                <td>bool</td>
+                <td>true</td>
+                <td>Allows closing by clicking the backdrop</td>
+            </tr>
+            <tr>
+                <td><code>OnClose</code></td>
+                <td>EventCallback</td>
+                <td>—</td>
+                <td>Fires when the modal is closed</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private bool _showBasicModal = false;
+    private bool _showDeleteModal = false;
+    private bool _showNoHeaderModal = false;
+    private bool _showDetailsModal = false;
+    private bool _showLightDismiss = false;
+    private bool _showNoDismiss = false;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Modal
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+@* Basic Modal *@
+<DefaultButton Text=""Open Modal"" OnClick=""@(() => showModal = true)"" />
+
+<Modal @bind-ShowWindow=""showModal"" Width=""500px"">
+    <Header><h3>Confirmation</h3></Header>
+    <Content>
+        <p>Are you sure you want to continue?</p>
+        <DefaultButton Text=""Yes"" IsPrimary=""true"" OnClick=""@(() => showModal = false)"" />
+        <DefaultButton Text=""No"" OnClick=""@(() => showModal = false)"" />
+    </Content>
+</Modal>";
+}

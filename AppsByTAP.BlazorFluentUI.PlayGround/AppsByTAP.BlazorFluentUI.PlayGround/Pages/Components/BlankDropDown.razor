@@ -1,0 +1,264 @@
+@page "/components/blankdropdown"
+@using AppsByTAP.BlazorFluentUI.Components.DropDown
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>BlankDropDown</PageTitle>
+
+<h1>BlankDropDown Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic BlankDropDown</h3>
+            <p>Lower-level dropdown with full content control.</p>
+            <BlankDropDown @bind-IsOpen="@_isBasicOpen">
+                <DisplayInfo>
+                    <span>Click to show content</span>
+                </DisplayInfo>
+                <Content>
+                    <p>This is custom dropdown content.</p>
+                    <p>You have full control over what's displayed.</p>
+                </Content>
+            </BlankDropDown>
+            <div class="demo-controls">
+                <DefaultButton Text="Open" OnClick="@(() => _isBasicOpen = true)" />
+                <DefaultButton Text="Close" OnClick="@(() => _isBasicOpen = false)" />
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Custom Display</h3>
+            <p>BlankDropDown with custom display and content.</p>
+            <BlankDropDown @bind-IsOpen="@_isCustomOpen" Width="400px">
+                <DisplayInfo>
+                    <div class="custom-display">
+                        <span class="display-icon">📋</span>
+                        <span class="display-text">Custom Dropdown</span>
+                    </div>
+                </DisplayInfo>
+                <Content>
+                    <h4>Custom Content Area</h4>
+                    <p>This dropdown has custom display and content areas.</p>
+                    <ul>
+                        <li>Option 1</li>
+                        <li>Option 2</li>
+                        <li>Option 3</li>
+                    </ul>
+                    <DefaultButton Text="Select" IsPrimary="true" OnClick="@(() => _isCustomOpen = false)" />
+                </Content>
+            </BlankDropDown>
+            <DefaultButton Text="Toggle Dropdown" OnClick="@(() => _isCustomOpen = !_isCustomOpen)" />
+        </div>
+
+        <div class="demo-card">
+            <h3>With Label</h3>
+            <p>BlankDropDown with label text.</p>
+            <BlankDropDown @bind-IsOpen="@_isLabeledOpen" Label="Select an option" Width="300px">
+                <DisplayInfo>
+                    <span>Choose an option...</span>
+                </DisplayInfo>
+                <Content>
+                    <p>Available options:</p>
+                    <div class="dropdown-options">
+                        <div class="option-item" @onclick="@(() => _isLabeledOpen = false)">Option A</div>
+                        <div class="option-item" @onclick="@(() => _isLabeledOpen = false)">Option B</div>
+                        <div class="option-item" @onclick="@(() => _isLabeledOpen = false)">Option C</div>
+                    </div>
+                </Content>
+            </BlankDropDown>
+        </div>
+
+        <div class="demo-card">
+            <h3>Disabled Dropdown</h3>
+            <p>BlankDropDown in disabled state.</p>
+            <BlankDropDown Disabled="true">
+                <DisplayInfo>
+                    <span>This dropdown is disabled</span>
+                </DisplayInfo>
+                <Content>
+                    <p>You cannot open this dropdown.</p>
+                </Content>
+            </BlankDropDown>
+        </div>
+
+        <div class="demo-card">
+            <h3>With Events</h3>
+            <p>BlankDropDown with open/close event handling.</p>
+            <BlankDropDown @bind-IsOpen="@_isEventOpen" OnOpen="@OnOpen" OnClose="@OnClose">
+                <DisplayInfo>
+                    <span>Event-enabled dropdown</span>
+                </DisplayInfo>
+                <Content>
+                    <p>Check the console for open/close events.</p>
+                </Content>
+            </BlankDropDown>
+            <DefaultButton Text="Toggle" OnClick="@(() => _isEventOpen = !_isEventOpen)" />
+            <p class="demo-info">Last action: @_lastAction</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Controls</h3>
+            <p>Control width and other properties.</p>
+            <BlankDropDown @bind-IsOpen="@_isInteractiveOpen" Width="@_widthValue">
+                <DisplayInfo>
+                    <span>Interactive dropdown</span>
+                </DisplayInfo>
+                <Content>
+                    <p>Dropdown width: @_widthValue</p>
+                    <DefaultButton Text="Close" OnClick="@(() => _isInteractiveOpen = false)" />
+                </Content>
+            </BlankDropDown>
+            <div class="demo-controls">
+                <DefaultButton Text="Open" OnClick="@(() => _isInteractiveOpen = true)" />
+                <label>Width: </label>
+                <DropDown TItem="string" ItemsSource="@_widthOptions" @bind-SelectedItem="@_widthValue" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The BlankDropDown component is a lower-level dropdown container that provides full control over the dropdown content. It's used internally by the generic DropDown&lt;T&gt; component but can also be used directly when you need complete customization of the dropdown behavior and appearance.</p>
+    <p>BlankDropDown gives you full control over both the display area (what's shown when collapsed) and the content area (what's shown when expanded).</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Custom dropdown with unique content</li>
+        <li>Dropdowns with complex item templates</li>
+        <li>Non-standard dropdown behaviors</li>
+        <li>Building custom selection components</li>
+        <li>Context menus and popup panels</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>—</td>
+                <td>Label text</td>
+            </tr>
+            <tr>
+                <td><code>DisplayInfo</code></td>
+                <td>RenderFragment</td>
+                <td>—</td>
+                <td>Content shown in the collapsed display area</td>
+            </tr>
+            <tr>
+                <td><code>Content</code></td>
+                <td>RenderFragment</td>
+                <td>—</td>
+                <td>Content shown in the expanded panel</td>
+            </tr>
+            <tr>
+                <td><code>Disabled</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Disables opening</td>
+            </tr>
+            <tr>
+                <td><code>IsOpen</code></td>
+                <td>bool</td>
+                <td>false</td>
+                <td>Open state (two-way binding)</td>
+            </tr>
+            <tr>
+                <td><code>Width</code></td>
+                <td>string</td>
+                <td>300px</td>
+                <td>CSS width</td>
+            </tr>
+            <tr>
+                <td><code>ItemsPanelHeight</code></td>
+                <td>int</td>
+                <td>-1</td>
+                <td>Max height of the items panel in pixels</td>
+            </tr>
+            <tr>
+                <td><code>OnOpen</code></td>
+                <td>EventCallback</td>
+                <td>—</td>
+                <td>Fired when opened</td>
+            </tr>
+            <tr>
+                <td><code>OnClose</code></td>
+                <td>EventCallback</td>
+                <td>—</td>
+                <td>Fired when closed</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private bool _isBasicOpen = false;
+    private bool _isCustomOpen = false;
+    private bool _isLabeledOpen = false;
+    private bool _isEventOpen = false;
+    private bool _isInteractiveOpen = false;
+    private string _widthValue = "300px";
+    private string _lastAction = "None";
+
+    private List<string> _widthOptions = new()
+    {
+        "200px", "300px", "400px", "500px", "100%"
+    };
+
+    private void OnOpen()
+    {
+        _lastAction = "Opened at " + DateTime.Now.ToString("HH:mm:ss");
+    }
+
+    private void OnClose()
+    {
+        _lastAction = "Closed at " + DateTime.Now.ToString("HH:mm:ss");
+    }
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.DropDown
+
+@* Basic BlankDropDown *@
+<BlankDropDown @bind-IsOpen=""@isOpen"">
+    <DisplayInfo>
+        <span>Click to show content</span>
+    </DisplayInfo>
+    <Content>
+        <p>Custom content here.</p>
+    </Content>
+</BlankDropDown>";
+}

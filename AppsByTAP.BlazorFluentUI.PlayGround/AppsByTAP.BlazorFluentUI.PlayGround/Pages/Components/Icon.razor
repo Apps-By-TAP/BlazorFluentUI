@@ -1,0 +1,209 @@
+@page "/components/icon"
+@using AppsByTAP.BlazorFluentUI.Components.Icon
+@using AppsByTAP.BlazorFluentUI.Components.Button
+
+<PageTitle>Icon</PageTitle>
+
+<h1>Icon Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Common Icons</h3>
+            <p>Most frequently used icons.</p>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.CheckMark" />
+                    <span>CheckMark</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.Delete" />
+                    <span>Delete</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.Cancel" />
+                    <span>Cancel</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.Search" />
+                    <span>Search</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.Settings" />
+                    <span>Settings</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.Mail" />
+                    <span>Mail</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.Calendar" />
+                    <span>Calendar</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.Mail" />
+                    <span>Mail</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Navigation Icons</h3>
+            <p>Icons commonly used for navigation.</p>
+            <div class="icon-grid">
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.ChevronDown" />
+                    <span>ChevronDown</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.ChevronUp" />
+                    <span>ChevronUp</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.ChevronDown" />
+                    <span>ChevronDown</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.ChevronUp" />
+                    <span>ChevronUp</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.ChevronDown" />
+                    <span>ChevronDown</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.ChevronUp" />
+                    <span>ChevronUp</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.More" />
+                    <span>More</span>
+                </div>
+                <div class="icon-item">
+                    <Icon IconType="IconTypes.MoreVertical" />
+                    <span>MoreVertical</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Interactive Icon Selector</h3>
+            <p>Select an icon to see it highlighted.</p>
+            <div class="icon-grid">
+                @foreach (var icon in DemoData.Icons.Take(24))
+                {
+                    <div class="icon-item @(icon == _selectedIcon ? "selected" : "")"
+                         @onclick="@(() => _selectedIcon = icon)">
+                        <Icon IconType="icon" />
+                        <span>@icon</span>
+                    </div>
+                }
+            </div>
+            <p class="demo-info">Selected: @_selectedIcon</p>
+        </div>
+
+        <div class="demo-card">
+            <h3>Icon Buttons</h3>
+            <p>Icons used with buttons.</p>
+            <div class="icon-button-row">
+                <IconButton Icon="IconTypes.Cancel" OnClick="() => {}" />
+                <IconButton Icon="IconTypes.Delete" OnClick="() => {}" />
+                <IconButton Icon="IconTypes.CheckMark" OnClick="() => {}" />
+                <IconButton Icon="IconTypes.Edit" OnClick="() => {}" />
+                <IconButton Icon="IconTypes.Settings" OnClick="() => {}" />
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Icon Sizes</h3>
+            <p>Icons in different contexts.</p>
+            <div class="icon-size-demo">
+                <Icon IconType="IconTypes.Settings" />
+                <span>Small (default)</span>
+            </div>
+            <div class="icon-size-demo">
+                <Icon IconType="IconTypes.Settings" />
+                <span>Medium (in button)</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The Icon component provides access to the Office Fabric icon set, a comprehensive collection of icons designed for Microsoft products. Icons are used to visually communicate actions, statuses, and categories within the interface.</p>
+    <p>Icons are rendered using CSS classes and the Fabric Icons font, making them lightweight and easy to style.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Action indicators (save, delete, edit)</li>
+        <li>Navigation elements (arrows, chevrons)</li>
+        <li>Status indicators (check marks, warnings)</li>
+        <li>Category labels (mail, calendar, people)</li>
+        <li>Button and toolbar decorations</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>IconType</code></td>
+                <td>IconTypes</td>
+                <td>None</td>
+                <td>The icon to display</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+    private IconTypes _selectedIcon = IconTypes.CheckMark;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Icon
+
+@* Basic Icon *@
+<Icon IconType=""IconTypes.CheckMark"" />
+
+@* Icon in a button *@
+<IconButton Icon=""IconTypes.Delete"" OnClick=""Delete"" />
+
+@* Icon list *@
+@foreach (var icon in icons)
+{
+    <Icon IconType=""icon"" />
+}";
+}

@@ -1,0 +1,173 @@
+@page "/components/bottomnavigationbar"
+@using AppsByTAP.BlazorFluentUI.Components.BottomNavigationBar
+@using AppsByTAP.BlazorFluentUI.Components.Icon
+
+<PageTitle>BottomNavigationBar</PageTitle>
+
+<h1>BottomNavigationBar Component</h1>
+
+<!-- 1. Live Demo -->
+<section class="component-section">
+    <h2>Live Demo</h2>
+    
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Basic Bottom Navigation</h3>
+            <p>Mobile-style bottom navigation bar.</p>
+            <div class="bottom-nav-demo">
+                <BottomNavigationBar>
+                    <NavigationItem Label="Home" Icon="IconTypes.Mail" />
+                    <NavigationItem Label="Search" Icon="IconTypes.Search" />
+                    <NavigationItem Label="Profile" Icon="IconTypes.Mail" />
+                    <NavigationItem Label="Settings" Icon="IconTypes.Settings" />
+                </BottomNavigationBar>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>With Badge Indicators</h3>
+            <p>Bottom navigation with notification badges.</p>
+            <div class="bottom-nav-demo">
+                <BottomNavigationBar>
+                    <NavigationItem Label="Messages" Icon="IconTypes.Mail" />
+                    <NavigationItem Label="Notifications" Icon="IconTypes.AlertSolid" />
+                    <NavigationItem Label="Calendar" Icon="IconTypes.Calendar" />
+                    <NavigationItem Label="Tasks" Icon="IconTypes.CheckMark" />
+                </BottomNavigationBar>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Tab Bar Style</h3>
+            <p>Bottom navigation styled as a tab bar.</p>
+            <div class="bottom-nav-demo">
+                <BottomNavigationBar>
+                    <NavigationItem Label="Home" Icon="IconTypes.Mail" />
+                    <NavigationItem Label="Explore" Icon="IconTypes.Search" />
+                    <NavigationItem Label="Create" Icon="IconTypes.Cancel" />
+                    <NavigationItem Label="Liked" Icon="IconTypes.FavoriteStar" />
+                    <NavigationItem Label="Profile" Icon="IconTypes.Mail" />
+                </BottomNavigationBar>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>E-Commerce App</h3>
+            <p>Bottom navigation for shopping app.</p>
+            <div class="bottom-nav-demo">
+                <BottomNavigationBar>
+                    <NavigationItem Label="Shop" Icon="IconTypes.ReceiptProcessing" />
+                    <NavigationItem Label="Categories" Icon="IconTypes.BulletedListText" />
+                    <NavigationItem Label="Cart" Icon="IconTypes.More" />
+                    <NavigationItem Label="Wishlist" Icon="IconTypes.FavoriteStar" />
+                    <NavigationItem Label="Account" Icon="IconTypes.Mail" />
+                </BottomNavigationBar>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Media Player</h3>
+            <p>Bottom navigation for media application.</p>
+            <div class="bottom-nav-demo">
+                <BottomNavigationBar>
+                    <NavigationItem Label="Now Playing" Icon="IconTypes.PlaySolid" />
+                    <NavigationItem Label="Library" Icon="IconTypes.Bank" />
+                    <NavigationItem Label="Browse" Icon="IconTypes.Search" />
+                    <NavigationItem Label="Playlist" Icon="IconTypes.BulletedListText" />
+                </BottomNavigationBar>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Overview -->
+<section class="component-section">
+    <h2>Overview</h2>
+    <p>The BottomNavigationBar component provides a mobile-style bottom navigation bar containing NavigationItem entries. It's designed for touch-friendly navigation on mobile devices and tablets.</p>
+    <p>Bottom navigation bars are ideal for apps with 3-5 main sections, providing quick access to primary destinations without taking up screen space.</p>
+</section>
+
+<!-- 3. Use Cases -->
+<section class="component-section">
+    <h2>Use Cases</h2>
+    
+    <ul>
+        <li>Mobile app primary navigation</li>
+        <li>Tab bars for multi-section apps</li>
+        <li>Media player controls</li>
+        <li>E-commerce app navigation</li>
+        <li>Social media app menus</li>
+    </ul>
+</section>
+
+<!-- 4. Parameters Table -->
+<section class="component-section">
+    <h2>Parameters</h2>
+    
+    <h3>BottomNavigationBar</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ChildContent</code></td>
+                <td>RenderFragment</td>
+                <td>Contains NavigationItem elements</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>NavigationItem</h3>
+    <table class="parameters-table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Label</code></td>
+                <td>string</td>
+                <td>Display label for the navigation item</td>
+            </tr>
+            <tr>
+                <td><code>Icon</code></td>
+                <td>IconTypes</td>
+                <td>Icon displayed with the label</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 5. Source Code -->
+<section class="component-section">
+    <h2>Source Code</h2>
+    <button class="btn-toggle-code" @onclick="() => _showCode = !_showCode">
+        @_showCode ? "Hide Code" : "Show Code"
+    </button>
+    
+    @if (_showCode)
+    {
+        <pre class="code-block"><code>@SourceCode</code></pre>
+    }
+</section>
+
+@code {
+    private bool _showCode;
+
+    private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.BottomNavigationBar
+
+@* Basic Bottom Navigation *@
+<BottomNavigationBar>
+    <NavigationItem Label=""Home"" Icon=""IconTypes.Mail"" />
+    <NavigationItem Label=""Search"" Icon=""IconTypes.Search"" />
+    <NavigationItem Label=""Profile"" Icon=""IconTypes.Mail"" />
+</BottomNavigationBar>";
+}

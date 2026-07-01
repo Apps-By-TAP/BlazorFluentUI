@@ -4,7 +4,7 @@ This guide walks through adding BlazorFluentUI to an existing Blazor Server proj
 
 ## Prerequisites
 
-- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) or later
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later
 - A Blazor Server application
 
 ## Installation
@@ -47,7 +47,6 @@ using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light;
 
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddRazorPages();
     services.AddServerSideBlazor();
     services.AddSingleton<IThemeProvider>(new ThemeProvider(new LightThemePalette()));
 }

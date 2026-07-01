@@ -18,9 +18,25 @@ Build Blazor Server UIs using the AppsByTAP.BlazorFluentUI component library wit
 
 ## Project Setup
 
-**Target Framework:** .NET 6+ (net6.0 or newer)  
+**Target Framework:** .NET 8.0 (net8.0)  
 **Package:** `AppsByTAP.BlazorFluentUI.Components` (Razor Class Library)  
-**Dependency:** `Microsoft.AspNetCore.Components.Web` 6.0.15
+**Dependency:** `Microsoft.AspNetCore.Components.Web`
+
+### 🏗️ WPF-Style API Design (CRITICAL)
+
+This library was built to help WPF developers transition to web development. It uses **WPF-style parameter names** rather than standard Blazor `Value`/`ValueChanged` patterns.
+
+#### Data Binding Patterns
+
+| Components | Parameters | Binding Syntax |
+|---|---|---|
+| **Toggle**, **CheckBox** | `IsChecked` + `IsCheckedChanged` | `@bind-IsChecked="@_value"` |
+| **DropDown**, **SplitButton**, **ChoiceGroup**, **BlankDropDown** | `SelectedItem` + `SelectedItemChanged` | `@bind-SelectedItem="@_value"` |
+| **TextField**, **SpinButton** | `Value` + `ValueChanged` | `@bind-Value="@_value"` |
+
+Blazor's `@bind-*` sugar automatically generates the `*Changed` callback, so `@bind-IsChecked` works just like `@bind-Value` — but the underlying parameters are named for WPF familiarity, not Blazor convention.
+
+**🚫 Never refactor a WPF-style component to use `Value`/`ValueChanged`.** This breaks the design intent and confuses WPF developers.
 
 ### 1. Register the Theme Provider
 
@@ -84,6 +100,10 @@ Add to `_Imports.razor` or individual pages as needed:
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light
 @using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Dark
 ```
+
+## Data Binding Quick Reference
+
+When adding new pages or updating existing components, always use the correct binding pattern for each component. See the WPF-Style API section above for details.
 
 ## Component Reference
 

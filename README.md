@@ -2,6 +2,24 @@
 
 A Blazor component library that provides [Fluent UI](https://developer.microsoft.com/en-us/fluentui) inspired components for Blazor Server applications. Built by [Apps-By-TAP](https://github.com/Apps-By-TAP).
 
+## WPF-Style API Design
+
+This library was **purpose-built for WPF developers transitioning to the web**. It intentionally uses WPF-style parameter names rather than standard Blazor conventions. This makes components feel familiar to developers coming from WPF, Silverlight, or UWP backgrounds.
+
+### Data Binding
+
+Blazor's `@bind-*` sugar works with all components — you don't need to manually wire up change callbacks. However, the underlying parameter names differ from standard Blazor:
+
+| Components | Parameters | Binding |
+|---|---|---|
+| **Toggle**, **CheckBox** | `IsChecked` + `IsCheckedChanged` | `@bind-IsChecked="@_value"` |
+| **DropDown**, **SplitButton**, **ChoiceGroup**, **BlankDropDown** | `SelectedItem` + `SelectedItemChanged` | `@bind-SelectedItem="@_value"` |
+| **TextField**, **SpinButton** | `Value` + `ValueChanged` | `@bind-Value="@_value"` |
+
+### Why the Difference?
+
+Standard Blazor components use `Value`/`ValueChanged`, which works well when the underlying value is a single primitive. But for components like a Toggle or DropDown, `IsChecked` and `SelectedItem` are more semantically meaningful. The library prioritizes developer clarity over Blazor convention.
+
 ## Features
 
 - **20+ reusable UI components** — buttons, text fields, dropdowns, modals, toggles, spinners, and more
@@ -93,7 +111,7 @@ Detailed documentation is available in the [`docs/`](docs/) directory:
 ```
 BlazorFluentUI/
 ├── AppsByTAP.BlazorFluentUI.PlayGround/
-│   ├── AppsByTAP.BlazorFluentUI.Components/   # Core component library (net6.0)
+│   ├── AppsByTAP.BlazorFluentUI.Components/   # Core component library (net8.0)
 │   │   ├── BaseComponent/                     # Shared base classes
 │   │   ├── Button/                            # Button components
 │   │   ├── TextField/                         # Text input components

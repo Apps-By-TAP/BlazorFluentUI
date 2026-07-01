@@ -5,13 +5,13 @@ html, body {
 }
 
 a, .btn-link {
-    color: #0366d6;
+    color: var(--semanticTextColors-Link);
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    color: var(--semanticTextColors-PrimaryButtonText);
+    background-color: var(--semanticColors-PrimaryButtonBackground);
+    border-color: var(--semanticColors-PrimaryButtonBackgroundHovered);
 }
 
 .content {
@@ -19,19 +19,19 @@ a, .btn-link {
 }
 
 .valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
+    outline: 1px solid var(--semanticColors-SuccessBackground);
 }
 
 .invalid {
-    outline: 1px solid red;
+    outline: 1px solid var(--semanticColors-ErrorText);
 }
 
 .validation-message {
-    color: red;
+    color: var(--semanticColors-ErrorText);
 }
 
 #blazor-error-ui {
-    background: lightyellow;
+    background: var(--semanticColors-WarningBackground);
     bottom: 0;
     box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
     display: none;
@@ -48,3 +48,324 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+/* ===== Component Page Styles ===== */
+
+/* Section Styling */
+.component-section {
+    margin-bottom: 48px;
+    padding: 24px;
+    border-bottom: 1px solid var(--semanticColors-BodyDivider);
+}
+
+.component-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+    color: var(--semanticTextColors-PrimaryText);
+}
+
+.component-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    color: var(--semanticColors-MenuIcon);
+}
+
+.component-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--semanticTextColors-PrimaryText);
+}
+
+.component-section p {
+    color: var(--semanticTextColors-SecondaryText);
+    line-height: 1.6;
+}
+
+.component-section ul {
+    padding-left: 24px;
+    color: var(--semanticTextColors-SecondaryText);
+}
+
+.component-section ul li {
+    margin-bottom: 8px;
+}
+
+/* Demo Grid */
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+    margin: 24px 0;
+}
+
+.demo-card {
+    background: var(--semanticColors-BodyBackground);
+    border: 1px solid var(--semanticColors-BodyDivider);
+    border-radius: 8px;
+    padding: 20px;
+    transition: box-shadow 0.2s;
+}
+
+.demo-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.demo-card h3 {
+    font-size: 1.1rem;
+    color: var(--semanticTextColors-PrimaryText);
+    margin-bottom: 8px;
+}
+
+.demo-card p {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+/* Demo Controls */
+.demo-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+    align-items: center;
+}
+
+.demo-controls label {
+    font-weight: 600;
+    color: var(--semanticTextColors-PrimaryText);
+    margin-bottom: 0;
+}
+
+.demo-info {
+    padding: 12px;
+    background: var(--semanticColors-BodyBackgroundHovered);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--semanticColors-MenuIcon);
+    margin-top: 12px;
+}
+
+.demo-loading-area {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+/* Spinner Row */
+.spinner-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    margin: 16px 0;
+}
+
+/* Icon Grid */
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.icon-item:hover {
+    background: var(--semanticColors-BodyBackgroundHovered);
+}
+
+.icon-item.selected {
+    background: var(--semanticColors-PrimaryButtonBackground);
+    color: var(--semanticTextColors-PrimaryButtonText);
+}
+
+.icon-item span {
+    font-size: 0.8rem;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Icon Button Row */
+.icon-button-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 12px 0;
+}
+
+/* Icon Size Demo */
+.icon-size-demo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+}
+
+/* Persona List */
+.persona-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 16px 0;
+}
+
+/* Bottom Nav Demo */
+.bottom-nav-demo {
+    background: var(--semanticColors-BodyBackgroundHovered);
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+}
+
+/* Overlay Content */
+.overlay-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--semanticColors-BodyBackground);
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    min-width: 300px;
+}
+
+/* Tab Content */
+.tab-content {
+    padding: 8px;
+}
+
+/* Parameters Table */
+.parameters-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.9rem;
+}
+
+.parameters-table th,
+.parameters-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--semanticColors-BodyDivider);
+}
+
+.parameters-table th {
+    background: var(--semanticColors-BodyBackgroundHovered);
+    font-weight: 600;
+    color: var(--semanticTextColors-PrimaryText);
+}
+
+.parameters-table tr:hover {
+    background: var(--semanticColors-BodyStandoutBackground);
+}
+
+.parameters-table code {
+    background: var(--semanticColors-BodyBackgroundHovered);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+}
+
+/* Source Code Block */
+.btn-toggle-code {
+    background: var(--semanticColors-PrimaryButtonBackground);
+    color: var(--semanticTextColors-PrimaryButtonText);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.btn-toggle-code:hover {
+    background: var(--semanticColors-PrimaryButtonBackgroundHovered);
+}
+
+.code-block {
+    background: var(--semanticColors-BodyFrameBackground);
+    color: var(--semanticTextColors-SecondaryText);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 12px 0;
+}
+
+/* Settings Panel */
+.settings-panel {
+    background: var(--semanticColors-ButtonBackground);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--semanticColors-BodyDivider);
+}
+
+/* Dropdown Options */
+.dropdown-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.option-item {
+    padding: 10px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.option-item:hover {
+    background: var(--semanticColors-BodyBackgroundHovered);
+}
+
+/* Custom Display */
+.custom-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.display-icon {
+    font-size: 1.2rem;
+}
+
+.display-text {
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .demo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .icon-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+
+    .component-section {
+        padding: 16px;
+    }
+}
+
+/* Page Headings */
+h1 {
+    font-size: 2.25rem;
+    margin-bottom: 24px;
+    color: var(--semanticTextColors-PrimaryText);
+}
