@@ -70,6 +70,18 @@
         </div>
 
         <div class="demo-card">
+            <h3>SubmitButton</h3>
+            <p>Native HTML submit button for form submission.</p>
+            <EditForm Model="@_formModel" OnValidSubmit="@HandleValidSubmit">
+                <SubmitButton Text="Submit Form" OnClick="@(() => _submitClickCount++)" Icon="IconTypes.CheckMark" />
+                <SubmitButton Text="Submit Primary" IsPrimary="true" OnClick="@(() => _submitPrimaryClickCount++)" Icon="IconTypes.CheckMark" />
+                <SubmitButton Text="Disabled Submit" Disabled="true" />
+                <SubmitButton Text="Submit with Busy" ShowIsBusy="true" OnClick="@HandleBusySubmit" Icon="IconTypes.CheckMark" />
+            </EditForm>
+            <p class="demo-info">Submit count: @_submitClickCount | Primary: @_submitPrimaryClickCount | Valid submits: @_validSubmitCount</p>
+        </div>
+
+        <div class="demo-card">
             <h3>Interactive Controls</h3>
             <p>Toggle button states interactively.</p>
             <DefaultButton Text="Toggle State" 
@@ -144,6 +156,14 @@
         <li>Actions with related secondary options</li>
         <li>Save with options (Save, Save As, Save All)</li>
         <li>Primary action with dropdown of alternatives</li>
+    </ul>
+
+    <h3>Submit Button</h3>
+    <ul>
+        <li>Form submissions with native HTML submit behavior</li>
+        <li>Integration with Blazor's EditForm and validation</li>
+        <li>Default form action button (similar to WPF's IsDefault property)</li>
+        <li>Accessible form submission for screen readers</li>
     </ul>
 </section>
 
@@ -260,8 +280,14 @@
     private int _compoundCount;
     private int _splitCount;
     private int _hyperlinkCount;
+    private int _submitClickCount;
+    private int _submitPrimaryClickCount;
+    private int _validSubmitCount;
     private int _stateCount;
     private bool _showCode;
+
+    private class FormModel { }
+    private FormModel _formModel = new();
 
     private List<string> _splitButtonOptions = new() { "Edit", "Delete", "Share" };
     private string _selectedSplitItem = "";
@@ -277,6 +303,16 @@
         IconTypes.Search, IconTypes.ChevronDown,
         IconTypes.ChevronUp, IconTypes.Mail, IconTypes.Calendar
     };
+
+    private void HandleValidSubmit()
+    {
+        _validSubmitCount++;
+    }
+
+    private async Task HandleBusySubmit(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
+    {
+        await Task.Delay(2000); // Simulate async work
+    }
 
     private string SourceCode => @"@using AppsByTAP.BlazorFluentUI.Components.Button
 @using AppsByTAP.BlazorFluentUI.Components.Icon
@@ -305,7 +341,12 @@
         <DropdownItem Text=""Delete"" />
         <DropdownItem Text=""Share"" />
     </DropdownItems>
-</SplitButton>";
+</SplitButton>
+
+@* SubmitButton - Native HTML submit button for forms *@
+<EditForm Model=""@_model"" OnValidSubmit=""@HandleSubmit"">
+    <SubmitButton Text=""Submit"" IsPrimary=""true"" Icon=""IconTypes.CheckMark"" />
+</EditForm>";
 
     protected override void OnInitialized()
     {

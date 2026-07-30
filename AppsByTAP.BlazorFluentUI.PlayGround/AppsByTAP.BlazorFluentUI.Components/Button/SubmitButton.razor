@@ -1,0 +1,28 @@
+@namespace AppsByTAP.BlazorFluentUI.Components.Button
+
+@using AppsByTAP.BlazorFluentUI.Components.Icon
+@using AppsByTAP.BlazorFluentUI.Components.Spinner
+
+@inherits ButtonBaseParameters
+
+<button type="submit" 
+        @onclick="OnClickInternal" 
+        class="btnContainer withoutSecondaryText @(IsPrimary? "primaryBtn" : "secondaryBtn") @ClassName @(Disabled ? "disabled" : "")" 
+        style="@Style"
+        @onclick:stopPropagation="OnClickStopPropagation" 
+        id="@ID"
+        disabled="@Disabled">
+    <div class="primaryText">
+        <div style="display: @(Icon != IconTypes.None ? "block" : "none");"><Icon IconType="Icon" /></div>
+        <div>
+            @if(IsBusy)
+            {
+                <TinySpinner Size="SpinnerSize.xSmall" IsLoading=true />
+            }
+            else
+            {
+                @Text
+            }
+        </div>
+    </div>
+</button>
