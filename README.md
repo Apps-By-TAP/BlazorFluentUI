@@ -100,11 +100,12 @@ Standard Blazor components use `Value`/`ValueChanged`, which works well when the
 
 ## Documentation
 
-Detailed documentation is available in the [`docs/`](docs/) directory:
+The source-verified [OKF knowledge bundle](docs/OKF/index.md) is the canonical documentation for people and coding agents.
 
-- [Getting Started](docs/getting-started.md) — installation, project setup, and configuration
-- [Components](docs/components.md) — full reference for every component including parameters and usage examples
-- [Theming](docs/theming.md) — how to use the theme system, switch between light and dark themes, and create custom palettes
+- [Getting Started](docs/OKF/getting-started.md) - installation, project setup, services, and assets
+- [Component Index](docs/OKF/components/) - a dedicated contract page for every compiled component
+- [Theme Reference](docs/OKF/components/theme.md) - palette creation, runtime switching, and all 141 generated CSS variables
+- [0.1.0 Migration](docs/OKF/references/migration-0.1.0.md) - corrected public symbol and token names
 
 ## Project Structure
 

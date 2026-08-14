@@ -54,7 +54,7 @@ div > div{
 }
 
 .secondaryBtn {
-    color: var(--semanticColors-ButtonText);
+    color: var(--semanticTextColors-ButtonText);
 }
 
 .secondaryBtn:active:not(.disabled) {

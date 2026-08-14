@@ -15,5 +15,5 @@
 }
 
 .textArea:invalid {
-    border: 5px solid var(--semanticColors-ErrorText);
+    border: 5px solid var(--semanticTextColors-ErrorText);
 }

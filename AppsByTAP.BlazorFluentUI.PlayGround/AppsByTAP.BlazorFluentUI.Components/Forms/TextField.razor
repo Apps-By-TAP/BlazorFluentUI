@@ -25,7 +25,7 @@
 @code {
 
     [Parameter]
-    public Func<string, ValendationResult<string>> CustomValendation { get; set; }
+    public Func<string, ValidationResult<string>> CustomValidation { get; set; }
 
     [Inject]
     IJSRuntime JSRuntime { get; set; }
@@ -58,9 +58,9 @@
 
     protected override bool TryParseValueFromString(string value, out string result, out string validationErrorMessage)
     {
-        if(CustomValendation is not null)
+        if(CustomValidation is not null)
         {
-            ValendationResult<string> cvr = CustomValendation.Invoke(value);
+            ValidationResult<string> cvr = CustomValidation.Invoke(value);
             result = cvr.Result;
             validationErrorMessage = cvr.ValidationErrorMessage;
             return cvr.Success;

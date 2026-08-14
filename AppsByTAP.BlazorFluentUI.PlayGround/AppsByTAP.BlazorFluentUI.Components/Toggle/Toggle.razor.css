@@ -59,7 +59,7 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;
-    color: var(--semanticTextColors-BodyText, hotpink);
+    color: var(--semanticTextColors-BodyText);
     user-select: none;
     margin: 0;
 }

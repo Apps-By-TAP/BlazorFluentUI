@@ -51,6 +51,6 @@
         public virtual string TealLight => "#00b294";
         public virtual string GreenDark => "#004b1c";
         public virtual string Green => "#107c10";
-        public virtual string GreenLight => "#bad80";
+        public virtual string GreenLight => "#bad80a";
     }
 }

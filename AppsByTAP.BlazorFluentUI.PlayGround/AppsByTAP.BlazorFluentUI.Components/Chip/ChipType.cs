@@ -9,7 +9,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Chip
     public enum ChipType
     {
         Input,
-        Choise,
+        Choice,
         Filter,
         Action
     }

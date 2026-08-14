@@ -1,5 +1,5 @@
 ﻿a {
-    color: var(--semanticColors-Link);
+    color: var(--semanticTextColors-Link);
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
@@ -39,7 +39,7 @@
 }
 
 .secondaryBtn {
-    color: var(--semanticColors-ButtonText);
+    color: var(--semanticTextColors-ButtonText);
 }
 
 .secondaryBtn:active:not(.disabled) {

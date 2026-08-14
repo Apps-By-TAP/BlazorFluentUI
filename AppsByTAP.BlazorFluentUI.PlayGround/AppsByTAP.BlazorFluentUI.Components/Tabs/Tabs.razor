@@ -4,7 +4,7 @@
         <div class="TabHeader" role="group">
             @foreach (Tab tabPage in Pages)
             {
-            <div class="TabHeaderItem" @onclick="() => ActivatePage(tabPage)" style="color: @(ActivePage == tabPage? tabPage.Color : "var(--semanticColors-ButtonText)")">
+            <div class="TabHeaderItem" @onclick="() => ActivatePage(tabPage)" style="color: @(ActivePage == tabPage? tabPage.Color : "var(--semanticTextColors-ButtonText)")">
                 @tabPage.Header
             </div>
             }

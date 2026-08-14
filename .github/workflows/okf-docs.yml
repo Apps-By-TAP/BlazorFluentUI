@@ -1,0 +1,39 @@
+name: OKF documentation
+
+on:
+  push:
+    paths:
+      - 'AGENTS.md'
+      - 'README.md'
+      - 'docs/**'
+      - 'tools/OkfDocsValidator/**'
+      - 'AppsByTAP.BlazorFluentUI.PlayGround/AppsByTAP.BlazorFluentUI.Components/**'
+      - '.github/workflows/okf-docs.yml'
+  pull_request:
+    paths:
+      - 'AGENTS.md'
+      - 'README.md'
+      - 'docs/**'
+      - 'tools/OkfDocsValidator/**'
+      - 'AppsByTAP.BlazorFluentUI.PlayGround/AppsByTAP.BlazorFluentUI.Components/**'
+      - '.github/workflows/okf-docs.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore validator
+        run: dotnet restore tools/OkfDocsValidator/OkfDocsValidator.csproj
+      - name: Build component library and validator
+        run: dotnet build tools/OkfDocsValidator/OkfDocsValidator.csproj -c Release --no-restore
+      - name: Run validator negative self-tests
+        run: dotnet run --project tools/OkfDocsValidator/OkfDocsValidator.csproj -c Release --no-build -- self-test
+      - name: Validate live OKF bundle
+        run: dotnet run --project tools/OkfDocsValidator/OkfDocsValidator.csproj -c Release --no-build -- check

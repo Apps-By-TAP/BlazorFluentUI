@@ -1,0 +1,50 @@
+﻿@inherits LayoutComponentBase
+@using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Light
+@using AppsByTAP.BlazorFluentUI.Components.Theme.Themes.Dark
+@using AppsByTAP.BlazorFluentUI.Components.Theme.Models
+@using AppsByTAP.BlazorFluentUI.Components.Theme
+@using AppsByTAP.BlazorFluentUI.Components.Theme.Themes
+@using Microsoft.AspNetCore.Components
+
+
+@inject IThemeProvider ThemeProvider
+@inject NavigationManager NavigationManager
+
+<div class="page">
+    <div class="sidebar" style="overflow-y: scroll">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            <a href="https://github.com/AppsByTAP/BlazorFluentUI" target="_blank" class="ml-md-auto">
+                GitHub
+            </a>
+            <button class="btn-theme" @onclick="ToggleTheme">
+                @ThemeIcon
+            </button>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool _isDark;
+    private string ThemeIcon => _isDark ? "🌙 Dark" : "☀️ Light";
+
+    protected override void OnInitialized()
+    {
+        _isDark = true;
+    }
+
+    private async Task ToggleTheme()
+    {
+        _isDark = !_isDark;
+        IPalette palette = _isDark ? new DarkThemePalette() : new LightThemePalette();
+        ThemeProvider.ChangeTheme(ThemeProvider.CreateTheme(palette));
+        await Task.CompletedTask;
+    }
+}

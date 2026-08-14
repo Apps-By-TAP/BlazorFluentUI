@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <GHPages>false</GHPages>
+  </PropertyGroup>
+
+  <!-- Auto-swap index.html for GitHub Pages deployment -->
+  <Target Name="SwapIndexForGHPages" BeforeTargets="Build" Condition="'$(GHPages)' == 'true'">
+    <Copy SourceFiles="index.ghpages.html" DestinationFiles="index.html" OverwriteReadOnlyFiles="true" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.13" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppsByTAP.BlazorFluentUI.Components\AppsByTAP.BlazorFluentUI.Components.csproj" />
+  </ItemGroup>
+
+  <!-- Copy all wwwroot content (CSS, favicon, index.html) to build output wwwroot -->
+  <Target Name="CopyStaticFilesToOutput" AfterTargets="Build">
+    <ItemGroup>
+      <_SourceFiles Include="wwwroot\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_SourceFiles)" DestinationFolder="$(OutputPath)wwwroot\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="wwwroot\index.html" DestinationFolder="$(OutputPath)wwwroot" />
+  </Target>
+
+</Project>

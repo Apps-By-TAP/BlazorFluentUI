@@ -15,7 +15,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Tabs
         public string Header { get; set; }
 
         [Parameter]
-        public string Color { get; set; } = "var(--semanticColors-ButtonText)";
+        public string Color { get; set; } = "var(--semanticTextColors-ButtonText)";
 
         private double _left = -40;
         private int _opacity;

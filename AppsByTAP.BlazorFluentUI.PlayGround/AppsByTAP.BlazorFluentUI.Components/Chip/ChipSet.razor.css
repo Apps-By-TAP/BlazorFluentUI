@@ -2,7 +2,7 @@
     background-color: transparent;
     border-width: 1px;
     border-radius: 2px;
-    border-color: var(--pallette-Black);
+    border-color: var(--palette-Black);
     outline: none;
     color: var(--semanticTextColors-BodyText);
 }

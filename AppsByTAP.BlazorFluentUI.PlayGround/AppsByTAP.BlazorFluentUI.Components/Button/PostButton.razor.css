@@ -1,5 +1,5 @@
 ﻿button {
-    color: var(--semanticColors-Link);
+    color: var(--semanticTextColors-Link);
     font-weight: 600;
     font-size: 14px;
     border: 1px solid var(--semanticColors-ButtonBorder);
@@ -28,7 +28,7 @@
 }
 
 .secondaryBtn {
-    color: var(--semanticColors-ButtonText);
+    color: var(--semanticTextColors-ButtonText);
     background-color: var(--semanticColors-ButtonBackground);
 }
 

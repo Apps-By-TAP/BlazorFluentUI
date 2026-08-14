@@ -27,7 +27,7 @@
 }
 
 .showCheckMark {
-    color: var(--semanticColors-InputText);
+    color: var(--semanticTextColors-InputText);
 }
 
 .checked {

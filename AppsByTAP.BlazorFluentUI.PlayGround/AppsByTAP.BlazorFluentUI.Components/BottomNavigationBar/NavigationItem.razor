@@ -1,9 +1,9 @@
 ﻿@using AppsByTAP.BlazorFluentUI.Components.Icon
 
 <div class="navItem @(IsActive ? "navItem-active" : "")" @onclick=Navigate>
-    @if(ICon != IconTypes.None)
+    @if(Icon != IconTypes.None)
     {
-        <Icon IconType="@ICon" Style="width: 24px; height: 24px; text-align: center;" />
+        <Icon IconType="@Icon" Style="width: 24px; height: 24px; text-align: center;" />
     }
     else
     {
@@ -25,7 +25,7 @@
     [Parameter]
     public string Url { get; set; }
     [Parameter]
-    public IconTypes ICon { get; set; } = IconTypes.None;
+    public IconTypes Icon { get; set; } = IconTypes.None;
     [Parameter]
     public bool IsActive { get; set; }
     [Parameter]
