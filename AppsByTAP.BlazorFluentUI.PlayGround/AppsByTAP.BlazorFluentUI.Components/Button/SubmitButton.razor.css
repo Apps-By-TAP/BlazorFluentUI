@@ -1,0 +1,75 @@
+
+button.btnContainer {
+    display: inline-block;
+    border: 1px solid var(--semanticColors-ButtonBorder);
+    border-radius: 2px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    font-family: inherit;
+}
+
+button.btnContainer:hover:not([disabled]) {
+    cursor: pointer;
+}
+
+button.withoutSecondaryText {
+    padding: 5px 21px;
+}
+
+button.withSecondaryText {
+    padding: 16px 11px;
+}
+
+button div > div{
+    display: flex;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+button .secondary{
+    font-size: 12px;
+    font-weight: 400;
+}
+
+button .primaryText{
+    text-align: center;
+    gap: 5px;
+    align-items: center;
+}
+
+button.primaryBtn {
+    background-color: var(--semanticColors-PrimaryButtonBackground);
+    color: var(--semanticTextColors-PrimaryButtonText);
+}
+
+button.primaryBtn:active:not([disabled]) {
+    background-color: var(--semanticColors-PrimaryButtonBackgroundPressed);
+}
+
+button.primaryBtn:hover:not([disabled]) {
+    background-color: var(--semanticColors-PrimaryButtonBackgroundHovered);
+}
+
+button.secondaryBtn {
+    background-color: var(--semanticColors-ButtonBackground);
+    color: var(--semanticColors-ButtonText);
+}
+
+button.secondaryBtn:active:not([disabled]) {
+    background-color: var(--semanticColors-ButtonBackgroundChecked);
+}
+
+button.secondaryBtn:hover:not([disabled]) {
+    background-color: var(--semanticColors-ButtonBackgroundHovered);
+}
+
+button.disabled, button[disabled] {
+    background-color: var(--semanticColors-ListItemBackgroundCheckedHovered);
+    border: none;
+    color: var(--semanticTextColors-DisabledText);
+    cursor: not-allowed;
+}
