@@ -10,7 +10,7 @@ This is the canonical, source-verified reference for AppsByTAP.BlazorFluentUI 0.
 
 * [Getting started](getting-started.md) - Project setup, services, static assets, namespaces, and first component usage.
 * [Architecture and binding conventions](architecture-and-binding.md) - WPF-style names, data flow, component composition, and rules for generated code.
-* [Components](components/) - One detailed source-linked page for each of the 40 compiled Razor components.
+* [Components](components/) - One detailed source-linked page for each of the 41 compiled Razor components.
 * [References](references/) - Supporting types, assets, migration, and documentation maintenance.
 * [Update log](log.md) - Bundle and API changes in newest-first order.
 

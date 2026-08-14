@@ -30,6 +30,7 @@
 * [SpinButton](spin-button.md) - A whole-number or decimal input with buttons and mouse-wheel increment/decrement behavior.
 * [Spinner](spinner.md) - A loading indicator with size and label-position options.
 * [SplitButton<TItem>](split-button.md) - A generic primary action plus callout menu for choosing an item.
+* [SubmitButton](submit-button.md) - A native HTML submit button for Blazor forms with shared button styling, icon, disabled, click, and busy-state parameters.
 * [Tab](tab.md) - A child tab page registered with a parent Tabs component through a cascading parameter.
 * [Tabs](tabs.md) - A tab header and content host with an index-based initial selection.
 * [TemplateButton](template-button.md) - A button-like container whose visual content is supplied by a RenderFragment.

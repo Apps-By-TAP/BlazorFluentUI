@@ -56,7 +56,7 @@ button.primaryBtn:hover:not([disabled]) {
 
 button.secondaryBtn {
     background-color: var(--semanticColors-ButtonBackground);
-    color: var(--semanticColors-ButtonText);
+    color: var(--semanticTextColors-ButtonText);
 }
 
 button.secondaryBtn:active:not([disabled]) {

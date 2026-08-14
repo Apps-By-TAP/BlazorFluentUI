@@ -15,7 +15,10 @@ $referencesRoot = Join-Path $okfRoot 'references'
 $utf8 = New-Object Text.UTF8Encoding($false)
 
 function Write-Utf8([string]$Path, [string]$Content) {
-    [IO.File]::WriteAllText($Path, ($Content.TrimEnd() + "`n"), $utf8)
+    $normalized = $Content.Replace("`r`n", "`n").Replace("`r", "`n")
+    $next = $normalized.TrimEnd() + "`n"
+    if ((Test-Path $Path) -and [IO.File]::ReadAllText($Path) -ceq $next) { return }
+    [IO.File]::WriteAllText($Path, $next, $utf8)
 }
 
 function Get-Slug($component) {
@@ -35,6 +38,7 @@ function Get-Description([string]$FullName) {
         '*.Button.IconButton' { 'A compact icon-only clickable control.' }
         '*.Button.NavButton' { 'A BaseButton wrapped in an anchor when Href is provided.' }
         '*.Button.PostButton' { 'A native form-posting button that submits hidden name/value fields to a URL.' }
+        '*.Button.SubmitButton' { 'A native HTML submit button for Blazor forms with shared button styling, icon, disabled, click, and busy-state parameters.' }
         '*.Button.SplitButton*' { 'A generic primary action plus callout menu for choosing an item.' }
         '*.Button.TemplateButton' { 'A button-like container whose visual content is supplied by a RenderFragment.' }
         '*.Callout.Callout' { 'A positioned overlay anchored to a target element ID with optional light dismiss.' }
@@ -81,6 +85,7 @@ function Get-Gotchas([string]$FullName) {
         '*.Button.IconButton' { @('This is a div-based control without native button keyboard/disabled semantics.', 'It does not inherit the common button Text, IsPrimary, or ShowIsBusy parameters.') }
         '*.Button.NavButton' { @('Href null/empty changes whether an anchor wrapper is rendered.', 'SecondaryText is inherited but is not forwarded to the inner BaseButton.') }
         '*.Button.PostButton' { @('Submitting navigates away using a native form post; OnClick is not available.', 'HiddenValues is rendered directly as hidden inputs and should be treated as untrusted input when values come from users.') }
+        '*.Button.SubmitButton' { @('The root is a native `<button type="submit">`; inside an EditForm or HTML form it initiates form submission in addition to invoking OnClick.', 'OnClickStopPropagation affects Blazor event bubbling but does not prevent the browser default submit action; the component exposes no prevent-default parameter.', 'ShowIsBusy tracks only the inherited OnClick callback. It does not track EditForm.OnValidSubmit or OnSubmit work unless that work is also awaited by OnClick.', 'OnClickInternal is inherited async void, so the renderer cannot await it and callback exceptions do not flow through a returned Task.', 'Disabled is applied as the native disabled attribute and also suppresses inherited click handling.', 'Unlike BaseButton, SubmitButton has no SecondaryText parameter and renders a native keyboard-operable button.') }
         '*.Button.SplitButton*' { @('TItem must be supplied and ItemsSource must be non-null before opening the menu.', 'SelectedItemTemplate and DropDownTemplate are required for meaningful generic rendering.', 'Selection closes the callout and invokes SelectedItemChanged.') }
         '*.Button.TemplateButton' { @('The root is button-like markup rather than a native button.', 'ChildContent controls presentation; Text and Icon inherited from the base contract are not rendered.') }
         '*.Callout.Callout' { @('TargetID must identify an existing DOM element for JS positioning.', 'IsOpen invokes OnOpen/OnClose from its setter; parameter setters with side effects produce Blazor analyzer warnings.', 'No focus trap or Escape-key behavior is implemented by the component.') }
@@ -117,6 +122,9 @@ function Get-Gotchas([string]$FullName) {
 }
 
 function Get-Accessibility([string]$FullName) {
+    if ($FullName -match '\.SubmitButton$') {
+        return 'The root is a native button with built-in keyboard activation and disabled semantics. Supply meaningful Text; Icon has no separate accessible-label parameter, and the busy spinner does not add a live-region announcement.'
+    }
     if ($FullName -match '\.(BaseButton|CompoundButton|DefaultButton|IconButton|NavButton|TemplateButton|CheckBox|Toggle|FloatingActionButton)$') {
         return 'The interactive surface is div-based. Add an accessible wrapper or extend the component before relying on keyboard activation, native disabled behavior, or button/checkbox semantics.'
     }
@@ -163,6 +171,7 @@ function Get-Examples($component) {
         '*.Button.IconButton' { $minimal='<IconButton Icon="IconTypes.Settings" OnClick="OpenSettings" />'; $advanced='<IconButton Icon="IconTypes.Delete" Disabled="@isLocked" ID="delete-action" OnClick="Delete" />' }
         '*.Button.NavButton' { $minimal='<NavButton Text="Home" Href="/" />'; $advanced='<NavButton Text="Settings" Href="/settings" Icon="IconTypes.Settings" IsPrimary="true" />' }
         '*.Button.PostButton' { $minimal='<PostButton Text="Submit" Url="/orders" />'; $advanced='<PostButton Text="Submit" Url="/orders" FormID="order-form" HiddenValues="@fields" IsPrimary="true" />' }
+        '*.Button.SubmitButton' { $minimal="<EditForm Model=`"@model`" OnValidSubmit=`"SaveAsync`">`n    <DataAnnotationsValidator />`n    <SubmitButton Text=`"Save`" IsPrimary=`"true`" />`n</EditForm>"; $advanced="<EditForm Model=`"@model`" OnValidSubmit=`"CreateAccountAsync`">`n    <DataAnnotationsValidator />`n    <SubmitButton Text=`"Create account`"`n                  Icon=`"IconTypes.CheckMark`"`n                  IsPrimary=`"true`"`n                  Disabled=`"@saving`"`n                  OnClick=`"RecordSubmitAttempt`"`n                  OnClickStopPropagation=`"true`" />`n</EditForm>" }
         '*.Button.SplitButton*' { $minimal='<SplitButton TItem="string" ItemsSource="@actions" SelectedItemTemplate="@RenderAction" DropDownTemplate="@RenderAction" />'; $advanced='<SplitButton TItem="string" Text="Run" ItemsSource="@actions" @bind-SelectedItem="selectedAction" CanLightDismiss="true" SelectedItemTemplate="@RenderAction" DropDownTemplate="@RenderAction" />' }
         '*.Button.TemplateButton' { $minimal='<TemplateButton><span>Custom action</span></TemplateButton>'; $advanced='<TemplateButton Border="none" BorderRadius="12px" OnClick="Run"><strong>Run</strong></TemplateButton>' }
         '*.BottomNavigationBar.BottomNavigationBar' { $minimal='<BottomNavigationBar><NavigationItem Text="Home" Url="/" Icon="IconTypes.Bank" /></BottomNavigationBar>'; $advanced='<BottomNavigationBar Class="app-nav" Style="height:64px"><NavigationItem Text="Home" Url="/" Icon="IconTypes.Bank" IsActive="true" /><NavigationItem Text="Search" Url="/search" Icon="IconTypes.Search" /></BottomNavigationBar>' }
@@ -256,6 +265,9 @@ function Get-LifecycleSummary($sourceText) {
 }
 
 function Get-CallbackSemantics($component, $sourceText) {
+    if ($component.fullName -eq 'AppsByTAP.BlazorFluentUI.Components.Button.SubmitButton') {
+        return '- `OnClick` (`EventCallback<MouseEventArgs>`) is invoked with the native click arguments by inherited `OnClickInternal` when `Disabled` is false. `ShowIsBusy` sets internal `IsBusy` around that callback only.'
+    }
     $withoutLineComments = [regex]::Replace($sourceText, '(?m)^\s*//.*$', '')
     $callbacks = @($component.parameters | Where-Object { $_.type.StartsWith('EventCallback') })
     if ($callbacks.Count -eq 0) { return 'No EventCallback parameters are exposed.' }
