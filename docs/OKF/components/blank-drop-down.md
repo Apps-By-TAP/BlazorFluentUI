@@ -124,6 +124,7 @@ Source files:
 - `--semanticColors-ButtonBorder`
 - `--semanticColors-ListBackground`
 - `--semanticColors-ListItemBackgroundCheckedHovered`
+- `--semanticColors-ListShadow`
 - `--semanticColors-ScrollbarThumb`
 - `--semanticColors-ScrollbarTrack`
 - `--semanticTextColors-DisabledText`

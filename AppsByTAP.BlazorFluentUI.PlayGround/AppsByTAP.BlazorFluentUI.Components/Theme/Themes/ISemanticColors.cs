@@ -53,6 +53,7 @@
         string MenuItemBackgroundHovered { get; set; }
         string MenuItemBackgroundPressed { get; set; }
         string ListBackground { get; set; }
+        string ListShadow { get; set; }
         string ListItemBackgroundHovered { get; set; }
         string ListItemBackgroundChecked { get; set; }
         string ListItemBackgroundCheckedHovered { get; set; }

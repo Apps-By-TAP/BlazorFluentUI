@@ -1,5 +1,6 @@
 ﻿.dropDownWrapper {
     display: block;
+    position: relative; /* anchor for the absolutely positioned itemsPanel */
 }
 
 .dropDownCtrl {
@@ -40,6 +41,9 @@
 .itemsPanel {
     position: absolute;
     background-color: var(--semanticColors-ListBackground);
+    max-width: 100%; /* never wider than the dropdown control */
+    box-sizing: border-box;
+    box-shadow: var(--semanticColors-ListShadow);
     overflow-y: auto;
     scrollbar-width: thin; /* "auto" or "thin" */
     scrollbar-color: var(--semanticColors-ScrollbarThumb) var(--semanticColors-ScrollbarTrack); /* scroll thumb and track */

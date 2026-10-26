@@ -188,6 +188,7 @@ var(--semanticColors-DisabledBorder)
 
 /* Lists */
 var(--semanticColors-ListBackground)
+var(--semanticColors-ListShadow)
 var(--semanticColors-ListItemBackgroundHovered)
 var(--semanticColors-ListItemBackgroundChecked)
 var(--semanticColors-ListItemBackgroundCheckedHovered)

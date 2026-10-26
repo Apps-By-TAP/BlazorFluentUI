@@ -96,6 +96,7 @@ namespace AppsByTAP.BlazorFluentUI.Components.Theme.Models
 
                 // LISTS
                 ListBackground = isDark ? palette.NeutralLighter : palette.White,
+                ListShadow = isDark ? "none" : "0 4px 12px rgba(0,0,0,0.15)",
                 ListItemBackgroundHovered = !isDark ? palette.NeutralLighter : palette.NeutralQuaternaryAlt,
                 ListItemBackgroundChecked = palette.NeutralLight,
                 ListItemBackgroundCheckedHovered = palette.NeutralQuaternaryAlt,

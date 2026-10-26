@@ -578,6 +578,7 @@ Kind: **interface**.
 - `ListItemBackgroundChecked: string`
 - `ListItemBackgroundCheckedHovered: string`
 - `ListItemBackgroundHovered: string`
+- `ListShadow: string`
 - `MenuBackground: string`
 - `MenuDivider: string`
 - `MenuHeader: string`
@@ -766,6 +767,7 @@ Kind: **class**.
 - `ListItemBackgroundChecked: string`
 - `ListItemBackgroundCheckedHovered: string`
 - `ListItemBackgroundHovered: string`
+- `ListShadow: string`
 - `MenuBackground: string`
 - `MenuDivider: string`
 - `MenuHeader: string`

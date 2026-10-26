@@ -300,6 +300,7 @@ Theme emits exactly 141 variables: 50 palette colors, 58 semantic colors (includ
 | `--semanticColors-ListItemBackgroundChecked` | `#edebe9` | `#292827` |
 | `--semanticColors-ListItemBackgroundCheckedHovered` | `#e1dfdd` | `#323130` |
 | `--semanticColors-ListItemBackgroundHovered` | `#f3f2f1` | `#323130` |
+| `--semanticColors-ListShadow` | `0 4px 12px rgba(0,0,0,0.15)` | `none` |
 | `--semanticColors-MenuBackground` | `#ffffff` | `#1b1a19` |
 | `--semanticColors-MenuDivider` | `#c8c6c4` | `#484644` |
 | `--semanticColors-MenuHeader` | `#0078d4` | `#2899f5` |

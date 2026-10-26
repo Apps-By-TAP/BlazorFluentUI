@@ -67,13 +67,13 @@ namespace AppsByTAP.BlazorFluentUI.Components.DropDown
         private Task<IJSObjectReference> Module => _module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", ImportPath).AsTask();
 
         private readonly string _id = Guid.NewGuid().ToString();
-        private int _top = -1;
+        private int? _top;
 
         protected async void OpenDropDown()
         {
             if (!Disabled)
             {
-                _top = -1;
+                _top = null;
                 await Task.Delay(5); //Time for UI to update
 
                 IJSObjectReference mod = await Module;
